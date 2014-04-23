@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ListView.ListViewController">
+  <children>
+    <ListView fx:id="ObjectListView" layoutX="46.0" layoutY="28.0" onMouseClicked="#handleListViewClick" prefHeight="200.0" prefWidth="200.0" />
+    <Button fx:id="createButton" layoutX="46.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleCreateButton" prefWidth="95.0" text="CreateList" />
+    <TextField id="text" fx:id="value1" layoutX="373.0" layoutY="28.0" prefWidth="200.0" />
+    <TextField fx:id="value2" layoutX="373.0" layoutY="72.0" prefWidth="200.0" />
+    <Label layoutX="292.0" layoutY="34.0" prefWidth="47.9998779296875" text="Value 1" />
+    <Label layoutX="292.0" layoutY="75.0" text="Value 2" />
+    <Label layoutX="292.0" layoutY="135.0" text="Value 3" />
+    <Label fx:id="value3" layoutX="373.0" layoutY="135.0" text="Default" />
+  </children>
+</AnchorPane>

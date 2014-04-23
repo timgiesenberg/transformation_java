@@ -25,17 +25,10 @@ public class InfoProjektJAVAFX extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Informatikprojekt.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("Informatikprojekt.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/ListView/ListView.fxml")); 
         
         Scene scene = new Scene(root);
-        
-        ListView<String> ObjectListView = new ListView<String>();
-    
-        ObservableList<String> items = FXCollections.observableArrayList (
-        "Single", "Double", "Suite", "Family App");
-        
-        ObjectListView.setItems(items);
-        
         
         stage.setScene(scene);
         stage.show();
