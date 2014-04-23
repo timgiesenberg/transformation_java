@@ -43,10 +43,10 @@ public class ListViewController implements Initializable {
     private Label value3;
     
     @FXML
-    private ListView<String> ObjectListView = new ListView<String>();
+    private ListView<Integer> ObjectListView = new ListView<Integer>();
     
-    private ObservableList<String> items = FXCollections.observableArrayList (
-        "1", "2", "3", "4", "5");
+    private ObservableList<Integer> items = FXCollections.observableArrayList (
+        1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
     
     @FXML
     protected void handleCreateButton(ActionEvent event){        

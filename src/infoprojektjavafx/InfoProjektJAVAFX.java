@@ -32,6 +32,9 @@ public class InfoProjektJAVAFX extends Application {
         
         stage.setScene(scene);
         stage.show();
+        
+        Matrix m = new Matrix();
+        m.printMatrix();
     }
 
     /**
