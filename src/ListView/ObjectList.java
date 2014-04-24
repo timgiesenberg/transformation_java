@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package infoprojektjavafx;
+package ListView;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -13,45 +13,42 @@ import java.util.ListIterator;
 import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.scene.shape.Shape;
 
-/**
- *
- * @author tim.giesenberg@me.com
- */
-public class ObjectList implements ObservableList<String>{
+public class ObjectList implements ObservableList<Shape>{
 
     @Override
-    public void addListener(ListChangeListener<? super String> ll) {
+    public void addListener(ListChangeListener<? super Shape> ll) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void removeListener(ListChangeListener<? super String> ll) {
+    public void removeListener(ListChangeListener<? super Shape> ll) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean addAll(String... es) {
+    public boolean addAll(Shape... es) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean setAll(String... es) {
+    public boolean setAll(Shape... es) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean setAll(Collection<? extends String> clctn) {
+    public boolean setAll(Collection<? extends Shape> clctn) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean removeAll(String... es) {
+    public boolean removeAll(Shape... es) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean retainAll(String... es) {
+    public boolean retainAll(Shape... es) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -76,7 +73,7 @@ public class ObjectList implements ObservableList<String>{
     }
 
     @Override
-    public Iterator<String> iterator() {
+    public Iterator<Shape> iterator() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -91,7 +88,7 @@ public class ObjectList implements ObservableList<String>{
     }
 
     @Override
-    public boolean add(String e) {
+    public boolean add(Shape e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -106,12 +103,12 @@ public class ObjectList implements ObservableList<String>{
     }
 
     @Override
-    public boolean addAll(Collection<? extends String> c) {
+    public boolean addAll(Collection<? extends Shape> c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean addAll(int index, Collection<? extends String> c) {
+    public boolean addAll(int index, Collection<? extends Shape> c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -131,22 +128,22 @@ public class ObjectList implements ObservableList<String>{
     }
 
     @Override
-    public String get(int index) {
+    public Shape get(int index) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String set(int index, String element) {
+    public Shape set(int index, Shape element) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void add(int index, String element) {
+    public void add(int index, Shape element) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String remove(int index) {
+    public Shape remove(int index) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -161,17 +158,17 @@ public class ObjectList implements ObservableList<String>{
     }
 
     @Override
-    public ListIterator<String> listIterator() {
+    public ListIterator<Shape> listIterator() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ListIterator<String> listIterator(int index) {
+    public ListIterator<Shape> listIterator(int index) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<String> subList(int fromIndex, int toIndex) {
+    public List<Shape> subList(int fromIndex, int toIndex) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
