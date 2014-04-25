@@ -36,19 +36,21 @@ public class ObjectTranslationController implements Initializable {
     @FXML
     protected void handleBackButton(ActionEvent event){        
         
-        Point2D a = Translate.translateToOrigin(new Point2D(0,0), new Point2D(0,0));
+        Point2D a = new Point2D(100,100);
         
         blueRect.setX(a.x);
         blueRect.setY(a.y);
+        System.out.println(a.x + " " + a.y);
     }
     
     @FXML
     protected void handleOriginButton(ActionEvent event){
         
-        Point2D a = Translate.translateToOrigin(new Point2D(0,0), new Point2D(0,0));
-        
+        Point2D a = Translate.translateObjectToOrigin(new Point2D((int) blueRect.getX(), (int) blueRect.getY()));
+
         blueRect.setX(a.x);
         blueRect.setY(a.y);
+        System.out.println(a.x + " " + a.y);
     }
     
 }

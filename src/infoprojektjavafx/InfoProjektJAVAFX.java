@@ -26,8 +26,8 @@ public class InfoProjektJAVAFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //Parent root = FXMLLoader.load(getClass().getResource("Informatikprojekt.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/ListView/ListView.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/Translation/ObjectTranslation.fxml")); 
+        Parent root = FXMLLoader.load(getClass().getResource("/ListView/ListView.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/Translation/ObjectTranslation.fxml")); 
         
         Scene scene = new Scene(root);
         
@@ -36,12 +36,6 @@ public class InfoProjektJAVAFX extends Application {
         
         Matrix m = new Matrix();
         m.printMatrix();
-        
-        Point2D p1 = new Point2D(11,16);
-        Point2D translate = new Point2D(5,6);
-        
-        Translate.translateToOrigin(p1, translate);
-        
     }
 
     /**

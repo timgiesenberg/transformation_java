@@ -12,14 +12,31 @@ package infoprojektjavafx;
  */
 public class Translate {
     
-    public static Point2D translateToOrigin(Point2D p, Point2D translate){
+    /**
+     * Translates a Point to coordinate origin (x=0, y=0)
+     * Generates a Translation vector.
+     * @param p
+     * @return originTranslation
+     */
+    public static Point2D translateObjectToOrigin(Point2D p){
         
-            System.out.println(p.x + " " + p.y);
-            int a =  p.x - translate.x;
-            int b = p.y - translate.y;
+        int originX =  p.x - p.x;
+        int originY = p.y - p.y;
+
+        Point2D originTranslation = new Point2D(originX, originY);
             
-            System.out.println(a + " " + b);
-            
+        return originTranslation;
+    }
+    
+    public static Point2D translateOtherPointsToOrigin(Point2D p, Point2D translate){
         return null;
+    }
+    
+    public static Point2D translate(Point2D p, Point2D translate){
+        return p;
+    }
+    
+    public static Point2D rotate(Point2D p, double rotate){
+        return p;
     }
 }

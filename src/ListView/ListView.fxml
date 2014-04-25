@@ -5,6 +5,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ListView.ListViewController">
   <children>
@@ -16,5 +17,7 @@
     <Label layoutX="292.0" layoutY="75.0" text="Value 2" />
     <Label layoutX="292.0" layoutY="135.0" text="Value 3" />
     <Label fx:id="value3" layoutX="373.0" layoutY="135.0" text="Default" />
+    <Rectangle fx:id="blueRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="83.0" layoutX="269.0" layoutY="270.0" onMouseClicked="#rectClick" stroke="BLACK" strokeType="INSIDE" width="94.0" />
+    <Circle fx:id="blueCircle" fill="DODGERBLUE" layoutX="461.0" layoutY="301.0" onMouseClicked="#circleClick" radius="41.5" stroke="BLACK" strokeType="INSIDE" />
   </children>
 </AnchorPane>

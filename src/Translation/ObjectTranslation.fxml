@@ -11,7 +11,7 @@
   <children>
     <Rectangle fx:id="blueRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="100.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffcccc" height="100.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-    <Button fx:id="translateToOriginButton" layoutX="68.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleOriginButton" text="Translate to Origin" />
-    <Button fx:id="translateBackButton" layoutX="286.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleBackButton" prefWidth="187.0" text="Translate Back" />
+    <Button fx:id="translateToOriginButton" layoutX="0.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleOriginButton" text="Translate to Origin" />
+    <Button fx:id="translateBackButton" layoutX="174.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleBackButton" prefWidth="187.0" text="Translate Back" />
   </children>
 </AnchorPane>
