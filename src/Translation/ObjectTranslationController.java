@@ -38,8 +38,8 @@ public class ObjectTranslationController implements Initializable {
         
         Point2D a = new Point2D(100,100);
         
-        blueRect.setX(a.x);
-        blueRect.setY(a.y);
+        blueRect.setLayoutX(a.y);
+        blueRect.setLayoutY(a.y);
         System.out.println(a.x + " " + a.y);
     }
     
@@ -48,8 +48,8 @@ public class ObjectTranslationController implements Initializable {
         
         Point2D a = Translate.translateObjectToOrigin(new Point2D((int) blueRect.getX(), (int) blueRect.getY()));
 
-        blueRect.setX(a.x);
-        blueRect.setY(a.y);
+        blueRect.setLayoutX(a.x);
+        blueRect.setLayoutY(a.y);
         System.out.println(a.x + " " + a.y);
     }
     
