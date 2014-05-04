@@ -34,8 +34,18 @@ public class InfoProjektJAVAFX extends Application {
         stage.setScene(scene);
         stage.show();
         
-        Matrix m = new Matrix();
+        Matrix m = new Matrix(1);
+        Matrix n = new Matrix(1);
+        
         m.printMatrix();
+        n.printMatrix();
+        
+        Matrix o  =  Transformate.muliplyMatrices(m, n);
+        o.printMatrix();
+        
+        Transformate.getRotateMatrix(50);
+        Transformate.getScaleMatrix(new Point2D(3,3));
+        Transformate.getTranslateMatrix(new Point2D(5, 10));
     }
 
     /**

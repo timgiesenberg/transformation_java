@@ -7,17 +7,49 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ListView.ListViewController">
+<AnchorPane id="AnchorPane" prefHeight="501.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ListView.ListViewController">
   <children>
     <ListView fx:id="ObjectListView" layoutX="46.0" layoutY="28.0" onMouseClicked="#handleListViewClick" prefHeight="200.0" prefWidth="200.0" />
     <Button fx:id="createButton" layoutX="46.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleCreateButton" prefWidth="95.0" text="CreateList" />
-    <TextField id="text" fx:id="value1" layoutX="373.0" layoutY="28.0" prefWidth="200.0" />
-    <TextField fx:id="value2" layoutX="373.0" layoutY="72.0" prefWidth="200.0" />
-    <Label layoutX="292.0" layoutY="34.0" prefWidth="47.9998779296875" text="Value 1" />
-    <Label layoutX="292.0" layoutY="75.0" text="Value 2" />
-    <Label layoutX="292.0" layoutY="135.0" text="Value 3" />
-    <Label fx:id="value3" layoutX="373.0" layoutY="135.0" text="Default" />
-    <Rectangle fx:id="blueRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="83.0" layoutX="269.0" layoutY="270.0" onMouseClicked="#rectClick" stroke="BLACK" strokeType="INSIDE" width="94.0" />
-    <Circle fx:id="blueCircle" fill="DODGERBLUE" layoutX="461.0" layoutY="301.0" onMouseClicked="#circleClick" radius="41.5" stroke="BLACK" strokeType="INSIDE" />
+    <Rectangle fx:id="blueRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="83.0" layoutX="32.0" layoutY="378.0" onMouseClicked="#rectClick" rotate="0.0" stroke="BLACK" strokeType="INSIDE" width="94.0" />
+    <Circle fx:id="blueCircle" fill="DODGERBLUE" layoutX="279.0" layoutY="446.0" onMouseClicked="#circleClick" radius="41.5" stroke="BLACK" strokeType="INSIDE" />
+    <GridPane fx:id="rectangleGrid" layoutX="320.0" layoutY="70.0">
+      <children>
+        <Label fx:id="label1" prefWidth="47.9998779296875" text="Height" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField id="text" fx:id="heightInput" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField id="value2" fx:id="widthInput" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label id="value3" fx:id="rectangleLabel" text="Default" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label fx:id="label2" text="Width" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label fx:id="label3" text="Name" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Label text="Rectangle" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <GridPane fx:id="circleGrid" layoutX="328.0" layoutY="70.0">
+      <children>
+        <Label id="label1" prefWidth="47.9998779296875" text="Radius" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField id="text" fx:id="radiusInput" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label id="value3" fx:id="circleLabel" text="Default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="Circle" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
   </children>
 </AnchorPane>

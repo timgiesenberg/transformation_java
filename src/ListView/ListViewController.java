@@ -14,13 +14,11 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.ComboBoxListCell;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -34,13 +32,25 @@ import javafx.util.Callback;
 public class ListViewController implements Initializable {
 
     @FXML
-    private TextField value1;
+    private TextField heightInput;
     
     @FXML
-    private TextField value2;
+    private TextField widthInput;
     
     @FXML
-    private Label value3;
+    private TextField radiusInput;
+    
+    @FXML
+    private Label rectangleLabel;
+    
+    @FXML
+    private Label circleLabel;
+    
+    @FXML
+    private GridPane circleGrid;
+    
+    @FXML
+    private GridPane rectangleGrid;
     
     @FXML
     private Circle blueCircle;
@@ -60,6 +70,7 @@ public class ListViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        circleGrid.setVisible(false);
         items = FXCollections.observableArrayList (
         blueCircle, blueRect);
         ObjectListView.setItems(items);
@@ -75,28 +86,7 @@ public class ListViewController implements Initializable {
     
     @FXML
     protected void handleCreateButton(ActionEvent event){
-        /**ObjectListView.setCellFactory(new Callback<ListView<Shape>, ListCell<Shape>>(){
- 
-            @Override
-            public ListCell<Shape> call(ListView<Shape> p) {
-                 
-                ListCell<Shape> cell = new ListCell<Shape>(){
- 
-                    @Override
-                    protected void updateItem(Shape t, boolean bln) {
-                        super.updateItem(t, bln);
-                        if (t != null) {
-                            setText(t.getId());
-                        }
-                    }
- 
-                };
-                 
-                return cell;
-            }
-        });/**/
     }
-    
     /**
      * handles a click on ViewList items
      * @param event 
@@ -106,9 +96,7 @@ public class ListViewController implements Initializable {
         System.out.println("Click on list item. " );
         Shape s = ObjectListView.getSelectionModel().getSelectedItem();
         System.out.println(s.getId());
-        //value1.setText(String.valueOf());
-        //value2.setText(String.valueOf(s.getHeight()));
-        value3.setText(s.getId());
+        setInputFieldValues(s);
     }
     
     /**
@@ -117,9 +105,7 @@ public class ListViewController implements Initializable {
      */
     @FXML
     protected void circleClick(Event event){
-        value1.setText(String.valueOf(blueCircle.getRadius()));
-        value2.setText("");
-        value3.setText(blueCircle.getId());
+        setInputFieldValues(blueCircle);
     }
     /**
      * handles a click on the static blue rectangle
@@ -127,9 +113,7 @@ public class ListViewController implements Initializable {
      */
     @FXML
     protected void rectClick(Event event){
-        value1.setText(String.valueOf(blueRect.getWidth()));
-        value2.setText(String.valueOf(blueRect.getHeight()));
-        value3.setText(blueRect.getId());
+        setInputFieldValues(blueRect);
     }
     
     /**
@@ -139,6 +123,26 @@ public class ListViewController implements Initializable {
      */
     private void updateUI(Shape s){
         
+    }
+    /**
+     * sets Values of Input Fields
+     * @param s 
+     */
+    protected void setInputFieldValues(Shape s){
+        if (s instanceof Circle) {
+            Circle c = ((Circle)s);
+            radiusInput.setText(String.valueOf(c.getRadius()));
+            circleLabel.setText(c.getId());
+            rectangleGrid.setVisible(false);
+            circleGrid.setVisible(true);
+        } else if (s instanceof Rectangle) {
+            Rectangle r = ((Rectangle)s);
+            heightInput.setText(String.valueOf(r.getHeight()));
+            widthInput.setText(String.valueOf(r.getWidth()));
+            rectangleLabel.setText(r.getId());
+            rectangleGrid.setVisible(true);
+            circleGrid.setVisible(false);
+        }
     }
     
     static class ObjectCell extends ListCell<Shape> {

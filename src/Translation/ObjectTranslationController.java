@@ -7,7 +7,7 @@
 package Translation;
 
 import infoprojektjavafx.Point2D;
-import infoprojektjavafx.Translate;
+import infoprojektjavafx.Transformate;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -46,7 +46,7 @@ public class ObjectTranslationController implements Initializable {
     @FXML
     protected void handleOriginButton(ActionEvent event){
         
-        Point2D a = Translate.translateObjectToOrigin(new Point2D((int) blueRect.getX(), (int) blueRect.getY()));
+        Point2D a = Transformate.translateObjectToOrigin(new Point2D((int) blueRect.getX(), (int) blueRect.getY()));
 
         blueRect.setLayoutX(a.x);
         blueRect.setLayoutY(a.y);
