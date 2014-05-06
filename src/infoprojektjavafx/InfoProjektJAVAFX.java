@@ -27,7 +27,6 @@ public class InfoProjektJAVAFX extends Application {
     public void start(Stage stage) throws Exception {
         //Parent root = FXMLLoader.load(getClass().getResource("Informatikprojekt.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/ListView/ListView.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/Translation/ObjectTranslation.fxml")); 
         
         Scene scene = new Scene(root);
         
