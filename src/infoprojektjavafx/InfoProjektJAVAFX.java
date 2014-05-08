@@ -45,6 +45,7 @@ public class InfoProjektJAVAFX extends Application {
         Transformate.getRotateMatrix(50);
         Transformate.getScaleMatrix(new Point2D(3,3));
         Transformate.getTranslateMatrix(new Point2D(5, 10));
+        Transformate.mulitplyMatricesWithVector(m, new double[]{3,2,1});
     }
 
     /**

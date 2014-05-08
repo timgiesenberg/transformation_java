@@ -6,6 +6,8 @@
 
 package infoprojektjavafx;
 
+import com.sun.javafx.geom.Vec2d;
+
 /**
  *
  * @author tim.giesenberg@me.com
@@ -46,8 +48,16 @@ public final class Transformate {
      * @param translate
      * @return 
      */
-    public static Point2D translateToPoint(Point2D p, Point2D translate){
-        return new Point2D();
+    public static Matrix translateToPoint(Point2D p, Point2D newPoint){
+        //new Matrix
+    	Matrix m= new Matrix();
+    	
+    	// Vector of translation into Matrix
+    	m.mat[0][2] = newPoint.x - p.x;
+        m.mat[1][2] = newPoint.y - p.y;
+        m.mat[2][2] = 1;
+        
+        return m;
     }
     public static Matrix getTranslateMatrix(Point2D translate){
         Matrix m = new Matrix();
@@ -123,5 +133,22 @@ public final class Transformate {
             }
         }
         return matrix;
+    }
+    
+    /**
+     * takes a Matrix and a vector, multiplies them, to get a new vector
+     * @param m
+     * @param vector
+     * @return 
+     */
+    public static double[] mulitplyMatricesWithVector(Matrix m, double[] vector){
+        double [] out = {0,0,0};
+        for(int i = 0; i < vector.length; i++){
+            for(int j = 0; j < 3; j++){
+                out[i] += m.mat[i][j] * vector[j];
+               System.out.println("i: " +i + " " +vector[i] + " += " + "" + m.mat[i][j] + " * " + vector[j]);
+            }
+        }
+        return out;
     }
 }
