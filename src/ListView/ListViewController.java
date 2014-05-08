@@ -83,10 +83,6 @@ public class ListViewController implements Initializable {
             }
         );
     }
-    
-    @FXML
-    protected void handleCreateButton(ActionEvent event){
-    }
     /**
      * handles a click on ViewList items
      * @param event 
