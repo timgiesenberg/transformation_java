@@ -1,5 +1,5 @@
 // Package spezifizieren
-package informatikprojekt;
+package GraphicObjects;
 
 // Benötigte Libraries importieren
 import javafx.scene.paint.Color;

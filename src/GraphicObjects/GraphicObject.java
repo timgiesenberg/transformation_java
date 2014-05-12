@@ -1,5 +1,5 @@
 // Package angeben
-package informatikprojekt;
+package GraphicObjects;
 
 /**
  * Die Klasse GraphicObject fasst alle zur Verfügung stehenden Grafiken zusammen.
