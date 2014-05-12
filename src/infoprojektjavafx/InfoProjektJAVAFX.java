@@ -32,7 +32,7 @@ public class InfoProjektJAVAFX extends Application {
         
         stage.setScene(scene);
         stage.show();
-        
+        /*
         Matrix m = new Matrix(1);
         Matrix n = new Matrix(1);
         
@@ -46,6 +46,7 @@ public class InfoProjektJAVAFX extends Application {
         Transformate.getScaleMatrix(new Point2D(3,3));
         Transformate.getTranslateMatrix(new Point2D(5, 10));
         Transformate.mulitplyMatricesWithVector(m, new double[]{3,2,1});
+        /**/
     }
 
     /**
