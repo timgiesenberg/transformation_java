@@ -28,8 +28,8 @@ public final class Transformate {
      */
     public static Point2D translateObjectToOrigin(Point2D p){
         
-        int originX =  p.x - p.x;
-        int originY = p.y - p.y;
+        double originX =  p.x - p.x;
+        double originY = p.y - p.y;
 
         Point2D originTranslation = new Point2D(originX, originY);
             
