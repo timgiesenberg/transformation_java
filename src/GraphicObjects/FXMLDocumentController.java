@@ -2,6 +2,11 @@
 package informatikprojekt;
 
 // Benötigte Libraries importieren
+import GraphicObjects.ProjectCircle;
+import GraphicObjects.ProjectLine;
+import GraphicObjects.ProjectPolygon;
+import GraphicObjects.ProjectRectangle;
+import GraphicObjects.ProjectTriangle;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
