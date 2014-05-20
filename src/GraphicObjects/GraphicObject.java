@@ -1,6 +1,10 @@
 // Package angeben
 package GraphicObjects;
 
+import infoprojektjavafx.Matrix;
+import infoprojektjavafx.Point2D;
+import infoprojektjavafx.Transformate;
+
 /**
  * Die Klasse GraphicObject fasst alle zur Verfügung stehenden Grafiken zusammen.
  * Alle werden als Polygone implementiert.
