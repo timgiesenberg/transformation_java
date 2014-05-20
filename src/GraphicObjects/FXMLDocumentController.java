@@ -1,12 +1,7 @@
 // Package angeben
-package informatikprojekt;
+package GraphicObjects;
 
 // Benötigte Libraries importieren
-import GraphicObjects.ProjectCircle;
-import GraphicObjects.ProjectLine;
-import GraphicObjects.ProjectPolygon;
-import GraphicObjects.ProjectRectangle;
-import GraphicObjects.ProjectTriangle;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -33,7 +28,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonActionRectangle(ActionEvent event) {
         
-        ProjectRectangle r = new ProjectRectangle("Horst", Color.GREEN, 100, 100, 100, 100);
+        final ProjectRectangle r = new ProjectRectangle("Horst", Color.GREEN, 100, 100, 100, 100);
         r.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override

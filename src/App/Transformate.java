@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package infoprojektjavafx;
+package App;
 
 import com.sun.javafx.geom.Vec2d;
 

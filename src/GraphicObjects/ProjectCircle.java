@@ -2,7 +2,7 @@
 package GraphicObjects;
 
 // Benötigte Libraries importieren
-import infoprojektjavafx.Point2D;
+import App.Point2D;
 import javafx.scene.paint.Color;
 
 /**
