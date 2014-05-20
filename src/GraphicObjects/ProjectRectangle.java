@@ -1,4 +1,4 @@
-// Package spezifizieren
+ // Package spezifizieren
 package GraphicObjects;
 
 // Benötigte Libraries importieren
@@ -47,7 +47,6 @@ public class ProjectRectangle extends GraphicObject {
         // Breite berechnen und zurückgeben
         double width = points[1].getX() - points[0].getX();
         return width;
-        
     }
     
     /**

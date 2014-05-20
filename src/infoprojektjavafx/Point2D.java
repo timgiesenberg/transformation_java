@@ -7,7 +7,7 @@
 package infoprojektjavafx;
 
 /**
- *
+ * 
  * @author tim.giesenberg@me.com
  */
 public class Point2D {
@@ -21,10 +21,10 @@ public class Point2D {
         
     }
     
-    public Point2D(double _x, double _y) {
+    public Point2D(double newX, double newY) {
         
-        this.x = _x;
-        this.y = _y;
+        this.x = newX;
+        this.y = newY;
         
     }
     
