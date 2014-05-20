@@ -12,9 +12,11 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -25,28 +27,34 @@ public class InfoProjektJAVAFX extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource("Informatikprojekt.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/ListView/ListView.fxml"));
+         // FXML-Dateien importieren
+        Parent buttons = FXMLLoader.load(getClass().getResource("/ButtonBar/ButtonBar.fxml"));
+        Parent listView = FXMLLoader.load(getClass().getResource("/ListView/ListView.fxml"));
+        Parent objectProperties = FXMLLoader.load(getClass().getResource("/Properties/ObjectpropertiesCircle_RICHTIGE_GRÖSSE.fxml"));
+        Parent transform = FXMLLoader.load(getClass().getResource("/TransformationBar/TransformationBar.fxml"));
+        Parent canvas = FXMLLoader.load(getClass().getResource("Canvas.fxml"));
         
+        // Den einzelnen Bestandteilen Koordinaten im Gesamtprogramm zuordnen
+        buttons.relocate(0, 0);
+        listView.relocate(980, 0);
+        objectProperties.relocate(980, 420);
+        transform.relocate(0, 650);
+        canvas.relocate(0, 50);
+
+        // Dateien zusammenführen
+        Pane layout = new Pane();
+        layout.getChildren().addAll(buttons, listView, objectProperties, transform, canvas);
+
+        // Layout zu einer Group hinzufügen
+        Group root = new Group();
+        root.getChildren().add(layout);
+        
+        // Szene mit dieser neuen Group erstellen und auf die Bühne bringen
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
+        stage.setTitle("Atemberaubendes Transformationsprogramm");
         stage.show();
-        /*
-        Matrix m = new Matrix(1);
-        Matrix n = new Matrix(1);
         
-        m.printMatrix();
-        n.printMatrix();
-        
-        Matrix o  =  Transformate.muliplyMatrices(m, n);
-        o.printMatrix();
-        
-        Transformate.getRotateMatrix(50);
-        Transformate.getScaleMatrix(new Point2D(3,3));
-        Transformate.getTranslateMatrix(new Point2D(5, 10));
-        Transformate.mulitplyMatricesWithVector(m, new double[]{3,2,1});
-        /**/
     }
 
     /**

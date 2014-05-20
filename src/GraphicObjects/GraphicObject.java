@@ -2,7 +2,10 @@
 package GraphicObjects;
 
 import Utils.Matrix;
-import infoprojektjavApprt infoprojektjavafx.TransformaApplasse GraphicObject fasst alle zur Verfügung stehenden Grafiken zusammen.
+import Utils.Point2D;
+import Utils.Transformate;
+/*
+ * import infoprojektjavApprt infoprojektjavafx.TransformaApplasse GraphicObject fasst alle zur Verfügung stehenden Grafiken zusammen.
  * Alle werden als Polygone implementiert.
  * @author Phil Köster // Dominique Berners
  */

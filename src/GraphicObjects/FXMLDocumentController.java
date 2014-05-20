@@ -46,7 +46,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonActionCircle(ActionEvent event) {
         
-        ProjectCircle c = new ProjectCircle("Angelika", Color.BLUE, 100, 100, 40);
+        final ProjectCircle c = new ProjectCircle("Angelika", Color.BLUE, 100, 100, 40);
         c.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
@@ -64,7 +64,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonActionTriangle(ActionEvent event) {
         
-        ProjectTriangle t = new ProjectTriangle("Wilhelmine", Color.YELLOW, 60, 60, 80);
+        final ProjectTriangle t = new ProjectTriangle("Wilhelmine", Color.YELLOW, 60, 60, 80);
         t.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
@@ -82,7 +82,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonActionLine(ActionEvent event) {
         
-        ProjectLine l = new ProjectLine("Gottfried", Color.RED, 100, 50, 150, 100);
+        final ProjectLine l = new ProjectLine("Gottfried", Color.RED, 100, 50, 150, 100);
         l.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
@@ -106,7 +106,7 @@ public class FXMLDocumentController implements Initializable {
             int numberOfAngles = Integer.parseInt(s);
             if (numberOfAngles > 0) {
                 
-                ProjectPolygon p = new ProjectPolygon("Sybille", Color.GRAY, numberOfAngles, 200, 200);
+                final ProjectPolygon p = new ProjectPolygon("Sybille", Color.GRAY, numberOfAngles, 200, 200);
                 p.setOnMousePressed(new EventHandler<MouseEvent>() {
 
                     @Override

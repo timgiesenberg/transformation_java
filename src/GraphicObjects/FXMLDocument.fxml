@@ -82,4 +82,7 @@
     </HBox>
     <AnchorPane fx:id="canvas" layoutX="0.0" layoutY="50.0" prefHeight="376.0" prefWidth="600.0" />
   </children>
+  <stylesheets>
+    <URL value="@../styles/Styles.css" />
+  </stylesheets>
 </AnchorPane>

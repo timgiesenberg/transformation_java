@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MyController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <!-- The beginning of Matrix object properties box -->
+    <Pane id="" disable="false" focusTraversable="false" layoutX="1.0" layoutY="479.0" opacity="1.0" pickOnBounds="true" prefHeight="150.0" prefWidth="980.0" snapToPixel="true" style="-fx-background-color: rgba(250, 250, 250); -fx-stroke-width: 1px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+      <children>
+        <Label alignment="CENTER" layoutX="105.0" layoutY="86.0" prefHeight="16.0" prefWidth="93.0" text="Translation" />
+        <Label alignment="CENTER" layoutX="326.0" layoutY="87.0" prefHeight="16.0" prefWidth="80.0" text="Rotation" />
+        <Label alignment="CENTER" layoutX="530.0" layoutY="86.0" prefHeight="16.0" prefWidth="40.0" text="Scale" />
+        <Label alignment="CENTER" layoutX="242.0" layoutY="35.0" prefWidth="13.000199999994948" text="X" />
+        <Label alignment="CENTER" layoutX="452.0" layoutY="35.0" prefWidth="13.000099999997474" text="X" />
+        <Label layoutX="630.0" layoutY="35.0" prefWidth="13.0001220703125" text="=" />
+        <Button fx:id="transformationOfAll" layoutX="833.0" layoutY="101.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="123.0" text="Transformieren!" />
+        <TextField fx:id="translationToY" layoutX="182.0" layoutY="109.0" prefWidth="31.0" />
+        <TextField fx:id="translationToX" layoutX="127.0" layoutY="109.0" prefWidth="31.0" />
+        <TextField id="rotate" fx:id="rotateAt" layoutX="350.0" layoutY="109.0" prefWidth="31.0" />
+        <TextField fx:id="scalePercent" layoutX="535.0" layoutY="109.0" prefWidth="31.0" />
+        <Label layoutX="570.0" layoutY="112.0" prefWidth="13.0" text="\%" />
+        <Label layoutX="384.0" layoutY="112.0" minWidth="2.9998779296875" prefWidth="13.0" text="°" />
+        <Label layoutX="114.0" layoutY="112.0" prefWidth="13.0" text="x:" />
+        <Label layoutX="168.0" layoutY="112.0" text="y:" />
+        <GridPane gridLinesVisible="false" layoutX="123.0" layoutY="12.0" prefHeight="60.0" prefWidth="60.0">
+          <children>
+            <Label id="translateXT" fx:id="translation0_2" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="xT" GridPane.columnIndex="2" GridPane.rowIndex="0">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="1" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" contentDisplay="LEFT" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label id="translateYT" fx:id="translation1_2" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="yT" GridPane.columnIndex="2" GridPane.rowIndex="1">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="1">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="2">
+<font>
+<Font size="12.0" />
+</font></Label>
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+        <GridPane gridLinesVisible="false" layoutX="521.0" layoutY="12.0" prefHeight="60.0" prefWidth="60.0">
+          <children>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label id="sT" fx:id="scale0_0" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="sT" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" contentDisplay="LEFT" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label fx:id="scale1_1" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="sT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="2">
+<font>
+<Font size="12.0" />
+</font></Label>
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+        <GridPane gridLinesVisible="false" layoutX="689.0" layoutY="12.0" prefHeight="56.0" prefWidth="78.0">
+          <children>
+            <Label fx:id="total0_2" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="m3" GridPane.columnIndex="2" GridPane.rowIndex="0">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label fx:id="total0_0" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="m1" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label fx:id="total0_1" alignment="CENTER" contentDisplay="LEFT" prefHeight="30.0" prefWidth="30.0" text="m2" GridPane.columnIndex="1" GridPane.rowIndex="0">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label fx:id="total1_0" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="m4" GridPane.columnIndex="0" GridPane.rowIndex="1">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label fx:id="total1_2" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="m6" GridPane.columnIndex="2" GridPane.rowIndex="1">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label fx:id="total1_1" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="m5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="2">
+<font>
+<Font size="12.0" />
+</font></Label>
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="0.0" prefWidth="29.23187255859375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="0.0" prefWidth="25.76812744140625" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.231842041015625" minWidth="10.0" prefWidth="29.550506591796875" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+        <GridPane gridLinesVisible="false" layoutX="313.0" layoutY="12.0" prefHeight="60.0" prefWidth="100.0">
+          <children>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label fx:id="rotation0_0" alignment="CENTER" prefHeight="30.0" prefWidth="32.0" text="cos α" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label fx:id="rotation0_1" alignment="CENTER" contentDisplay="LEFT" prefHeight="20.0" prefWidth="38.0" text="-sin α" GridPane.columnIndex="1" GridPane.rowIndex="0">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label fx:id="rotation1_0" alignment="CENTER" prefHeight="30.0" prefWidth="32.0" text="sin α" GridPane.columnIndex="0" GridPane.rowIndex="1">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="20.0" prefWidth="42.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label fx:id="rotation1_1" alignment="CENTER" prefHeight="20.0" prefWidth="37.0" text="cos α" GridPane.columnIndex="1" GridPane.rowIndex="1">
+<font>
+<Font size="12.0" />
+</font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="2">
+<font>
+<Font size="12.0" />
+</font></Label>
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="62.93031311035156" minWidth="10.0" prefWidth="37.68598937988281" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.0" minWidth="0.0" prefWidth="35.31401062011719" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.0" minWidth="0.0" prefWidth="26.314010620117188" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane><QuadCurve controlX="-5.0" controlY="-100.0" endX="50.0" fill="#1f93ff00" layoutX="120.0" layoutY="65.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" /><QuadCurve controlX="-5.0" controlY="-100.0" endX="50.0" fill="#1f93ff00" layoutX="309.0" layoutY="66.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" /><QuadCurve controlX="-5.0" controlY="-100.0" endX="50.0" fill="#1f93ff00" layoutX="516.0" layoutY="67.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" /><QuadCurve controlX="-5.0" controlY="-100.0" endX="50.0" fill="#1f93ff00" layoutX="685.0" layoutY="66.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" /><QuadCurve controlX="-5.0" controlY="100.0" endX="50.0" fill="#1f93ff00" layoutX="189.0" layoutY="15.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" /><QuadCurve controlX="-5.0" controlY="100.0" endX="50.0" fill="#1f93ff00" layoutX="411.0" layoutY="16.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" /><QuadCurve controlX="-5.0" controlY="100.0" endX="50.0" fill="#1f93ff00" layoutX="585.0" layoutY="16.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" /><QuadCurve controlX="-5.0" controlY="100.0" endX="50.0" fill="#1f93ff00" layoutX="770.0" layoutY="15.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
+      </children>
+      <effect>
+        <DisplacementMap>
+          <input>
+            <ColorAdjust>
+              <input>
+                <ColorAdjust />
+              </input>
+            </ColorAdjust>
+          </input>
+          <mapData>
+            <FloatMap />
+          </mapData>
+        </DisplacementMap>
+      </effect>
+      <padding>
+        <Insets />
+      </padding>
+<opaqueInsets>
+<Insets />
+</opaqueInsets>
+    </Pane>
+    <!-- The end of Matrix object properties box -->
+    
+    <!-- Rectangle object Properties Box -->
+    <Pane disable="false" focusTraversable="false" layoutX="200.0" layoutY="3.0" prefHeight="200.0" prefWidth="200.0" />
+    <!-- The end of Rectangle object properties box -->
+    
+    <!-- Circle object properties box -->
+    <Pane disable="false" focusTraversable="false" layoutX="372.0" layoutY="1.0" prefHeight="200.0" prefWidth="200.0" />
+    <!-- The end of circle object properties box -->
+    
+    
+    <!-- Line object properties -->
+    <Pane disable="false" focusTraversable="false" layoutX="593.0" layoutY="5.0" prefHeight="200.0" prefWidth="200.0" />
+    <!-- The end of Line object properties box -->
+    
+  </children>
+</AnchorPane>

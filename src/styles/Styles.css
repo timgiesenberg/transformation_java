@@ -1,0 +1,65 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07.05.2014, 16:16:27
+    Author     : Domi
+*/
+.Alle_Button {
+     -fx-background-color: #9FB9FA;
+}
+
+.Button_Neu
+{
+    -fx-background-image: url("../img/Neu.png");
+}
+
+.Button_Speichern {
+    -fx-background-image: url("../img/speichern.png");
+}
+
+.Button_Oeffnen {
+    -fx-background-image: url("../img/öffnen.png");
+}
+
+.Button_zurueck {
+    -fx-background-image: url("../img/zurück.png");
+}
+
+.Button_vor {
+    -fx-background-image: url("../img/vor.png");
+}
+
+.Button_Rechteck {
+    -fx-background-image: url("../img/Rechteck.png");
+}
+
+.Button_Dreieck {
+    -fx-background-image: url("../img/dreieck3.png");
+}
+
+.Button_Kreis {
+    -fx-background-image: url("../img/kreis.png");   
+}
+
+.Button_Linie {
+    -fx-background-image: url("../img/line.png"); 
+}
+ 
+.Button_Polygon {
+    -fx-background-image: url("../img/polygon.png");
+}
+
+.Button_Kopieren {
+    -fx-background-image: url("../img/Kopieren.png");
+}
+
+.Button_Loeschen {
+    -fx-background-image: url("../img/löschen.png");
+}
+.Leiste {
+    -fx-background-color: #9FB9FA;  
+}
+
