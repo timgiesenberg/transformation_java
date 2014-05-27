@@ -6,8 +6,8 @@
 
 package ListView;
 
-import GraphicObjects.GraphicObject;
-import GraphicObjects.ProjectCircle;
+import App.AppController;
+import ListView.ListViewController.ObjectCell;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -15,17 +15,20 @@ import java.util.ListIterator;
 import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.scene.paint.Color;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.util.Callback;
 
 /**
  *
  * @author tim.giesenberg@me.com
+ * @param <GraphicObject>
  */
 public class ListController<GraphicObject> implements ObservableList<GraphicObject> {
     
-    public GraphicObject c = (GraphicObject) new ProjectCircle(null, Color.RED, 0, 0, 0);
-    
     private ObservableList<GraphicObject> items;
+    
+    private ListView<GraphicObject> ObjectListView;
     
     private static ListController instance = null;
     
@@ -37,6 +40,7 @@ public class ListController<GraphicObject> implements ObservableList<GraphicObje
     public static ListController getInstance() {
       if(instance == null) {
          instance = new ListController();
+         System.out.println("ListController Object created");
       } else {
           System.out.println("ListController already instantiated");
       }
@@ -44,20 +48,30 @@ public class ListController<GraphicObject> implements ObservableList<GraphicObje
    }
     
     /**
+     * set the ListView
+     * @param lv 
+     */
+    public void setListView(ListView lv){
+        ObjectListView = lv;
+        //Immediately set new cell Factory
+        generateCellFactory();
+    }
+    
+    /**
      * return all Elements in List in a String array
      * @return 
      */
-    public String[] getAllItmes(){
-        //items.
-        return new String[3];
+    public ObservableList<GraphicObject> getItems(){
+        System.out.print("ListGetItems");
+        return items;
     }
     
-    public GraphicObject getItem(String id){
-        return c;
+    public GraphicObject getItem(int id){
+        return items.get(id);
     }
     
-    public void setItems(GraphicObject[] ga){
-        
+    public void setItems(ObservableList list){
+        items = list;
     }
     
     /**
@@ -78,6 +92,21 @@ public class ListController<GraphicObject> implements ObservableList<GraphicObje
     public boolean deleteItem(GraphicObject g){
         items.remove(g);
         return false;
+    }
+    
+    public GraphicObject getSelectedItem(){
+        return ObjectListView.getSelectionModel().getSelectedItem();
+    }
+    
+    public void generateCellFactory(){
+        ObjectListView.setCellFactory(new Callback<ListView<GraphicObject>, 
+            ListCell<GraphicObject>>() {
+                @Override
+                public ListCell call(ListView<GraphicObject> p) {
+                    return new ObjectCell();
+                }
+            }
+        );
     }
 
     @Override

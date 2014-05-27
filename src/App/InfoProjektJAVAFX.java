@@ -28,22 +28,24 @@ public class InfoProjektJAVAFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
          // FXML-Dateien importieren
+        Parent canvas = FXMLLoader.load(getClass().getResource("/App/Parent.fxml"));
+        /* Parent canvas = FXMLLoader.load(getClass().getResource("/Utils/Canvas.fxml"));
         Parent buttons = FXMLLoader.load(getClass().getResource("/ButtonBar/ButtonBar.fxml"));
         Parent listView = FXMLLoader.load(getClass().getResource("/ListView/ListView.fxml"));
         Parent objectProperties = FXMLLoader.load(getClass().getResource("/Properties/ObjectpropertiesCircle_RICHTIGE_GRÖSSE.fxml"));
-        Parent transform = FXMLLoader.load(getClass().getResource("/TransformationBar/TransformationBar.fxml"));
-        Parent canvas = FXMLLoader.load(getClass().getResource("Canvas.fxml"));
+        Parent transform = FXMLLoader.load(getClass().getResource("/TransformationBar/TransformationBar.fxml"));/**/
         
         // Den einzelnen Bestandteilen Koordinaten im Gesamtprogramm zuordnen
-        buttons.relocate(0, 0);
+        /**buttons.relocate(0, 0);
         listView.relocate(980, 0);
         objectProperties.relocate(980, 420);
-        transform.relocate(0, 650);
-        canvas.relocate(0, 50);
+        transform.relocate(0, 650);/**/
+        canvas.relocate(0, 0);
 
         // Dateien zusammenführen
         Pane layout = new Pane();
-        layout.getChildren().addAll(buttons, listView, objectProperties, transform, canvas);
+        layout.getChildren().addAll(canvas);
+        //layout.getChildren().addAll(buttons, listView, objectProperties, transform, canvas);
 
         // Layout zu einer Group hinzufügen
         Group root = new Group();

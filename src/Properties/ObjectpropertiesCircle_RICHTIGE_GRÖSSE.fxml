@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="ObjectpropertiesCircle" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="220.0" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="App.AppController">
+<AnchorPane id="AnchorPane" fx:id="ObjectpropertiesCircle" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="220.0" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Properties.PropertiesController">
   <children>
     <TitledPane animated="false" layoutX="0.0" layoutY="0.0" minWidth="220.0" prefHeight="380.0" prefWidth="220.0" text="Objekt-Eigenschaften">
       <content>
@@ -19,7 +19,7 @@
                 <Font size="11.0" fx:id="x1" />
               </font>
             </Label>
-            <TextField id="obj" fx:id="CircleName" layoutX="64.0" layoutY="32.0" prefWidth="120.0" promptText="" text="" />
+            <TextField id="obj" fx:id="CircleName" layoutX="64.0" layoutY="32.0" onAction="#onText" onMouseClicked="#onText" prefWidth="120.0" promptText="" text="" />
             <Label font="$x1" layoutX="13.0" layoutY="138.0" text="Position:" />
             <TextField id="Circle" fx:id="CircleXPosition" layoutX="31.0" layoutY="159.0" prefWidth="59.0" promptText="" text="" />
             <Label layoutX="13.0" layoutY="160.0" text="x:">
@@ -47,7 +47,6 @@
             <ColorPicker fx:id="CircleColorOutline" layoutX="96.0" layoutY="320.0" minHeight="16.0" prefHeight="16.0" prefWidth="87.0" />
             <Label font="$x1" layoutX="48.0" layoutY="321.0" text="Kontur:" />
             <Separator layoutX="8.0" layoutY="24.0" prefWidth="184.0" />
-            <Pane disable="false" focusTraversable="false" layoutX="0.0" layoutY="-23.0" prefHeight="380.0" prefWidth="220.0" />
           </children>
         </AnchorPane>
       </content>
@@ -55,5 +54,11 @@
         <Font size="13.0" />
       </font>
     </TitledPane>
+    <SplitPane dividerPositions="0.5" focusTraversable="true" layoutX="30.0" layoutY="90.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" visible="false">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+      </items>
+    </SplitPane>
   </children>
 </AnchorPane>

@@ -4,17 +4,13 @@
  * and open the template in the editor.
  */
 
-package App;
+package ButtonBar;
 
-import ButtonBar.ButtonBarController;
-import GraphicObjects.GraphicObject;
 import GraphicObjects.ProjectCircle;
 import GraphicObjects.ProjectLine;
 import GraphicObjects.ProjectPolygon;
 import GraphicObjects.ProjectRectangle;
 import GraphicObjects.ProjectTriangle;
-import ListView.ListController;
-import TransformationBar.TransformationBarController;
 import Utils.CanvasController;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,89 +19,28 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 /**
  *
  * @author tim.giesenberg@me.com
  */
-public class AppController implements Initializable {
-    
-    @FXML
-    final private ListView<GraphicObject> ObjectListView = new ListView<>();
-    
-    @FXML
-    private AnchorPane canvas;
-    
-    @FXML
-    private CanvasController cv;
-    
-    @FXML
-    private TransformationBarController transformationBarController;
-    
-    @FXML
-    private ButtonBarController buttonBarController;
-    
-    @FXML
-    public CanvasController canvasController;
-    
-    @FXML
-    private TextField polygonNumberOfAngles;
-    
-    private ListController list;
-    
-    /**
-     * Initializes the controller class.
-     * runs on projectstart.
-     */
+public class ButtonBarController implements Initializable {
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            
-        //create new ListController
-        list = ListController.getInstance();
-        
-        //TODO: transfer ObjectListview Reference to the list Controllter
-        list.setListView(ObjectListView);
-        
-        //if needed, add some previously generated Objects
-        //list.setItems(FXCollections.observableArrayList(line));
-        
-        //System.out.println(canvas_two.getId());
-        
-        buttonBarController.setCanvasController(canvasController);
-
-    }
-    /**
-     * handles a click on ViewList items
-     * @param event 
-     */
-    @FXML
-    protected void handleListViewClick(Event event){
-        System.out.println("Click on list item. " );
-        //GraphicObject s = list.getSelectedItem();
-        //System.out.println(s.getId());
-        //setInputFieldValues(s);
+        //canvas = CanvasController.getController();
     }
     
-    /**
-     * sets Values of Input Fields
-     * @param s 
-     */
-    protected void setInputFieldValues(GraphicObject s){
-        if (s instanceof ProjectCircle) {
-        } else if (s instanceof ProjectRectangle) {
-        }
+    private CanvasController canvas;
+    
+    public void setCanvasController(CanvasController c){
+        canvas = c;
     }
     
     @FXML
-    private void handleButtonActionRectangle(ActionEvent event) {
+    private void handleButtonActionRectangle(Event event) {
         
         final ProjectRectangle r = new ProjectRectangle("Horst", Color.GREEN, 100, 100, 100, 100);
         r.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -118,10 +53,24 @@ public class AppController implements Initializable {
             }
             
         });
-        //cv.add(r);
-        //buttonBarController.test();
-                System.out.println(transformationBarController.toString());
-                System.out.println(buttonBarController.toString());
+        System.out.println("Nicht was ich erwartete");
+        canvas.add(r);
+    }
+    
+    public void test(){
+        final ProjectRectangle r = new ProjectRectangle("Horst", Color.GREEN, 100, 100, 100, 100);
+        r.setOnMousePressed(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                
+                System.out.println("Das Rechteck " + r.getName() + " wurde ausgewählt.");
+                
+            }
+            
+        });
+        System.out.println("Test funktion");
+        canvas.add(r);
     }
     
     @FXML
@@ -138,7 +87,7 @@ public class AppController implements Initializable {
             }
             
         });
-        canvas.getChildren().add(c);
+        //canvas.getChildren().add(c);
         
     }
     
@@ -156,7 +105,7 @@ public class AppController implements Initializable {
             }
             
         });
-        canvas.getChildren().add(t);
+        //canvas.getChildren().add(t);
         
     }
     
@@ -174,13 +123,13 @@ public class AppController implements Initializable {
             }
             
         });
-        canvas.getChildren().add(l);
+        //canvas.getChildren().add(l);
         
     }
     
     @FXML
     private void handleButtonActionPolygon(ActionEvent event) {
-        
+        /*
         String s = polygonNumberOfAngles.getCharacters().toString();
         if (s.length() > 0 && s.matches("[0-9]+")) {
             
@@ -198,26 +147,12 @@ public class AppController implements Initializable {
                     }
 
                 });
-                canvas.getChildren().add(p);
+                //canvas.getChildren().add(p);
                 
             }
                 
         }
-        
+        /**/
     }
-    
-    static class ObjectCell extends ListCell<Shape> {
-        @Override
-        public void updateItem(Shape item, boolean empty) {
-            super.updateItem(item, empty);
-            Rectangle rect = new Rectangle(100, 20);
-            if (item != null) {
-                setText(item.getId());
-            } else {
-                //rect.setFill(Color.web("blue"));
-                //setGraphic(rect);
-            }
-        }
-    }  
     
 }
