@@ -15,7 +15,7 @@
       <children>
         <Button id="buttonleisteClear" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Neu, Alle_Button" text="N">
           <stylesheets>
-            <URL value="@Styles.css" />
+            <URL value="@../styles/Styles.css" />
           </stylesheets>
           <HBox.margin>
             <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" fx:id="x2" />
@@ -23,7 +23,7 @@
         </Button>
         <Button id="buttonleisteSave" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Speichern, Alle_Button" text="S">
           <stylesheets>
-            <URL value="@Styles.css" />
+            <URL value="@../styles/Styles.css" />
           </stylesheets>
           <HBox.margin>
             <Insets bottom="10.0" right="10.0" top="10.0" fx:id="x1" />
@@ -31,17 +31,17 @@
         </Button>
         <Button id="buttonleisteOpen" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Oeffnen, Alle_Button" text="O" HBox.margin="$x1">
           <stylesheets>
-            <URL value="@Styles.css" />
+            <URL value="@../styles/Styles.css" />
           </stylesheets>
         </Button>
         <Button id="buttonleisteBackwards" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_zurueck, Alle_Button" text="&lt;" HBox.margin="$x1">
           <stylesheets>
-            <URL value="@Styles.css" />
+            <URL value="@../styles/Styles.css" />
           </stylesheets>
         </Button>
         <Button id="buttonleisteForward" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_vor, Alle_Button" text="&gt;">
           <stylesheets>
-            <URL value="@Styles.css" />
+            <URL value="@../styles/Styles.css" />
           </stylesheets>
           <HBox.margin>
             <Insets bottom="10.0" right="20.0" top="10.0" fx:id="x3"/>
@@ -50,27 +50,27 @@
         <Separator opacity="0.45" orientation="VERTICAL" prefHeight="200.0" visible="true" />
         <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="7.0" mnemonicParsing="false" onAction="#handleButtonActionRectangle" onMouseClicked="#handleButtonActionRectangle" prefHeight="30.0" prefWidth="30.0" style="" styleClass="Button, Button_Rechteck, Alle_Button" text="" HBox.margin="$x2">
           <stylesheets>
-            <URL value="@Styles.css" />
+            <URL value="@../styles/Styles.css" />
           </stylesheets>
         </Button>
         <Button mnemonicParsing="false" onAction="#handleButtonActionCircle" onMouseClicked="#handleButtonActionCircle" prefHeight="30.0" prefWidth="29.9998779296875" styleClass="Button_Kreis, Alle_Button" text="" HBox.margin="$x1">
           <stylesheets>
-            <URL value="@Styles.css" />
+            <URL value="@../styles/Styles.css" />
           </stylesheets>
         </Button>
         <Button mnemonicParsing="false" onAction="#handleButtonActionTriangle" onMouseClicked="#handleButtonActionRectangle" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Dreieck, Alle_Button" text="" HBox.margin="$x1">
           <stylesheets>
-            <URL value="@Styles.css" />
+            <URL value="@../styles/Styles.css" />
           </stylesheets>
         </Button>
         <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handleButtonActionLine" onMouseClicked="#handleButtonActionLine" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Linie, Alle_Button" text="" HBox.margin="$x1">
           <stylesheets>
-            <URL value="@Styles.css" />
+            <URL value="@../styles/Styles.css" />
           </stylesheets>
         </Button>
         <Button mnemonicParsing="false" onAction="#handleButtonActionPolygon" onMouseClicked="#handleButtonActionPolygon" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Polygon, Alle_Button" text="">
           <stylesheets>
-            <URL value="@Styles.css" />
+            <URL value="@../styles/Styles.css" />
           </stylesheets>
           <HBox.margin>
             <Insets bottom="10.0" right="10.0" top="10.0" fx:id="x4" />
@@ -84,17 +84,17 @@
         <Separator opacity="0.45" orientation="VERTICAL" prefHeight="200.0" />
         <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Kopieren, Alle_Button" text="" HBox.margin="$x2">
           <stylesheets>
-            <URL value="@Styles.css" />
+            <URL value="@../styles/Styles.css" />
           </stylesheets>
         </Button>
         <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Loeschen, Alle_Button" text="" HBox.margin="$x1">
           <stylesheets>
-            <URL value="@Styles.css" />
+            <URL value="@../styles/Styles.css" />
           </stylesheets>
         </Button>
       </children>
       <stylesheets>
-        <URL value="@Styles.css" />
+        <URL value="@../styles/Styles.css" />
       </stylesheets>
     </HBox>
   </children>
