@@ -6,8 +6,6 @@
 
 package Utils;
 
-import com.sun.javafx.geom.Vec2d;
-
 /**
  *
  * @author tim.giesenberg@me.com
@@ -21,44 +19,47 @@ public final class Transformate {
     }
     
     /**
-     * Translates a Point to coordinate origin (x=0, y=0)
-     * Generates a Translation vector.
+     * Generates a matrix that you can use to translate an object to the origin
      * @param p
      * @return originTranslation
      */
-    public static Point2D translateObjectToOrigin(Point2D p){
+    public static Matrix getTranslationToOriginMatrix(Point2D centerOfObject){
         
-        double originX =  p.x - p.x;
-        double originY = p.y - p.y;
-
-        Point2D originTranslation = new Point2D(originX, originY);
-            
-        return originTranslation;
-    }
-    
-    public static Point2D translateOtherPointsToOrigin(Point2D p, Point2D translate){
-        return null;
+        Matrix m = new Matrix();
+        m.mat[0][0] = 1;
+        m.mat[1][1] = 1;
+        m.mat[2][2] = 1;
+        m.mat[0][2] -= centerOfObject.getX();
+        m.mat[1][2] -= centerOfObject.getY();
+        return m;
     }
     
     /**
      * (1 0 tx)   (x)
      * (0 1 ty) X (y)
      * (0 0  1)   (1)
-     * @param p
-     * @param translate
+     * 
+     * @param vector of translation (TranslationBar)
      * @return 
      */
-    public static Matrix translateToPoint(Point2D p, Point2D newPoint){
+    public static Matrix getTranslationMatrix(double x, double y){
         //new Matrix
-    	Matrix m= new Matrix();
+    	  Matrix m= new Matrix();
     	
-    	// Vector of translation into Matrix
-    	m.mat[0][2] = newPoint.x - p.x;
-        m.mat[1][2] = newPoint.y - p.y;
+        m.mat[0][0] = 1;
+        m.mat[1][1] = 1;
         m.mat[2][2] = 1;
+        
+    	// Vector of translation into Matrix
+    	  m.mat[0][2] = x;
+        m.mat[1][2] = y;
+       
+        
         
         return m;
     }
+    
+    /**
     public static Matrix getTranslateMatrix(Point2D translate){
         Matrix m = new Matrix();
         m.mat[0][2] = translate.x;
@@ -66,7 +67,7 @@ public final class Transformate {
         m.mat[2][2] = 1;
         m.printMatrix("translate point inserted");
         return m;
-    }
+    } */
     
     /**
      * (cos -sin 0)   (x)
@@ -76,16 +77,22 @@ public final class Transformate {
      * @param rotate
      * @return 
      */
+     
+     
+    /** 
     public static Point2D rotateToPoint(Point2D p, double rotate){
         return new Point2D();
-    }
-    public static Matrix getRotateMatrix(double rotate){
+    }*/
+    
+    
+    public static Matrix getRotateMatrix(double rotateAngle){
         Matrix m = new Matrix();
-        m.mat[0][0] = Math.cos(rotate);
-        m.mat[0][1] = Math.sin(rotate);
-        m.mat[1][0] -= Math.sin(rotate);
-        m.mat[1][1] = Math.cos(rotate);
-        m.printMatrix("rotate angle inserted");
+        m.mat[0][0] = Math.cos(Math.toRadians(rotateAngle));
+        m.mat[0][1] = Math.sin(Math.toRadians(rotateAngle));
+        m.mat[1][0] -= Math.sin(Math.toRadians(rotateAngle));
+        m.mat[1][1] = Math.cos(Math.toRadians(rotateAngle));
+        m.mat[2][2] = 1;
+       // m.printMatrix("rotate angle inserted");
         return m;
     }
     
@@ -97,23 +104,24 @@ public final class Transformate {
      * @param rotate
      * @return 
      */
-    public static Point2D scaleToPoint(Point2D p, double rotate){
+  /**  public static Point2D scaleToPoint(Point2D p, double rotate){
         return new Point2D();
-    }
+    }*/
     
     /**
      * (sx 0 0)
      * (0 sy 0)
      * (0  0 1) 
-     * @param scale
+     * @param percent
      * @return 
      */
-    public static Matrix getScaleMatrix(Point2D scale){
+    public static Matrix getScaleMatrix(double percent){
         Matrix m = new Matrix();
-        m.mat[0][0] = scale.x;
-        m.mat[1][1] = scale.y;
+        m.mat[0][0] = percent/100;
+        m.mat[1][1] = percent/100;
         m.mat[2][2] = 1;
-        m.printMatrix("scale factor inserted");
+       
+        //m.printMatrix("scale factor inserted");
         return m;
     }
     
@@ -122,13 +130,13 @@ public final class Transformate {
      * @param m
      * @param n
      * @return 
-     */
-    public static Matrix muliplyMatrices(Matrix m, Matrix n){
-        Matrix matrix =  new Matrix();
+     */   
+    public static Matrix multiplyMatrices(Matrix m, Matrix n){
+        Matrix matrix = new Matrix();
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
                 for(int k = 0; k < 3; k++){
-                    matrix.mat[i][j] += m.mat[k][j] * n.mat[i][k];
+                    matrix.mat[i][j] += m.mat[i][k] * n.mat[k][j];
                 }
             }
         }
@@ -136,19 +144,17 @@ public final class Transformate {
     }
     
     /**
-     * takes a Matrix and a vector, multiplies them, to get a new vector
+     * takes a Matrix and a point, multiplies them (Matrix*vector), to transformate the point
      * @param m
-     * @param vector
-     * @return 
+     * @param p
      */
-    public static double[] mulitplyMatricesWithVector(Matrix m, double[] vector){
-        double [] out = {0,0,0};
+    public static void transformatePointWithMatrix(Matrix m, Point2D p){
+        double[] vector = {p.getX(),p.getY(),1};
+        double[] result = new double[vector.length];
         for(int i = 0; i < vector.length; i++){
-            for(int j = 0; j < 3; j++){
-                out[i] += m.mat[i][j] * vector[j];
-               System.out.println("i: " +i + " " +vector[i] + " += " + "" + m.mat[i][j] + " * " + vector[j]);
-            }
+            result[i] = m.mat[i][0] * vector[0] + m.mat[i][1] * vector[1] + m.mat[i][2] * vector[2];
         }
-        return out;
+        p.setX(result[0]/result[2]);
+        p.setY(result[1]/result[2]);
     }
 }

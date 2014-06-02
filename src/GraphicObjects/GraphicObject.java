@@ -274,29 +274,13 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
         // Für alle Punkte des Polygons
         for (int i = 0; i < this.numberOfAngles; i++) {
             
-            // Punkt in einen Vektor mit homogener Koordinate schreiben
-            double[] vectorOld = new double[3];
-            vectorOld[0] = this.points[i].getX();
-            vectorOld[1] = this.points[i].getY();
-            vectorOld[2] = 1;
-            
-            // Vektor transformieren
-            double[] vectorNew = Transformate.mulitplyMatricesWithVector(m, vectorOld);
-            
-            // Neu errechnete Werte setzen
-            this.points[i].setX(vectorNew[0] / vectorNew[2]);
-            this.points[i].setY(vectorNew[1] / vectorNew[2]);
-            
+            // Punkt mithilfe der Matrix modifizieren
+            Transformate.transformatePointWithMatrix(m, points[i]);
+                        
         }
         
         // Gleiches Verfahren für den Mittelpunkt
-        double[] vectorOld = new double[3];
-        vectorOld[0] = this.center.getX();
-        vectorOld[1] = this.center.getY();
-        vectorOld[2] = 1;
-        double[] vectorNew = Transformate.mulitplyMatricesWithVector(m, vectorOld);
-        this.center.setX(vectorNew[0]);
-        this.center.setY(vectorNew[1]);
+        Transformate.transformatePointWithMatrix(m, center);
         
         // Punkte in der Superklasse javafx.scene.shape.Polygon aktualisieren
         this.updatePoints();
