@@ -44,7 +44,7 @@
             <URL value="@Styles.css" />
           </stylesheets>
           <HBox.margin>
-            <Insets bottom="10.0" right="20.0" top="10.0" />
+            <Insets bottom="10.0" right="20.0" top="10.0" fx:id="x3"/>
           </HBox.margin>
         </Button>
         <Separator opacity="0.45" orientation="VERTICAL" prefHeight="200.0" visible="true" />
@@ -73,12 +73,12 @@
             <URL value="@Styles.css" />
           </stylesheets>
           <HBox.margin>
-            <Insets bottom="10.0" right="10.0" top="10.0" fx:id="x3" />
+            <Insets bottom="10.0" right="10.0" top="10.0" fx:id="x4" />
           </HBox.margin>
         </Button>
         <TextField fx:id="polygonNumberOfAngles" prefWidth="35.0">
           <HBox.margin>
-            <Insets bottom="15.0" left="-3.0" right="20.0" top="15.0" />
+            <Insets bottom="15.0" left="-3.0" right="20.0" top="15.0" fx:id="x5" />
           </HBox.margin>
         </TextField>
         <Separator opacity="0.45" orientation="VERTICAL" prefHeight="200.0" />

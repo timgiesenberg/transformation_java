@@ -6,17 +6,14 @@
 
 package ListView;
 
-import App.AppController;
+import GraphicObjects.GraphicObject;
+import GraphicObjects.ProjectLine;
 import ListView.ListViewController.ObjectCell;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import javafx.beans.InvalidationListener;
-import javafx.collections.ListChangeListener;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 /**
@@ -24,18 +21,35 @@ import javafx.util.Callback;
  * @author tim.giesenberg@me.com
  * @param <GraphicObject>
  */
-public class ListController<GraphicObject> implements ObservableList<GraphicObject> {
+public class ListController<GraphicObject> {
     
-    private ObservableList<GraphicObject> items;
+    private ObservableList<GraphicObject> items = FXCollections.observableArrayList();
     
-    private ListView<GraphicObject> ObjectListView;
+    private ListView<GraphicObject> objectListView = new ListView<>();
     
     private static ListController instance = null;
+    
+    private ProjectLine line = new ProjectLine("test", Color.RED, 0, 0, 10, 10);
     
     /**
      * private Constructor to avoid instantiation
      */
-    private ListController(){}
+    private ListController(){
+        //items = FXCollections.observableArrayList(line.);
+        //objectListView.setItems(FXCollections.observableArrayList((GraphicObject) line));
+        //generateCellFactory();
+        objectListView.setCellFactory(new Callback<ListView<GraphicObject>, 
+            ListCell<GraphicObject>>() {
+                
+                @Override
+                public ListCell call(ListView<GraphicObject> o) {
+                    System.out.println("Return new Graphiccell");
+                    return new GraphicCell();
+                }
+            }
+        );
+        System.out.println("Constructor call was successful");
+    }
     
     public static ListController getInstance() {
       if(instance == null) {
@@ -52,9 +66,10 @@ public class ListController<GraphicObject> implements ObservableList<GraphicObje
      * @param lv 
      */
     public void setListView(ListView lv){
-        ObjectListView = lv;
-        //Immediately set new cell Factory
+        objectListView = lv;
         generateCellFactory();
+        //Immediately set new cell Factory
+        
     }
     
     /**
@@ -63,15 +78,15 @@ public class ListController<GraphicObject> implements ObservableList<GraphicObje
      */
     public ObservableList<GraphicObject> getItems(){
         System.out.print("ListGetItems");
-        return items;
+        return null;//this;
     }
     
     public GraphicObject getItem(int id){
         return items.get(id);
     }
     
-    public void setItems(ObservableList list){
-        items = list;
+    public void setItems(ObservableList<GraphicObject> list){
+        //this = list;
     }
     
     /**
@@ -79,9 +94,11 @@ public class ListController<GraphicObject> implements ObservableList<GraphicObje
      * @param g
      * @return 
      */
-    public boolean addItem(GraphicObject g){
+    public void addItem(GraphicObject g){
         items.add(g);
-        return false;
+        objectListView.setItems(items);
+        System.out.println(objectListView.getItems());
+        System.out.println("addItem.");
     }
     
     /**
@@ -90,188 +107,23 @@ public class ListController<GraphicObject> implements ObservableList<GraphicObje
      * @return 
      */
     public boolean deleteItem(GraphicObject g){
-        items.remove(g);
+        //this.remove(g);
         return false;
     }
     
     public GraphicObject getSelectedItem(){
-        return ObjectListView.getSelectionModel().getSelectedItem();
+        return objectListView.getSelectionModel().getSelectedItem();
     }
     
-    public void generateCellFactory(){
-        ObjectListView.setCellFactory(new Callback<ListView<GraphicObject>, 
+    private void generateCellFactory(){
+        objectListView.setCellFactory(new Callback<ListView<GraphicObject>, 
             ListCell<GraphicObject>>() {
+                
                 @Override
                 public ListCell call(ListView<GraphicObject> p) {
-                    return new ObjectCell();
+                    return new GraphicCell();
                 }
             }
         );
     }
-
-    @Override
-    public void addListener(ListChangeListener<? super GraphicObject> ll) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void removeListener(ListChangeListener<? super GraphicObject> ll) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean addAll(GraphicObject... es) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setAll(GraphicObject... es) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setAll(Collection<? extends GraphicObject> clctn) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removeAll(GraphicObject... es) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean retainAll(GraphicObject... es) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void remove(int i, int i1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Iterator<GraphicObject> iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public <T> T[] toArray(T[] a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean add(GraphicObject e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends GraphicObject> c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean addAll(int index, Collection<? extends GraphicObject> c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public GraphicObject get(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public GraphicObject set(int index, GraphicObject element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void add(int index, GraphicObject element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public GraphicObject remove(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int indexOf(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int lastIndexOf(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ListIterator<GraphicObject> listIterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ListIterator<GraphicObject> listIterator(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<GraphicObject> subList(int fromIndex, int toIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void addListener(InvalidationListener il) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void removeListener(InvalidationListener il) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

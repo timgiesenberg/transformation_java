@@ -9,6 +9,6 @@
 
 <AnchorPane id="AnchorPane" fx:id="canvas" prefHeight="600.0" prefWidth="980.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Utils.CanvasController">
   <children>
-    <Pane prefHeight="47.0" prefWidth="486.0" />
+    <Pane prefHeight="600.0" prefWidth="980.0" />
   </children>
 </AnchorPane>

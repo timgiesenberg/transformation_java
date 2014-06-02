@@ -6,7 +6,6 @@
 
 package App;
 
-import ButtonBar.ButtonBarController;
 import GraphicObjects.GraphicObject;
 import GraphicObjects.ProjectCircle;
 import GraphicObjects.ProjectLine;
@@ -14,8 +13,6 @@ import GraphicObjects.ProjectPolygon;
 import GraphicObjects.ProjectRectangle;
 import GraphicObjects.ProjectTriangle;
 import ListView.ListController;
-import TransformationBar.TransformationBarController;
-import Utils.CanvasController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -27,10 +24,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 /**
  *
@@ -42,19 +37,7 @@ public class AppController implements Initializable {
     final private ListView<GraphicObject> ObjectListView = new ListView<>();
     
     @FXML
-    private AnchorPane canvas;
-    
-    @FXML
-    private CanvasController cv;
-    
-    @FXML
-    private TransformationBarController transformationBarController;
-    
-    @FXML
-    private ButtonBarController buttonBarController;
-    
-    @FXML
-    public CanvasController canvasController;
+    private Pane canvas;
     
     @FXML
     private TextField polygonNumberOfAngles;
@@ -76,11 +59,6 @@ public class AppController implements Initializable {
         
         //if needed, add some previously generated Objects
         //list.setItems(FXCollections.observableArrayList(line));
-        
-        //System.out.println(canvas_two.getId());
-        
-        buttonBarController.setCanvasController(canvasController);
-
     }
     /**
      * handles a click on ViewList items
@@ -118,10 +96,8 @@ public class AppController implements Initializable {
             }
             
         });
-        //cv.add(r);
-        //buttonBarController.test();
-                System.out.println(transformationBarController.toString());
-                System.out.println(buttonBarController.toString());
+        list.addItem(r);
+        canvas.getChildren().add(r);
     }
     
     @FXML
@@ -138,6 +114,7 @@ public class AppController implements Initializable {
             }
             
         });
+        list.addItem(c);
         canvas.getChildren().add(c);
         
     }
@@ -156,6 +133,7 @@ public class AppController implements Initializable {
             }
             
         });
+        list.addItem(t);
         canvas.getChildren().add(t);
         
     }
@@ -174,6 +152,7 @@ public class AppController implements Initializable {
             }
             
         });
+        list.addItem(l);
         canvas.getChildren().add(l);
         
     }
@@ -198,6 +177,7 @@ public class AppController implements Initializable {
                     }
 
                 });
+                list.addItem(p);
                 canvas.getChildren().add(p);
                 
             }
@@ -205,19 +185,16 @@ public class AppController implements Initializable {
         }
         
     }
-    
-    static class ObjectCell extends ListCell<Shape> {
+    /*
+    static class ObjectCell extends ListCell<GraphicObject> {
         @Override
-        public void updateItem(Shape item, boolean empty) {
+        public void updateItem(GraphicObject item, boolean empty) {
             super.updateItem(item, empty);
-            Rectangle rect = new Rectangle(100, 20);
             if (item != null) {
                 setText(item.getId());
             } else {
-                //rect.setFill(Color.web("blue"));
-                //setGraphic(rect);
             }
         }
-    }  
+    }  //**/
     
 }

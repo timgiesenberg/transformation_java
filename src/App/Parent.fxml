@@ -8,15 +8,282 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="App.AppController">
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="AppUi" prefHeight="800.0" prefWidth="1200.0"  xmlns="http://javafx.com/javafx/2.2" fx:controller="App.AppController">
     <children>
-    <Pane prefHeight="47.0" prefWidth="486.0">
-        <fx:include fx:id="canvas" source="../Utils/Canvas.fxml" layoutX="0.0" layoutY="50.0" />
-        <fx:include fx:id="buttonBar" source="../ButtonBar/ButtonBar.fxml"/>
-        <fx:include source="../ListView/ListView.fxml" layoutX="980.0" layoutY="0.0" />
-        <fx:include fx:id="transformationBar" source="../TransformationBar/TransformationBar.fxml" layoutX="0.0" layoutY="650.0" />
-        <fx:include source="../Properties/ObjectpropertiesCircle_RICHTIGE_GRÖSSE.fxml" layoutX="980.0" layoutY="420.0" />
+    <!-- Buttonbar -->
+    <HBox layoutX="0.0" layoutY="0.0" prefHeight="50.0" prefWidth="980.0" styleClass="Leiste">
+      <children>
+        <Button id="buttonleisteClear" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Neu, Alle_Button" text="N">
+          <stylesheets>
+            <URL value="@Styles.css" />
+          </stylesheets>
+          <HBox.margin>
+          </HBox.margin>
+        </Button>
+        <Button id="buttonleisteSave" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Speichern, Alle_Button" text="S">
+          <stylesheets>
+            <URL value="@Styles.css" />
+          </stylesheets>
+          <HBox.margin>
+          </HBox.margin>
+        </Button>
+        <Button id="buttonleisteOpen" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Oeffnen, Alle_Button" text="O" HBox.margin="$x1">
+          <stylesheets>
+            <URL value="@Styles.css" />
+          </stylesheets>
+        </Button>
+        <Button id="buttonleisteBackwards" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_zurueck, Alle_Button" text="&lt;" HBox.margin="$x1">
+          <stylesheets>
+            <URL value="@Styles.css" />
+          </stylesheets>
+        </Button>
+        <Button id="buttonleisteForward" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_vor, Alle_Button" text="&gt;">
+          <stylesheets>
+            <URL value="@Styles.css" />
+          </stylesheets>
+          <HBox.margin>
+          </HBox.margin>
+        </Button>
+        <Separator opacity="0.45" orientation="VERTICAL" prefHeight="200.0" visible="true" />
+        <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="7.0" mnemonicParsing="false" onAction="#handleButtonActionRectangle" onMouseClicked="#handleButtonActionRectangle" prefHeight="30.0" prefWidth="30.0" style="" styleClass="Button, Button_Rechteck, Alle_Button" text="" HBox.margin="$x2">
+          <stylesheets>
+            <URL value="@Styles.css" />
+          </stylesheets>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#handleButtonActionCircle" onMouseClicked="#handleButtonActionCircle" prefHeight="30.0" prefWidth="29.9998779296875" styleClass="Button_Kreis, Alle_Button" text="" HBox.margin="$x1">
+          <stylesheets>
+            <URL value="@Styles.css" />
+          </stylesheets>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#handleButtonActionTriangle" onMouseClicked="#handleButtonActionRectangle" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Dreieck, Alle_Button" text="" HBox.margin="$x1">
+          <stylesheets>
+            <URL value="@Styles.css" />
+          </stylesheets>
+        </Button>
+        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handleButtonActionLine" onMouseClicked="#handleButtonActionLine" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Linie, Alle_Button" text="" HBox.margin="$x1">
+          <stylesheets>
+            <URL value="@Styles.css" />
+          </stylesheets>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#handleButtonActionPolygon" onMouseClicked="#handleButtonActionPolygon" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Polygon, Alle_Button" text="">
+          <stylesheets>
+            <URL value="@Styles.css" />
+          </stylesheets>
+          <HBox.margin>
+          </HBox.margin>
+        </Button>
+        <TextField fx:id="polygonNumberOfAngles" prefWidth="35.0">
+          <HBox.margin>
+          </HBox.margin>
+        </TextField>
+        <Separator opacity="0.45" orientation="VERTICAL" prefHeight="200.0" />
+        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Kopieren, Alle_Button" text="" HBox.margin="$x2">
+          <stylesheets>
+            <URL value="@Styles.css" />
+          </stylesheets>
+        </Button>
+        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Loeschen, Alle_Button" text="" HBox.margin="$x1">
+          <stylesheets>
+            <URL value="@Styles.css" />
+          </stylesheets>
+        </Button>
+      </children>
+      <stylesheets>
+        <URL value="@Styles.css" />
+      </stylesheets>
+    </HBox>
+    
+    <!-- ListView -->
+    <ListView fx:id="ObjectListView" editable="true" layoutX="980.0" layoutY="0.0" onMouseClicked="#handleListViewClick" prefHeight="420.0" prefWidth="220.0" />
+    
+    <!-- Canvas -->
+    <Pane prefHeight="600.0" prefWidth="980.0" layoutX="0.0" layoutY="50.0" fx:id="canvas" />
+    
+    <!-- Properties -->
+    <TitledPane animated="false" layoutX="980.0" layoutY="420.0" minWidth="220.0" prefHeight="380.0" prefWidth="220.0" text="Objekt-Eigenschaften">
+      <content>
+        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="220.0">
+          <children>
+            <Label layoutX="14.0" layoutY="7.0" text="Kreis" />
+            <Label layoutX="14.0" layoutY="35.0" text="Name:">
+              <font>
+                <Font size="11.0" fx:id="x1_1"/>
+              </font>
+            </Label>
+            <TextField id="obj" fx:id="CircleName" layoutX="64.0" layoutY="32.0" prefWidth="120.0" promptText="" text="" />
+            <Label font="$x1" layoutX="13.0" layoutY="138.0" text="Position:" />
+            <TextField id="Circle" fx:id="CircleXPosition" layoutX="31.0" layoutY="159.0" prefWidth="59.0" promptText="" text="" />
+            <Label layoutX="13.0" layoutY="160.0" text="x:">
+              <font>
+                <Font size="10.0" fx:id="x1_2"/>
+              </font>
+            </Label>
+            <TextField id="Circle_YPosition" fx:id="CircleYPosition" layoutX="124.0" layoutY="160.0" prefWidth="59.0" promptText="" text="" />
+            <Label font="$x2" layoutX="106.0" layoutY="161.0" text="y:" />
+            <Label font="$x1" layoutX="13.0" layoutY="61.0" text="Größe:" />
+            <TextField fx:id="CircleHeight" layoutX="32.0" layoutY="106.0" prefWidth="59.0" promptText="" text="" />
+            <Label font="$x2" layoutX="14.0" layoutY="107.0" text="H:" />
+            <TextField fx:id="CircleWidth" layoutX="125.0" layoutY="107.0" prefWidth="59.0" promptText="" text="" />
+            <Label font="$x2" layoutX="107.0" layoutY="108.0" text="B:" />
+            <TextField id="Radius" fx:id="CircleRadius" layoutX="32.0" layoutY="81.0" prefWidth="59.0" promptText="" text="" />
+            <Label font="$x2" layoutX="14.0" layoutY="82.0" text="r:" />
+            <Label font="$x1" layoutX="14.0" layoutY="191.0" text="Rotation:" />
+            <Slider fx:id="CircleRotation" blockIncrement="10.0" disable="false" layoutX="16.0" layoutY="214.0" majorTickUnit="45.0" max="180.0" minorTickCount="4" prefWidth="169.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+            <Label font="$x1" layoutX="15.0" layoutY="259.0" text="Spiegelung:" />
+            <Button fx:id="CircleReflectX" font="$x2" layoutX="80.0" layoutY="259.0" mnemonicParsing="false" text="horizontal" wrapText="false" />
+            <Button fx:id="CircleReflectY" font="$x2" layoutX="148.0" layoutY="259.0" mnemonicParsing="false" prefWidth="52.999908447265625" text="vertikal" wrapText="false" />
+            <Label font="$x1" layoutX="15.0" layoutY="284.0" text="Farbe:" />
+            <ColorPicker fx:id="CircleColorFill" layoutX="96.0" layoutY="299.0" minHeight="16.0" prefHeight="16.0" prefWidth="87.0" />
+            <Label font="$x1" layoutX="48.0" layoutY="301.0" text="Fläche:" />
+            <ColorPicker fx:id="CircleColorOutline" layoutX="96.0" layoutY="320.0" minHeight="16.0" prefHeight="16.0" prefWidth="87.0" />
+            <Label font="$x1" layoutX="48.0" layoutY="321.0" text="Kontur:" />
+            <Separator layoutX="8.0" layoutY="24.0" prefWidth="184.0" />
+          </children>
+        </AnchorPane>
+      </content>
+      <font>
+        <Font size="13.0" />
+      </font>
+    </TitledPane>
+    <SplitPane dividerPositions="0.5" focusTraversable="true" layoutX="30.0" layoutY="90.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" visible="false">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+      </items>
+    </SplitPane>
+    
+    <!-- Transformationsbar -->
+    <Pane layoutX="0.0" layoutY="650.0"  >
+    <Label alignment="CENTER" layoutX="105.0" layoutY="86.0" prefHeight="16.0" prefWidth="93.0" text="Translation" />
+    <Label alignment="CENTER" layoutX="326.0" layoutY="87.0" prefHeight="16.0" prefWidth="80.0" text="Rotation" />
+    <Label alignment="CENTER" layoutX="530.0" layoutY="86.0" prefHeight="16.0" prefWidth="40.0" text="Scale" />
+    <Label alignment="CENTER" layoutX="242.0" layoutY="35.0" prefWidth="13.000199999994948" text="X" />
+    <Label alignment="CENTER" layoutX="452.0" layoutY="35.0" prefWidth="13.000099999997474" text="X" />
+    <Label layoutX="630.0" layoutY="35.0" prefWidth="13.0001220703125" text="=" />
+    <Button fx:id="transformationOfAll" layoutX="833.0" layoutY="101.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="123.0" text="Transformieren!" />
+    <TextField fx:id="translationToY" layoutX="182.0" layoutY="109.0" prefWidth="31.0" />
+    <TextField fx:id="translationToX" layoutX="127.0" layoutY="109.0" prefWidth="31.0" />
+    <TextField id="rotate" fx:id="rotateAt" layoutX="350.0" layoutY="109.0" prefWidth="31.0" />
+    <TextField fx:id="scalePercent" layoutX="535.0" layoutY="109.0" prefWidth="31.0" />
+    <Label layoutX="570.0" layoutY="112.0" prefWidth="13.0" text="\%" />
+    <Label layoutX="384.0" layoutY="112.0" minWidth="2.9998779296875" prefWidth="13.0" text="°" />
+    <Label layoutX="114.0" layoutY="112.0" prefWidth="13.0" text="x:" />
+    <Label layoutX="168.0" layoutY="112.0" text="y:" />
+    <GridPane gridLinesVisible="false" layoutX="123.0" layoutY="12.0" prefHeight="60.0" prefWidth="60.0">
+      <children>
+        <Label id="translateXT" fx:id="translation0_2" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" text="xT" GridPane.columnIndex="2" GridPane.rowIndex="0">
+          <font>
+            <Font size="12.0" fx:id="x12" />
+          </font>
+        </Label>
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="1" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label alignment="CENTER" contentDisplay="LEFT" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label id="translateYT" fx:id="translation1_2" alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="yT" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <GridPane gridLinesVisible="false" layoutX="521.0" layoutY="12.0" prefHeight="60.0" prefWidth="60.0">
+      <children>
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label id="sT" fx:id="scale0_0" alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="sT" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label alignment="CENTER" contentDisplay="LEFT" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label fx:id="scale1_1" alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="sT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <GridPane gridLinesVisible="false" layoutX="689.0" layoutY="12.0" prefHeight="56.0" prefWidth="78.0">
+      <children>
+        <Label fx:id="total0_2" alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="m3" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label fx:id="total0_0" alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="m1" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label fx:id="total0_1" alignment="CENTER" contentDisplay="LEFT" font="$x1" prefHeight="30.0" prefWidth="30.0" text="m2" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label fx:id="total1_0" alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="m4" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label fx:id="total1_2" alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="m6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Label alignment="CENTER" font="$x1" prefHeight="19.9998779296875" prefWidth="20.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label fx:id="total1_1" alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="m5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <GridPane gridLinesVisible="false" layoutX="313.0" layoutY="12.0" prefHeight="60.0" prefWidth="100.0">
+      <children>
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label fx:id="rotation0_0" alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="32.0" text="cos α" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label fx:id="rotation0_1" alignment="CENTER" contentDisplay="LEFT" font="$x1" prefHeight="20.0" prefWidth="38.0" text="-sin α" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label fx:id="rotation1_0" alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="32.0" text="sin α" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label alignment="CENTER" font="$x1" prefHeight="20.0" prefWidth="42.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label fx:id="rotation1_1" alignment="CENTER" font="$x1" prefHeight="20.0" prefWidth="37.0" text="cos α" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="62.93031311035156" minWidth="10.0" prefWidth="37.68598937988281" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.0" minWidth="0.0" prefWidth="35.31401062011719" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.0" minWidth="0.0" prefWidth="26.314010620117188" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <QuadCurve controlX="-5.0" controlY="-100.0" endX="50.0" layoutX="120.0" layoutY="66.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0">
+      <fill>
+        <Color blue="1.000" green="0.576" opacity="0.000" red="0.122" fx:id="x22" />
+      </fill>
+    </QuadCurve>
+    <QuadCurve controlX="-5.0" controlY="-100.0" endX="50.0" fill="$x2" layoutX="309.0" layoutY="66.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
+    <QuadCurve controlX="-5.0" controlY="-100.0" endX="50.0" fill="$x2" layoutX="516.0" layoutY="66.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
+    <QuadCurve controlX="-5.0" controlY="-100.0" endX="50.0" fill="$x2" layoutX="685.0" layoutY="66.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
+    <QuadCurve controlX="-5.0" controlY="100.0" endX="50.0" fill="$x2" layoutX="189.0" layoutY="15.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
+    <QuadCurve controlX="-5.0" controlY="100.0" endX="50.0" fill="$x2" layoutX="411.0" layoutY="15.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
+    <QuadCurve controlX="-5.0" controlY="100.0" endX="50.0" fill="$x2" layoutX="585.0" layoutY="15.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
+    <QuadCurve controlX="-5.0" controlY="100.0" endX="50.0" fill="$x2" layoutX="770.0" layoutY="15.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
     </Pane>
   </children>
+    <stylesheets>
+    <URL value="@../styles/Styles.css" />
+  </stylesheets>
 </AnchorPane>
