@@ -66,10 +66,12 @@ public class AppController implements Initializable {
      */
     @FXML
     protected void handleListViewClick(Event event){
-        System.out.println("Click on list item. " );
-        //GraphicObject s = list.getSelectedItem();
-        //System.out.println(s.getId());
-        //setInputFieldValues(s);
+        //retrieves selected object
+        GraphicObject s = (GraphicObject) list.getSelectedItem();
+        
+        //brings the object to the front
+        s.toFront();
+        System.out.println("You have chosen Object with name: " + s.getName());
     }
     
     /**
@@ -86,16 +88,7 @@ public class AppController implements Initializable {
     private void handleButtonActionRectangle(ActionEvent event) {
         
         final ProjectRectangle r = new ProjectRectangle("Horst", Color.GREEN, 100, 100, 100, 100);
-        r.setOnMousePressed(new EventHandler<MouseEvent>() {
-
-            @Override
-            public void handle(MouseEvent event) {
-                
-                System.out.println("Das Rechteck " + r.getName() + " wurde ausgewählt.");
-                
-            }
-            
-        });
+        r.setOnMousePressed(new GraphicClickEventHandler<>(r));
         list.addItem(r);
         canvas.getChildren().add(r);
     }
@@ -104,16 +97,7 @@ public class AppController implements Initializable {
     private void handleButtonActionCircle(ActionEvent event) {
         
         final ProjectCircle c = new ProjectCircle("Angelika", Color.BLUE, 100, 100, 40);
-        c.setOnMousePressed(new EventHandler<MouseEvent>() {
-
-            @Override
-            public void handle(MouseEvent event) {
-                
-                System.out.println("Der Kreis " + c.getName() + " wurde ausgewählt.");
-                
-            }
-            
-        });
+        c.setOnMousePressed(new GraphicClickEventHandler<>(c));
         list.addItem(c);
         canvas.getChildren().add(c);
         
@@ -123,16 +107,7 @@ public class AppController implements Initializable {
     private void handleButtonActionTriangle(ActionEvent event) {
         
         final ProjectTriangle t = new ProjectTriangle("Wilhelmine", Color.YELLOW, 60, 60, 80);
-        t.setOnMousePressed(new EventHandler<MouseEvent>() {
-
-            @Override
-            public void handle(MouseEvent event) {
-                
-                System.out.println("Das Dreieck " + t.getName() + " wurde ausgewählt.");
-                
-            }
-            
-        });
+        t.setOnMousePressed(new GraphicClickEventHandler<>(t));
         list.addItem(t);
         canvas.getChildren().add(t);
         
@@ -142,16 +117,7 @@ public class AppController implements Initializable {
     private void handleButtonActionLine(ActionEvent event) {
         
         final ProjectLine l = new ProjectLine("Gottfried", Color.RED, 100, 50, 150, 100);
-        l.setOnMousePressed(new EventHandler<MouseEvent>() {
-
-            @Override
-            public void handle(MouseEvent event) {
-                
-                System.out.println("Die Linie " + l.getName() + " wurde ausgewählt.");
-                
-            }
-            
-        });
+        l.setOnMousePressed(new GraphicClickEventHandler<>(l));
         list.addItem(l);
         canvas.getChildren().add(l);
         
@@ -167,16 +133,7 @@ public class AppController implements Initializable {
             if (numberOfAngles > 0) {
                 
                 final ProjectPolygon p = new ProjectPolygon("Sybille", Color.GRAY, numberOfAngles, 200, 200);
-                p.setOnMousePressed(new EventHandler<MouseEvent>() {
-
-                    @Override
-                    public void handle(MouseEvent event) {
-
-                        System.out.println("Das Polygon " + p.getName() + " wurde ausgewählt.");
-
-                    }
-
-                });
+                p.setOnMousePressed(new GraphicClickEventHandler<>(p));
                 list.addItem(p);
                 canvas.getChildren().add(p);
                 
@@ -185,16 +142,4 @@ public class AppController implements Initializable {
         }
         
     }
-    /*
-    static class ObjectCell extends ListCell<GraphicObject> {
-        @Override
-        public void updateItem(GraphicObject item, boolean empty) {
-            super.updateItem(item, empty);
-            if (item != null) {
-                setText(item.getId());
-            } else {
-            }
-        }
-    }  //**/
-    
 }

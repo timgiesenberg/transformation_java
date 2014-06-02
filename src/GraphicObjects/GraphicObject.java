@@ -4,6 +4,9 @@ package GraphicObjects;
 import Utils.Matrix;
 import Utils.Point2D;
 import Utils.Transformate;
+import javafx.event.EventHandler;
+import javafx.scene.Cursor;
+import javafx.scene.input.MouseEvent;
 /*
  * import infoprojektjavApprt infoprojektjavafx.TransformaApplasse GraphicObject fasst alle zur Verfügung stehenden Grafiken zusammen.
  * Alle werden als Polygone implementiert.
@@ -69,7 +72,7 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
         }
         
         this.updatePoints();
-        
+        this.setCursor(Cursor.HAND);
     }
     
     /**
@@ -153,7 +156,7 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
         
         // Punkte aktualisieren
         this.updatePoints();
-
+        this.setCursor(Cursor.HAND);
     }
         
     /**
@@ -286,5 +289,4 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
         this.updatePoints();
         
     }
-    
 }
