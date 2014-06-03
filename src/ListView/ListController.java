@@ -25,7 +25,7 @@ public class ListController<GraphicObject> {
     
     private ObservableList<GraphicObject> items = FXCollections.observableArrayList();
     
-    private ListView<GraphicObject> objectListView = new ListView<>();
+    private ListView<GraphicObject> objectListView = null;
     
     private static ListController instance = null;
     
@@ -34,10 +34,8 @@ public class ListController<GraphicObject> {
     /**
      * private Constructor to avoid instantiation
      */
-    private ListController(){
-        //items = FXCollections.observableArrayList(line.);
-        //objectListView.setItems(FXCollections.observableArrayList((GraphicObject) line));
-        //generateCellFactory();
+    private ListController(ListView lv){
+        objectListView = lv;
         objectListView.setCellFactory(new Callback<ListView<GraphicObject>, 
             ListCell<GraphicObject>>() {
                 
@@ -51,9 +49,9 @@ public class ListController<GraphicObject> {
         System.out.println("Constructor call was successful");
     }
     
-    public static ListController getInstance() {
+    public static ListController getInstance(ListView lv) {
       if(instance == null) {
-         instance = new ListController();
+         instance = new ListController(lv);
          System.out.println("ListController Object created");
       } else {
           System.out.println("ListController already instantiated");

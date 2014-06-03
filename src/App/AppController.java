@@ -52,7 +52,7 @@ public class AppController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
             
         //create new ListController
-        list = ListController.getInstance();
+        list = ListController.getInstance(ObjectListView);
         
         //TODO: transfer ObjectListview Reference to the list Controllter
         list.setListView(ObjectListView);
