@@ -19,9 +19,8 @@ import javafx.util.Callback;
 /**
  *
  * @author tim.giesenberg@me.com
- * @param <GraphicObject>
  */
-public class ListController<GraphicObject> {
+public class ListController {
     
     private ObservableList<GraphicObject> items = FXCollections.observableArrayList();
     

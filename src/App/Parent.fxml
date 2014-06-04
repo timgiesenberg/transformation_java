@@ -86,6 +86,15 @@
     </HBox>
     <!-- ListView -->
     <ListView fx:id="ObjectListView" editable="true" layoutX="980.0" layoutY="0.0" onMouseClicked="#handleListViewClick" prefHeight="420.0" prefWidth="220.0" />
+    <!-- ListView Title -->
+      <TitledPane animated="false" layoutX="980.0" prefHeight="17.0" prefWidth="220.0" text="Objekt-Liste">
+       <content>
+         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0" />
+       </content>
+        <font>
+           <Font size="13.0" />
+        </font>
+     </TitledPane>
     <!-- Canvas -->
     <Pane fx:id="canvas" layoutX="0.0" layoutY="50.0" prefHeight="600.0" prefWidth="980.0" />
     <!-- Properties -->
@@ -153,7 +162,7 @@
       <Label alignment="CENTER" layoutX="242.0" layoutY="35.0" prefWidth="13.000199999994948" text="X" />
       <Label alignment="CENTER" layoutX="452.0" layoutY="35.0" prefWidth="13.000099999997474" text="X" />
       <Label layoutX="630.0" layoutY="35.0" prefWidth="13.0001220703125" text="=" />
-      <Button fx:id="transformationOfAll" layoutX="833.0" layoutY="101.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="123.0" text="Transformieren!" />
+      <Button fx:id="transformationOfAll" layoutX="833.0" layoutY="101.0" mnemonicParsing="false" onAction="#transformationOfAll" prefHeight="26.0" prefWidth="123.0" text="Transformieren!" />
       <TextField fx:id="translationToY" layoutX="182.0" layoutY="109.0" prefWidth="30.999900000002526" />
       <TextField fx:id="translationToX" layoutX="127.0" layoutY="109.0" prefWidth="31.0" />
       <TextField id="rotate" fx:id="rotateAt" layoutX="350.0" layoutY="109.0" prefWidth="31.0" />

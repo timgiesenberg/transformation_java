@@ -7,14 +7,13 @@
 package App;
 
 import GraphicObjects.GraphicObject;
-import javafx.event.Event;
+import javafx.event.MouseEvent;
 
 /**
  *
  * @author tim.giesenberg@me.com
- * @param <MouseEvent>
  */
-public class GraphicClickEventHandler<MouseEvent> implements javafx.event.EventHandler<Event>{
+public class GraphicClickEventHandler implements javafx.event.EventHandler<MouseEvent>{
 
     final private GraphicObject graphicObject;
     
@@ -23,12 +22,16 @@ public class GraphicClickEventHandler<MouseEvent> implements javafx.event.EventH
     }
     
     @Override
-    public void handle(Event t) {
+    public void handle(MouseEvent t) {
         System.out.println("Das Objekt: " + graphicObject.getName() + " wurde ausgewählt.");
         graphicObject.toFront();
         //graphicObject.get
         //TODO 
         //System.out.println("Der Kreis " + o.getName() + " wurde ausgewählt.");
+        
+        //selectedItem vom ListView auf dieses aktuelle GraphicObject setzen? 
+        //damit danach z.b. transformiert werden kann, auch wenn das Objekt nicht 
+        //über die Liste ausgewählt wurde, sondern hier per Maus
     }
     
 }
