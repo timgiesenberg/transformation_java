@@ -74,7 +74,7 @@
             <URL value="@Styles.css" />
           </stylesheets>
         </Button>
-        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Loeschen, Alle_Button" text="">
+        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handleButtonDeleteItem" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Loeschen, Alle_Button" text="">
           <stylesheets>
             <URL value="@Styles.css" />
           </stylesheets>
@@ -87,18 +87,18 @@
     <!-- ListView -->
     <ListView fx:id="ObjectListView" editable="true" layoutX="980.0" layoutY="0.0" onMouseClicked="#handleListViewClick" prefHeight="420.0" prefWidth="220.0" />
     <!-- ListView Title -->
-      <TitledPane animated="false" layoutX="980.0" prefHeight="17.0" prefWidth="220.0" text="Objekt-Liste">
-       <content>
-         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0" />
-       </content>
-        <font>
-           <Font size="13.0" />
-        </font>
-     </TitledPane>
+    <TitledPane animated="false" layoutX="980.0" prefHeight="17.0" prefWidth="220.0" text="Objekt-Liste">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0" />
+      </content>
+      <font>
+        <Font size="13.0" fx:id="x2" />
+      </font>
+    </TitledPane>
     <!-- Canvas -->
     <Pane fx:id="canvas" layoutX="0.0" layoutY="50.0" prefHeight="600.0" prefWidth="980.0" />
     <!-- Properties -->
-    <TitledPane animated="false" layoutX="980.0" layoutY="420.0" minWidth="220.0" prefHeight="380.0" prefWidth="220.0" text="Objekt-Eigenschaften">
+    <TitledPane animated="false" font="$x2" layoutX="980.0" layoutY="420.0" minWidth="220.0" prefHeight="380.0" prefWidth="220.0" text="Objekt-Eigenschaften">
       <content>
         <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="220.0">
           <children>
@@ -143,9 +143,6 @@
           </children>
         </AnchorPane>
       </content>
-      <font>
-        <Font size="13.0" />
-      </font>
     </TitledPane>
     <SplitPane dividerPositions="0.5" focusTraversable="true" layoutX="30.0" layoutY="90.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" visible="false">
       <items>

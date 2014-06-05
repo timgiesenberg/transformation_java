@@ -8,7 +8,6 @@ package ListView;
 
 import GraphicObjects.GraphicObject;
 import GraphicObjects.ProjectLine;
-import ListView.ListViewController.ObjectCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
@@ -66,7 +65,6 @@ public class ListController {
         objectListView = lv;
         generateCellFactory();
         //Immediately set new cell Factory
-        
     }
     
     /**
@@ -78,6 +76,11 @@ public class ListController {
         return null;//this;
     }
     
+    /**
+     * returns a Graphicobject by its Id
+     * @param id
+     * @return 
+     */
     public GraphicObject getItem(int id){
         return items.get(id);
     }
@@ -103,13 +106,25 @@ public class ListController {
      * @param g
      * @return 
      */
-    public boolean deleteItem(GraphicObject g){
-        //this.remove(g);
-        return false;
+    public void deleteItem(GraphicObject g){
+        items.remove(g);
     }
     
+    /**
+     * returns the reference of the GraphicObject that is selected in ListView
+     * @return 
+     */
     public GraphicObject getSelectedItem(){
         return objectListView.getSelectionModel().getSelectedItem();
+    }
+    
+    /**
+     * sets the selecteted Object in the ListView
+     * object is then highlighted
+     * @param g 
+     */
+    public void setFocus(GraphicObject g){
+        objectListView.getSelectionModel().select(g);
     }
     
     private void generateCellFactory(){
