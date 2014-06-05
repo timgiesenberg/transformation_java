@@ -7,7 +7,8 @@
 package App;
 
 import GraphicObjects.GraphicObject;
-import javafx.event.MouseEvent;
+import ListView.ListController;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
@@ -16,15 +17,18 @@ import javafx.event.MouseEvent;
 public class GraphicClickEventHandler implements javafx.event.EventHandler<MouseEvent>{
 
     final private GraphicObject graphicObject;
+    final private ListController ListController;
     
-    public GraphicClickEventHandler(GraphicObject o){
+    public GraphicClickEventHandler(GraphicObject o, ListController lc){
         graphicObject = o;
+        ListController = lc;
     }
     
     @Override
     public void handle(MouseEvent t) {
         System.out.println("Das Objekt: " + graphicObject.getName() + " wurde ausgewählt.");
         graphicObject.toFront();
+        ListController.setFocus(graphicObject);
         //graphicObject.get
         //TODO 
         //System.out.println("Der Kreis " + o.getName() + " wurde ausgewählt.");

@@ -93,7 +93,7 @@ public class AppController implements Initializable {
     private void handleButtonActionRectangle(Event event) {
         
         final ProjectRectangle r = new ProjectRectangle("Horst", Color.GREEN, 100, 100, 100, 100);
-        r.setOnMousePressed(new GraphicClickEventHandler(r));
+        r.setOnMousePressed(new GraphicClickEventHandler(r, list));
         list.addItem(r);
         canvas.getChildren().add(r);
     }
@@ -102,7 +102,7 @@ public class AppController implements Initializable {
     private void handleButtonActionCircle(Event event) {
         
         final ProjectCircle c = new ProjectCircle("Angelika", Color.BLUE, 100, 100, 40);
-        c.setOnMousePressed(new GraphicClickEventHandler(c));
+        c.setOnMousePressed(new GraphicClickEventHandler(c, list));
         list.addItem(c);
         canvas.getChildren().add(c);
         
@@ -112,7 +112,7 @@ public class AppController implements Initializable {
     private void handleButtonActionTriangle(Event event) {
         
         final ProjectTriangle t = new ProjectTriangle("Wilhelmine", Color.YELLOW, 60, 60, 80);
-        t.setOnMousePressed(new GraphicClickEventHandler(t));
+        t.setOnMousePressed(new GraphicClickEventHandler(t, list));
         list.addItem(t);
         canvas.getChildren().add(t);
         
@@ -122,10 +122,17 @@ public class AppController implements Initializable {
     private void handleButtonActionLine(Event event) {
         
         final ProjectLine l = new ProjectLine("Gottfried", Color.RED, 100, 50, 150, 100);
-        l.setOnMousePressed(new GraphicClickEventHandler(l));
+        l.setOnMousePressed(new GraphicClickEventHandler(l, list));
         list.addItem(l);
         canvas.getChildren().add(l);
         
+    }
+    
+    @FXML
+    private void handleButtonDeleteItem(){
+        GraphicObject g = list.getSelectedItem();
+        list.deleteItem(g);
+        canvas.getChildren().remove(g);
     }
     
     @FXML
@@ -138,7 +145,7 @@ public class AppController implements Initializable {
             if (numberOfAngles > 0) {
                 
                 final ProjectPolygon p = new ProjectPolygon("Sybille", Color.GRAY, numberOfAngles, 200, 200);
-                p.setOnMousePressed(new GraphicClickEventHandler(p));
+                p.setOnMousePressed(new GraphicClickEventHandler(p, list));
                 list.addItem(p);
                 canvas.getChildren().add(p);
                 polygonNumberOfAngles.setStyle("-fx-background-color: white");
@@ -150,8 +157,9 @@ public class AppController implements Initializable {
         else polygonNumberOfAngles.setStyle("-fx-background-color: red");
         
     }
-    
-    
+    /**************************************************************************/
+    //                      TransformationBar
+    /**************************************************************************/
     
     // Translations Eingabe und Anzeige-Matrix
     @FXML
