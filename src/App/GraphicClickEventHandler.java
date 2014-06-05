@@ -7,7 +7,7 @@
 package App;
 
 import GraphicObjects.GraphicObject;
-import javafx.event.MouseEvent;
+import javafx.scene.input.MouseEvent;
 
 /**
  *

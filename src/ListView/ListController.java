@@ -93,7 +93,7 @@ public class ListController {
      */
     public void addItem(GraphicObject g){
         items.add(g);
-        objectListView.setItems(items);
+        objectListView.setItems(items); //?
         System.out.println(objectListView.getItems());
         System.out.println("addItem.");
     }

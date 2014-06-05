@@ -205,14 +205,14 @@ public class AppController implements Initializable {
     	
     	
     	// falls ein Buchstabe oder nichts eingegeben wird wird der eingegebene Wert als 0 interpretiert
-    	if (!translationToX.getText().matches("[0-9]+")||translationToX.getText().length() == 0)
+    	if (!translationToX.getText().matches("^-?\\d+([.]{1}\\d+)?")||translationToX.getText().length() == 0)
     		translationToX.setText(""+0); 
-        if(!translationToY.getText().matches("[0-9]+")||translationToY.getText().length() == 0)
+        if(!translationToY.getText().matches("^-?\\d+([.]{1}\\d+)?")||translationToY.getText().length() == 0)
     		translationToY.setText(""+0);
-        if(!rotateAt.getText().matches("[0-9]+")||rotateAt.getText().length() == 0)
+        if(!rotateAt.getText().matches("^-?\\d+([.]{1}\\d+)?")||rotateAt.getText().length() == 0)
 			rotateAt.setText(""+0);
-        if(!scalePercent.getText().matches("[0-9]+")||scalePercent.getText().length() == 0)
-			scalePercent.setText(""+0);
+        if(!scalePercent.getText().matches("^-?\\d+([.]{1}\\d+)?")||scalePercent.getText().length() == 0)
+			scalePercent.setText(""+100);
         
         
     	//Transformieren-Darstellung
@@ -266,7 +266,8 @@ public class AppController implements Initializable {
     	total1_2.setText(""+totalMatrix.mat[1][2]);
     	
     	
-    	
+    	GraphicObject s =  list.getSelectedItem();
+    	s.transform(totalMatrix);
     	// was fehlt hier?
     	//Scene-Builder anpassen
     	// Gesamtmatrix muss zwischengespeiert werden und das Objekt neu gezeichnet werden
