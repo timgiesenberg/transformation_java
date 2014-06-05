@@ -7,7 +7,7 @@
 package ListView;
 
 import GraphicObjects.GraphicObject;
-import GraphicObjects.ProjectLine;
+import GraphicObjects.Line;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;

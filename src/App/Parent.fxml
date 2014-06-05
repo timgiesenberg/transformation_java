@@ -69,7 +69,7 @@
         </Button>
         <TextField fx:id="polygonNumberOfAngles" prefWidth="35.0" />
         <Separator opacity="0.45" orientation="VERTICAL" prefHeight="200.0" />
-        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Kopieren, Alle_Button" text="">
+        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handleButtonCopyItem" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Kopieren, Alle_Button" text="">
           <stylesheets>
             <URL value="@Styles.css" />
           </stylesheets>

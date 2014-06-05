@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
  * sehr vielen Ecken.
  * @author Phil Köster // Dominique Berners
  */
-public class ProjectCircle extends GraphicObject {
+public class Circle extends GraphicObject {
     
     /**
      * Constructor, der einen neuen Kreis mit übergebenem Namen und Farbe
@@ -21,7 +21,7 @@ public class ProjectCircle extends GraphicObject {
      * @param centerY y-Koordinate des Mittelpunkts des Kreises
      * @param radius Radius des Kreises
      */
-    public ProjectCircle(String name, Color c, double centerX, double centerY, double radius) {
+    public Circle(String name, Color c, double centerX, double centerY, double radius) {
         
         // Super-Constructor für einen Kreis aufrufen
         super(

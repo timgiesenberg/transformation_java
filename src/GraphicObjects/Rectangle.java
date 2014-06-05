@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
  * Ecken.
  * @author Phil Köster // Dominique Berners
  */
-public class ProjectRectangle extends GraphicObject {
+public class Rectangle extends GraphicObject {
     
     /**
      * Constructor, der ein neues Rechteck mit übergebenem Namen und Farbe
@@ -22,7 +22,7 @@ public class ProjectRectangle extends GraphicObject {
      * @param w Breite des Rechtecks
      * @param h Höhe des Rechtecks
      */
-    public ProjectRectangle(String name, Color c, double x, double y, double w, double h) {
+    public Rectangle(String name, Color c, double x, double y, double w, double h) {
         
         // Super-Constructor für ein Viereck aufrufen
         super(

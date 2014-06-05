@@ -6,11 +6,11 @@
 
 package ButtonBar;
 
-import GraphicObjects.ProjectCircle;
-import GraphicObjects.ProjectLine;
-import GraphicObjects.ProjectPolygon;
-import GraphicObjects.ProjectRectangle;
-import GraphicObjects.ProjectTriangle;
+import GraphicObjects.Circle;
+import GraphicObjects.Line;
+import GraphicObjects.Polygon;
+import GraphicObjects.Rectangle;
+import GraphicObjects.Triangle;
 import Utils.CanvasController;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,7 +42,7 @@ public class ButtonBarController implements Initializable {
     @FXML
     private void handleButtonActionRectangle(Event event) {
         
-        final ProjectRectangle r = new ProjectRectangle("Horst", Color.GREEN, 100, 100, 100, 100);
+        final Rectangle r = new Rectangle("Horst", Color.GREEN, 100, 100, 100, 100);
         r.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
@@ -58,7 +58,7 @@ public class ButtonBarController implements Initializable {
     }
     
     public void test(){
-        final ProjectRectangle r = new ProjectRectangle("Horst", Color.GREEN, 100, 100, 100, 100);
+        final Rectangle r = new Rectangle("Horst", Color.GREEN, 100, 100, 100, 100);
         r.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
@@ -76,7 +76,7 @@ public class ButtonBarController implements Initializable {
     @FXML
     private void handleButtonActionCircle(ActionEvent event) {
         
-        final ProjectCircle c = new ProjectCircle("Angelika", Color.BLUE, 100, 100, 40);
+        final Circle c = new Circle("Angelika", Color.BLUE, 100, 100, 40);
         c.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
@@ -94,7 +94,7 @@ public class ButtonBarController implements Initializable {
     @FXML
     private void handleButtonActionTriangle(ActionEvent event) {
         
-        final ProjectTriangle t = new ProjectTriangle("Wilhelmine", Color.YELLOW, 60, 60, 80);
+        final Triangle t = new Triangle("Wilhelmine", Color.YELLOW, 60, 60, 80);
         t.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
@@ -112,7 +112,7 @@ public class ButtonBarController implements Initializable {
     @FXML
     private void handleButtonActionLine(ActionEvent event) {
         
-        final ProjectLine l = new ProjectLine("Gottfried", Color.RED, 100, 50, 150, 100);
+        final Line l = new Line("Gottfried", Color.RED, 100, 50, 150, 100);
         l.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override

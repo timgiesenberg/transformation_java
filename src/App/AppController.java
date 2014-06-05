@@ -7,11 +7,11 @@
 package App;
 
 import GraphicObjects.GraphicObject;
-import GraphicObjects.ProjectCircle;
-import GraphicObjects.ProjectLine;
-import GraphicObjects.ProjectPolygon;
-import GraphicObjects.ProjectRectangle;
-import GraphicObjects.ProjectTriangle;
+import GraphicObjects.Circle;
+import GraphicObjects.Line;
+import GraphicObjects.Polygon;
+import GraphicObjects.Rectangle;
+import GraphicObjects.Triangle;
 import ListView.ListController;
 import Utils.Matrix;
 import Utils.Transformate;
@@ -57,7 +57,6 @@ public class AppController implements Initializable {
         //create new ListController
         list = ListController.getInstance(ObjectListView);
         
-        //TODO: transfer ObjectListview Reference to the list Controllter
         list.setListView(ObjectListView);
         
         //if needed, add some previously generated Objects
@@ -84,15 +83,15 @@ public class AppController implements Initializable {
      * @param s 
      */
     protected void setInputFieldValues(GraphicObject s){
-        if (s instanceof ProjectCircle) {
-        } else if (s instanceof ProjectRectangle) {
+        if (s instanceof Circle) {
+        } else if (s instanceof Rectangle) {
         }
     }
     
     @FXML
     private void handleButtonActionRectangle(Event event) {
         
-        final ProjectRectangle r = new ProjectRectangle("Horst", Color.GREEN, 100, 100, 100, 100);
+        final Rectangle r = new Rectangle("Horst", Color.GREEN, 100, 100, 100, 100);
         r.setOnMousePressed(new GraphicClickEventHandler(r, list));
         list.addItem(r);
         canvas.getChildren().add(r);
@@ -101,7 +100,7 @@ public class AppController implements Initializable {
     @FXML
     private void handleButtonActionCircle(Event event) {
         
-        final ProjectCircle c = new ProjectCircle("Angelika", Color.BLUE, 100, 100, 40);
+        final Circle c = new Circle("Angelika", Color.BLUE, 100, 100, 40);
         c.setOnMousePressed(new GraphicClickEventHandler(c, list));
         list.addItem(c);
         canvas.getChildren().add(c);
@@ -111,7 +110,7 @@ public class AppController implements Initializable {
     @FXML
     private void handleButtonActionTriangle(Event event) {
         
-        final ProjectTriangle t = new ProjectTriangle("Wilhelmine", Color.YELLOW, 60, 60, 80);
+        final Triangle t = new Triangle("Wilhelmine", Color.YELLOW, 60, 60, 80);
         t.setOnMousePressed(new GraphicClickEventHandler(t, list));
         list.addItem(t);
         canvas.getChildren().add(t);
@@ -121,7 +120,7 @@ public class AppController implements Initializable {
     @FXML
     private void handleButtonActionLine(Event event) {
         
-        final ProjectLine l = new ProjectLine("Gottfried", Color.RED, 100, 50, 150, 100);
+        final Line l = new Line("Gottfried", Color.RED, 100, 50, 150, 100);
         l.setOnMousePressed(new GraphicClickEventHandler(l, list));
         list.addItem(l);
         canvas.getChildren().add(l);
@@ -136,6 +135,48 @@ public class AppController implements Initializable {
     }
     
     @FXML
+    private void handleButtonCopyItem() throws Exception{
+        /**
+         * ich muss ein Objekt aus der Liste holen
+         * danach überprüfe ich das objekt, welcher instance es zugehörig ist
+         * danach muss ich wiederum das geholte Objekt in sein ursprüngliches
+         * Objekt casten, damit ich auf die Eigenschaften zugreifen kann
+         * nicht die optimalste Lösung
+         * vielleicht copy funktion auf das Objekt selber, 
+         */
+        GraphicObject g = list.getSelectedItem();
+        
+        if (g instanceof Circle) {
+            Circle cg = (Circle) g;
+            Circle c = new Circle(cg.getName() +"_copy", Color.RED, cg.getCenter().getX(), cg.getCenter().getY(), cg.getRadius());
+            c.setTranslateX(50);// just to test the copy action
+            c.setTranslateY(50);// just to test the copy action
+            
+            canvas.getChildren().add(c);
+            list.addItem(c);
+            
+        } else if (g instanceof Rectangle) {
+            //TODO copy or clone ProjectRectangle
+            Rectangle cg = (Rectangle) g;
+            Rectangle r = new Rectangle(cg.getName(), Color.RED, cg.getLayoutX(), cg.getLayoutY(), cg.getWidth(), cg.getHeight());
+            r.setTranslateX(50);// just to test the copy action
+            r.setTranslateY(50);// just to test the copy action
+                    
+            canvas.getChildren().add(r);
+            list.addItem(r);
+            
+        } else if (g instanceof Triangle) {
+            //TODO copy or clone ProjectTriangle
+        } else if (g instanceof Line) {
+            //TODO copy or clone Projectline
+        } else if (g instanceof Polygon) {
+            //TODO copy or clone Polygon
+        } else {
+            throw new Exception("The Element could be copied due to lack of instance information.");
+        }
+    }
+    
+    @FXML
     private void handleButtonActionPolygon(Event event) {
         
         String s = polygonNumberOfAngles.getText();
@@ -144,7 +185,7 @@ public class AppController implements Initializable {
             int numberOfAngles = Integer.parseInt(s);
             if (numberOfAngles > 0) {
                 
-                final ProjectPolygon p = new ProjectPolygon("Sybille", Color.GRAY, numberOfAngles, 200, 200);
+                final Polygon p = new Polygon("Sybille", Color.GRAY, numberOfAngles, 200, 200);
                 p.setOnMousePressed(new GraphicClickEventHandler(p, list));
                 list.addItem(p);
                 canvas.getChildren().add(p);

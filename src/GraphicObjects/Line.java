@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
  * Ecken.
  * @author Phil Köster // Dominique Berners
  */
-public class ProjectLine extends GraphicObject {
+public class Line extends GraphicObject {
     
     /**
      * Constructor, der eine neue Linie mit übergebenem Namen und Farbe
@@ -22,7 +22,7 @@ public class ProjectLine extends GraphicObject {
      * @param toX x-Koordinate des zweiten Punktes
      * @param toY y-Koordinate des zweiten Punktes
      */
-    public ProjectLine(String name, Color c, double fromX, double fromY, double toX, double toY) {
+    public Line(String name, Color c, double fromX, double fromY, double toX, double toY) {
         
         // Super-Constructor für eine Linie aufrufen
         super(

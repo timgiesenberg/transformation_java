@@ -13,7 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import GraphicObjects.*;
+
+import GraphicObjects.*;
 
 /**
  * 
@@ -30,7 +31,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonActionRectangle(ActionEvent event) {
         
-        final ProjectRectangle r = new ProjectRectangle("Horst", Color.GREEN, 100, 100, 100, 100);
+        final Rectangle r = new Rectangle("Horst", Color.GREEN, 100, 100, 100, 100);
         r.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
@@ -48,7 +49,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonActionCircle(ActionEvent event) {
         
-        final ProjectCircle c = new ProjectCircle("Angelika", Color.BLUE, 100, 100, 40);
+        final Circle c = new Circle("Angelika", Color.BLUE, 100, 100, 40);
         c.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
@@ -66,7 +67,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonActionTriangle(ActionEvent event) {
         
-        final ProjectTriangle t = new ProjectTriangle("Wilhelmine", Color.YELLOW, 60, 60, 80);
+        final Triangle t = new Triangle("Wilhelmine", Color.YELLOW, 60, 60, 80);
         t.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
@@ -84,7 +85,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonActionLine(ActionEvent event) {
         
-        final ProjectLine l = new ProjectLine("Gottfried", Color.RED, 100, 50, 150, 100);
+        final Line l = new Line("Gottfried", Color.RED, 100, 50, 150, 100);
         l.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
@@ -108,7 +109,7 @@ public class FXMLDocumentController implements Initializable {
             int numberOfAngles = Integer.parseInt(s);
             if (numberOfAngles > 0) {
                 
-                final ProjectPolygon p = new ProjectPolygon("Sybille", Color.GRAY, numberOfAngles, 200, 200);
+                final Polygon p = new Polygon("Sybille", Color.GRAY, numberOfAngles, 200, 200);
                 p.setOnMousePressed(new EventHandler<MouseEvent>() {
 
                     @Override

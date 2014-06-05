@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
  * Ecken.
  * @author Phil Köster // Dominique Berners
  */
-public class ProjectTriangle extends GraphicObject {
+public class Triangle extends GraphicObject {
     
     /**
      * Constructor, der ein neues Dreieck mit übergebenem Namen und Farbe
@@ -21,7 +21,7 @@ public class ProjectTriangle extends GraphicObject {
      * @param centerY y-Koordinate des Mittelpunkts
      * @param side Seitenlänge des gleichseitigen Dreiecks
      */
-    public ProjectTriangle (String name, Color c, double centerX, double centerY, double side) {
+    public Triangle (String name, Color c, double centerX, double centerY, double side) {
         
         // Super-Constructor für ein Dreieck aufrufen
         super(

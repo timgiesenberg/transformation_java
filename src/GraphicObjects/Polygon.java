@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
  * vielen Ecken.
  * @author Phil Köster // Dominique Berners
  */
-public class ProjectPolygon extends GraphicObject {
+public class Polygon extends GraphicObject {
     
     /**
      * Constructor, der ein neues Polygon mit übergebenem Namen und Farbe
@@ -21,7 +21,7 @@ public class ProjectPolygon extends GraphicObject {
      * @param centerX x-Koordinate des Mittelpunkts des Polygons
      * @param centerY y-Koordinate des Mittelpunkts des Polygons
      */
-    public ProjectPolygon(String name, Color c, int numberOfAngles, double centerX, double centerY) {
+    public Polygon(String name, Color c, int numberOfAngles, double centerX, double centerY) {
         
         // Super-Constructor für ein Polygon aufrufen
         super(
