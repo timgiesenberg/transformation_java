@@ -7,10 +7,7 @@
 package App;
 
 import GraphicObjects.GraphicObject;
-<<<<<<< HEAD
-=======
 import ListView.ListController;
->>>>>>> 392135125136c1da1b65f3f0e2ee23b9328f1414
 import javafx.scene.input.MouseEvent;
 
 /**
