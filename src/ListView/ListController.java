@@ -27,8 +27,6 @@ public class ListController {
     
     private static ListController instance = null;
     
-    private ProjectLine line = new ProjectLine("test", Color.RED, 0, 0, 10, 10);
-    
     /**
      * private Constructor to avoid instantiation
      */
@@ -44,6 +42,7 @@ public class ListController {
                 }
             }
         );
+        objectListView.setItems(items);
         System.out.println("Constructor call was successful");
     }
     
@@ -92,11 +91,9 @@ public class ListController {
     /**
      * insert a Graphic Object into the List
      * @param g
-     * @return 
      */
     public void addItem(GraphicObject g){
         items.add(g);
-        objectListView.setItems(items); //?
         System.out.println(objectListView.getItems());
         System.out.println("addItem.");
     }

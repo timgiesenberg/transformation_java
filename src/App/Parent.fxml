@@ -42,27 +42,27 @@
           </stylesheets>
         </Button>
         <Separator opacity="0.45" orientation="VERTICAL" prefHeight="200.0" visible="true" />
-        <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="7.0" mnemonicParsing="false" onAction="#handleButtonActionRectangle" onMouseClicked="#handleButtonActionRectangle" prefHeight="30.0" prefWidth="30.0" style="" styleClass="Button, Button_Rechteck, Alle_Button" text="">
+        <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="7.0" mnemonicParsing="false" onAction="#handleButtonActionRectangle" prefHeight="30.0" prefWidth="30.0" style="" styleClass="Button, Button_Rechteck, Alle_Button" text="">
           <stylesheets>
             <URL value="@Styles.css" />
           </stylesheets>
         </Button>
-        <Button mnemonicParsing="false" onAction="#handleButtonActionCircle" onMouseClicked="#handleButtonActionCircle" prefHeight="30.0" prefWidth="29.9998779296875" styleClass="Button_Kreis, Alle_Button" text="">
+        <Button mnemonicParsing="false" onAction="#handleButtonActionCircle" prefHeight="30.0" prefWidth="29.9998779296875" styleClass="Button_Kreis, Alle_Button" text="">
           <stylesheets>
             <URL value="@Styles.css" />
           </stylesheets>
         </Button>
-        <Button mnemonicParsing="false" onAction="#handleButtonActionTriangle" onMouseClicked="#handleButtonActionRectangle" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Dreieck, Alle_Button" text="">
+        <Button mnemonicParsing="false" onAction="#handleButtonActionTriangle" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Dreieck, Alle_Button" text="">
           <stylesheets>
             <URL value="@Styles.css" />
           </stylesheets>
         </Button>
-        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handleButtonActionLine" onMouseClicked="#handleButtonActionLine" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Linie, Alle_Button" text="">
+        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handleButtonActionLine" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Linie, Alle_Button" text="">
           <stylesheets>
             <URL value="@Styles.css" />
           </stylesheets>
         </Button>
-        <Button mnemonicParsing="false" onAction="#handleButtonActionPolygon" onMouseClicked="#handleButtonActionPolygon" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Polygon, Alle_Button" text="">
+        <Button mnemonicParsing="false" onAction="#handleButtonActionPolygon" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Polygon, Alle_Button" text="">
           <stylesheets>
             <URL value="@Styles.css" />
           </stylesheets>
