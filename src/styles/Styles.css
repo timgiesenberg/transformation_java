@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : Domi
 */
 .Alle_Button {
-     -fx-background-color: #9FB9FA;
+     -fx-background-color: #a9a9a9;
 }
 
 .Button_Neu
@@ -60,6 +60,12 @@ and open the template in the editor.
     -fx-background-image: url("../img/löschen.png");
 }
 .Leiste {
-    -fx-background-color: #9FB9FA;  
+    -fx-background-color: #a9a9a9;
+    -fx-border-width:   1.5px;
+    -fx-border-color:   rgb(150, 150, 150);
 }
 
+.TransformationsleisteFenster {
+    -fx-background-color: linear-gradient(to top, #888B88  1%,e0e0e0 3.8%);
+    -fx-opacity:          1;
+}

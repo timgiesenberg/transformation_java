@@ -3,7 +3,9 @@ package GraphicObjects;
 
 // Benötigte Libraries importieren
 import Utils.Point2D;
+import Utils.Transformate;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 /**
  * Die Klasse Rectangle repräsentiert ein Rechteck, also ein Polygon mit vier
@@ -22,7 +24,7 @@ public class Rectangle extends GraphicObject {
      * @param w Breite des Rechtecks
      * @param h Höhe des Rechtecks
      */
-    public Rectangle(String name, Color c, double x, double y, double w, double h) {
+    public Rectangle(String name, Paint c, double x, double y, double w, double h) {
         
         // Super-Constructor für ein Viereck aufrufen
         super(
@@ -61,6 +63,31 @@ public class Rectangle extends GraphicObject {
         // Höhe berechnen und zurückgeben
         double height = points[3].getY() - points[0].getY();
         return height;
+        
+    }
+
+    /**
+     * Die Methode getCopyInstance() erstellt eine Kopie des angesprochenen
+     * Objekts und liefert es zurück.
+     * @return Kopie des angesprochenen Objekts
+     */
+    @Override
+    public Rectangle getCopyInstance() {
+        
+        Point2D[] points2D = this.getPoints2D();
+        
+        // Objekt kopieren
+        Rectangle r = new Rectangle(
+            this.getName() + "_copy", this.getFill(), 
+            points2D[0].getX(), points2D[0].getY(), 
+            this.getWidth(), this.getHeight()
+        );
+        r.setPoints2D(points2D);
+        r.setCenter(this.getCenter());
+        // ggf. verschieben, zur Deutlichkeit
+        r.transform(Transformate.getTranslationMatrix(50, 50));
+        // Kopie zurückgeben
+        return r;
         
     }
     

@@ -9,6 +9,7 @@ package App;
 import GraphicObjects.GraphicObject;
 import ListView.ListController;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -20,22 +21,36 @@ public class GraphicClickEventHandler implements javafx.event.EventHandler<Mouse
     final private ListController ListController;
     
     public GraphicClickEventHandler(GraphicObject o, ListController lc){
+        
         graphicObject = o;
         ListController = lc;
+        
     }
     
     @Override
     public void handle(MouseEvent t) {
+        
         System.out.println("Das Objekt: " + graphicObject.getName() + " wurde ausgewählt.");
         graphicObject.toFront();
-        ListController.setFocus(graphicObject);
-        //graphicObject.get
-        //TODO 
-        //System.out.println("Der Kreis " + o.getName() + " wurde ausgewählt.");
         
-        //selectedItem vom ListView auf dieses aktuelle GraphicObject setzen? 
-        //damit danach z.b. transformiert werden kann, auch wenn das Objekt nicht 
-        //über die Liste ausgewählt wurde, sondern hier per Maus
+        // Konturrand beim letzten ausgewählten Objekt entfernen
+        GraphicObject selectedItem = this.ListController.getSelectedItem();
+        if (selectedItem != null) selectedItem.setStroke(Color.TRANSPARENT);
+        
+        // Konturrand zu diesem Objekt hinzufügen
+        // Zeichen, dass dieses Objekt ausgewählt ist
+        Color fill = (Color) this.graphicObject.getFill();
+        this.graphicObject.setStroke(
+            Color.hsb(
+                fill.getHue() + 180, 
+                1, 
+                1
+            )
+        );
+        this.graphicObject.setStrokeWidth(3);
+        
+        ListController.setFocus(graphicObject);
+        
     }
     
 }

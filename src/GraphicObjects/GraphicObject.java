@@ -4,9 +4,7 @@ package GraphicObjects;
 import Utils.Matrix;
 import Utils.Point2D;
 import Utils.Transformate;
-import javafx.event.EventHandler;
 import javafx.scene.Cursor;
-import javafx.scene.input.MouseEvent;
 /*
  * import infoprojektjavApprt infoprojektjavafx.TransformaApplasse GraphicObject fasst alle zur Verfügung stehenden Grafiken zusammen.
  * Alle werden als Polygone implementiert.
@@ -197,7 +195,7 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
      * Die Methode setPoints2D() setzt die Koordinaten des Objekts neu.
      * @param newPoints Die neuen Koordinaten
      */
-    public void setPoints2D(Point2D[] newPoints) {
+    protected void setPoints2D(Point2D[] newPoints) {
         
         // Wenn überhaupt neue Punkte und die richtige Anzahl übergeben wurden
         if ((newPoints != null) && (newPoints.length == this.numberOfAngles)) {
@@ -226,7 +224,7 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
      * Die Methode setCenter setzt den Mittelpunkt des Objekts neu.
      * @param _center zu setzender Mittelpunkt
      */
-    public void setCenter(Point2D _center) {
+    protected void setCenter(Point2D _center) {
         
         // Wenn ein Punkt übergeben wurde, diesen setzen
         if (_center != null) this.center = _center;
@@ -289,4 +287,12 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
         this.updatePoints();
         
     }
+    
+    /**
+     * Die Methode getCopyInstance() erstellt eine Kopie des angesprochenen
+     * Objekts und liefert es zurück.
+     * @return Kopie des angesprochenen Objekts
+     */
+    public abstract GraphicObject getCopyInstance();
+    
 }

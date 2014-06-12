@@ -3,7 +3,9 @@ package GraphicObjects;
 
 // Benötigte Libraries importieren
 import Utils.Point2D;
+import Utils.Transformate;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 /**
  * Die Klasse Circle repräsentiert einen ungefähren Kreis, also ein Polygon mit
@@ -21,7 +23,7 @@ public class Circle extends GraphicObject {
      * @param centerY y-Koordinate des Mittelpunkts des Kreises
      * @param radius Radius des Kreises
      */
-    public Circle(String name, Color c, double centerX, double centerY, double radius) {
+    public Circle(String name, Paint c, double centerX, double centerY, double radius) {
         
         // Super-Constructor für einen Kreis aufrufen
         super(
@@ -53,6 +55,25 @@ public class Circle extends GraphicObject {
         // Länge des Vektors ist der Radius
         double radiusLength = Math.sqrt((vector[0]*vector[0])+(vector[1]*vector[1]));
         return radiusLength;
+        
+    }
+    
+    /**
+     * Die Methode getCopyInstance() erstellt eine Kopie des angesprochenen
+     * Objekts und liefert es zurück.
+     * @return Kopie des angesprochenen Objekts
+     */
+    @Override
+    public Circle getCopyInstance() {
+        
+        // Objekt kopieren
+        Circle c = new Circle(this.getName() + "_copy", this.getFill(), this.getCenter().getX(), this.getCenter().getY(), this.getRadius());
+        c.setPoints2D(this.getPoints2D());
+        c.setCenter(this.getCenter());
+        // ggf. verschieben, zur Deutlichkeit
+        c.transform(Transformate.getTranslationMatrix(50, 50));
+        // Kopie zurückgeben
+        return c;
         
     }
     

@@ -62,6 +62,7 @@ public class AppController implements Initializable {
         //if needed, add some previously generated Objects
         //list.setItems(FXCollections.observableArrayList(line));
     }
+    
     /**
      * handles a click on ViewList items
      * @param event 
@@ -71,11 +72,36 @@ public class AppController implements Initializable {
         //retrieves selected object
         GraphicObject s = list.getSelectedItem();
         
-        //brings the object to the front
-        s.toFront();
-        System.out.println("You have chosen Object with name: " + s.getName());
+        if (s != null) {
         
-        // c// change input fieldshange input fields
+            // Konturrand bei allen anderen Objekten entfernen
+            for (Node n : canvas.getChildren()) {
+                if (n instanceof GraphicObject) {
+                    GraphicObject g = (GraphicObject) n;
+                    if (g instanceof Line) g.setStroke(g.getFill());
+                    else g.setStroke(Color.TRANSPARENT);
+                }
+            }
+
+            // Konturrand beim neu ausgewählten Objekt hinzufügen
+            // Zeichen, dass dieses Objekt ausgewählt ist
+            Color fill = (Color) s.getFill();
+            s.setStroke(
+                Color.hsb(
+                    fill.getHue() + 180, 
+                    1, 
+                    1
+                )
+            );
+            s.setStrokeWidth(3);
+
+            //brings the object to the front
+            s.toFront();
+            System.out.println("You have chosen Object with name: " + s.getName());
+
+            // c// change input fieldshange input fields
+        
+        }
     }
     
     /**
@@ -86,6 +112,20 @@ public class AppController implements Initializable {
         if (s instanceof Circle) {
         } else if (s instanceof Rectangle) {
         }
+    }
+    
+    @FXML
+    private void handleButtonClear(Event event) {
+        
+        for (Node n : canvas.getChildren()) {
+            if (n instanceof GraphicObject) {
+                GraphicObject g = (GraphicObject) n;
+                list.deleteItem(g);
+            }
+        }
+        
+        canvas.getChildren().clear();
+        
     }
     
     @FXML
@@ -128,55 +168,6 @@ public class AppController implements Initializable {
     }
     
     @FXML
-    private void handleButtonDeleteItem(){
-        GraphicObject g = list.getSelectedItem();
-        list.deleteItem(g);
-        canvas.getChildren().remove(g);
-    }
-    
-    @FXML
-    private void handleButtonCopyItem() throws Exception{
-        /**
-         * ich muss ein Objekt aus der Liste holen
-         * danach überprüfe ich das objekt, welcher instance es zugehörig ist
-         * danach muss ich wiederum das geholte Objekt in sein ursprüngliches
-         * Objekt casten, damit ich auf die Eigenschaften zugreifen kann
-         * nicht die optimalste Lösung
-         * vielleicht copy funktion auf das Objekt selber, 
-         */
-        GraphicObject g = list.getSelectedItem();
-        
-        if (g instanceof Circle) {
-            Circle cg = (Circle) g;
-            Circle c = new Circle(cg.getName() +"_copy", Color.RED, cg.getCenter().getX(), cg.getCenter().getY(), cg.getRadius());
-            c.setTranslateX(50);// just to test the copy action
-            c.setTranslateY(50);// just to test the copy action
-            
-            canvas.getChildren().add(c);
-            list.addItem(c);
-            
-        } else if (g instanceof Rectangle) {
-            //TODO copy or clone ProjectRectangle
-            Rectangle cg = (Rectangle) g;
-            Rectangle r = new Rectangle(cg.getName(), Color.RED, cg.getLayoutX(), cg.getLayoutY(), cg.getWidth(), cg.getHeight());
-            r.setTranslateX(50);// just to test the copy action
-            r.setTranslateY(50);// just to test the copy action
-                    
-            canvas.getChildren().add(r);
-            list.addItem(r);
-            
-        } else if (g instanceof Triangle) {
-            //TODO copy or clone ProjectTriangle
-        } else if (g instanceof Line) {
-            //TODO copy or clone Projectline
-        } else if (g instanceof Polygon) {
-            //TODO copy or clone Polygon
-        } else {
-            throw new Exception("The Element could be copied due to lack of instance information.");
-        }
-    }
-    
-    @FXML
     private void handleButtonActionPolygon(Event event) {
         
         String s = polygonNumberOfAngles.getText();
@@ -197,7 +188,82 @@ public class AppController implements Initializable {
         }
         else polygonNumberOfAngles.setStyle("-fx-background-color: red");
         
+    }    
+    
+    @FXML
+    private void handleButtonDeleteItem(Event event) {
+        
+        GraphicObject g = list.getSelectedItem();
+        if (g != null) {
+            list.deleteItem(g);
+            canvas.getChildren().remove(g);
+        }
+        
     }
+    
+    @FXML
+    private void handleButtonCopyItem(Event event) {
+        
+        GraphicObject g = list.getSelectedItem();
+        
+        if (g != null) {
+            GraphicObject copyOfObject = g.getCopyInstance();
+            copyOfObject.setOnMousePressed(
+                new GraphicClickEventHandler(copyOfObject, list)
+            );
+
+            list.addItem(copyOfObject);
+            canvas.getChildren().add(copyOfObject);
+        }
+        
+    }
+    
+    
+    /**************************************************************************/
+    //                      Spiegelung
+    /**************************************************************************/
+    
+    @FXML
+    private void handleButtonSpiegelungHorizontal(Event event) {
+        
+        GraphicObject g = list.getSelectedItem();
+                
+        if (g != null) {
+        
+            Matrix zumMittelpunkt = Transformate.getTranslationToOriginMatrix(g.getCenter());
+            Matrix spiegelnHorizontal = Transformate.getFlipHorizontalMatrix();
+            Matrix zurueckVerschieben = Transformate.getTranslationMatrix(g.getCenter().getX(), g.getCenter().getY());
+
+            Matrix totalMatrix = Transformate.multiplyMatrices(spiegelnHorizontal, zumMittelpunkt);
+            totalMatrix = Transformate.multiplyMatrices(zurueckVerschieben, totalMatrix);
+
+            g.transform(totalMatrix);
+
+        }
+        
+    }
+    
+    @FXML
+    private void handleButtonSpiegelungVertikal(Event event) {
+        
+        GraphicObject g = list.getSelectedItem();
+        
+        if (g != null) {
+        
+          Matrix zumMittelpunkt = Transformate.getTranslationToOriginMatrix(g.getCenter());
+          Matrix spiegelnVertikal = Transformate.getFlipVerticalMatrix();
+          Matrix zurueckVerschieben = Transformate.getTranslationMatrix(g.getCenter().getX(), g.getCenter().getY());
+          
+          Matrix totalMatrix = Transformate.multiplyMatrices(spiegelnVertikal, zumMittelpunkt);
+          totalMatrix = Transformate.multiplyMatrices(zurueckVerschieben, totalMatrix);
+          
+          g.transform(totalMatrix);
+        
+       }
+        
+    }
+    
+
     /**************************************************************************/
     //                      TransformationBar
     /**************************************************************************/
@@ -315,8 +381,8 @@ public class AppController implements Initializable {
     	total1_2.setText(""+totalMatrix.mat[1][2]);
     	
     	
-    	GraphicObject s =  list.getSelectedItem();
-    	s.transform(totalMatrix);
+    	GraphicObject s = list.getSelectedItem();
+    	if (s != null) s.transform(totalMatrix);
     	// was fehlt hier?
     	//Scene-Builder anpassen
     	// Gesamtmatrix muss zwischengespeiert werden und das Objekt neu gezeichnet werden

@@ -3,7 +3,9 @@ package GraphicObjects;
 
 // Benötigte Libraries importieren
 import Utils.Point2D;
+import Utils.Transformate;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 /**
  * Die Klasse Line repräsentiert eine Linie, also quasi ein Polygon mit zwei
@@ -22,7 +24,7 @@ public class Line extends GraphicObject {
      * @param toX x-Koordinate des zweiten Punktes
      * @param toY y-Koordinate des zweiten Punktes
      */
-    public Line(String name, Color c, double fromX, double fromY, double toX, double toY) {
+    public Line(String name, Paint c, double fromX, double fromY, double toX, double toY) {
         
         // Super-Constructor für eine Linie aufrufen
         super(
@@ -39,7 +41,7 @@ public class Line extends GraphicObject {
         // überhaupt sichtbar wird
         if (c != null) this.setStroke(c);
         else this.setStroke(Color.BLACK);
-        this.setStrokeWidth(1);
+        this.setStrokeWidth(3);
         
     }
     
@@ -60,6 +62,29 @@ public class Line extends GraphicObject {
         // Länge des Vektors berechnen und zurückgeben
         double length = Math.sqrt((vector[0]*vector[0])+(vector[1]*vector[1]));
         return length;
+        
+    }
+    
+    /**
+     * Die Methode getCopyInstance() erstellt eine Kopie des angesprochenen
+     * Objekts und liefert es zurück.
+     * @return Kopie des angesprochenen Objekts
+     */
+    @Override
+    public Line getCopyInstance() {
+        
+        Point2D[] points2D = this.getPoints2D();
+        
+        // Objekt kopieren
+        Line l = new Line(
+            this.getName() + "_copy", this.getFill(), 
+            points2D[0].getX(), points2D[0].getY(), 
+            points2D[1].getX(), points2D[1].getY()
+        );
+        // ggf. verschieben, zur Deutlichkeit
+        l.transform(Transformate.getTranslationMatrix(50, 50));
+        // Kopie zurückgeben
+        return l;
         
     }
     

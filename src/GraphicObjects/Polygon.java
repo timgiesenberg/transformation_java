@@ -3,7 +3,9 @@ package GraphicObjects;
 
 // Benötigte Libraries importieren
 import Utils.Point2D;
+import Utils.Transformate;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 /**
  * Die Klasse Polygon repräsentiert ein Polygon, also einen Körper mit beliebig
@@ -21,7 +23,7 @@ public class Polygon extends GraphicObject {
      * @param centerX x-Koordinate des Mittelpunkts des Polygons
      * @param centerY y-Koordinate des Mittelpunkts des Polygons
      */
-    public Polygon(String name, Color c, int numberOfAngles, double centerX, double centerY) {
+    public Polygon(String name, Paint c, int numberOfAngles, double centerX, double centerY) {
         
         // Super-Constructor für ein Polygon aufrufen
         super(
@@ -34,6 +36,29 @@ public class Polygon extends GraphicObject {
         // Wenn Farbe übergeben wurde, diese setzen, sonst default
         if (c != null) this.setFill(c);
         else this.setFill(Color.BLACK);
+        
+    }
+    
+    /**
+     * Die Methode getCopyInstance() erstellt eine Kopie des angesprochenen
+     * Objekts und liefert es zurück.
+     * @return Kopie des angesprochenen Objekts
+     */
+    @Override
+    public Polygon getCopyInstance() {
+        
+        // Objekt kopieren
+        Polygon p = new Polygon(
+            this.getName() + "_copy", this.getFill(), 
+            this.getNumberOfPoints(), 
+            this.getCenter().getX(), this.getCenter().getY()
+        );
+        p.setPoints2D(this.getPoints2D());
+        p.setCenter(this.getCenter());
+        // ggf. verschieben, zur Deutlichkeit
+        p.transform(Transformate.getTranslationMatrix(50, 50));
+        // Kopie zurückgeben
+        return p;
         
     }
     

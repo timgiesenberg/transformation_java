@@ -126,6 +126,38 @@ public final class Transformate {
     }
     
     /**
+     * (1  0 0)
+     * (0 -1 0)
+     * (0  0 1) 
+     * @return 
+     */
+    public static Matrix getFlipHorizontalMatrix(){
+        
+        Matrix m = new Matrix();
+        m.mat[0][0] = 1;
+        m.mat[1][1] = -1;
+        m.mat[2][2] = 1;    
+        return m;
+        
+    }
+    
+    /**
+     * (-1 0 0)
+     * (0  1 0)
+     * (0  0 1) 
+     * @return 
+     */
+    public static Matrix getFlipVerticalMatrix(){
+        
+        Matrix m = new Matrix();
+        m.mat[0][0] = -1;
+        m.mat[1][1] = 1;
+        m.mat[2][2] = 1;        
+        return m;
+        
+    }
+    
+    /**
      * Zeile mal Spalte
      * @param m
      * @param n
