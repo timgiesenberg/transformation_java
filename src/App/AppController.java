@@ -51,6 +51,8 @@ public class AppController implements Initializable {
     /**
      * Initializes the controller class.
      * runs on projectstart.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

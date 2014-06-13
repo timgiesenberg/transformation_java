@@ -25,6 +25,11 @@ import javafx.stage.Stage;
  */
 public class InfoProjektJAVAFX extends Application {
     
+    /**
+     *
+     * @param stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
          // FXML-Dateien importieren

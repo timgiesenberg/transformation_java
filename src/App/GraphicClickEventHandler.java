@@ -20,6 +20,11 @@ public class GraphicClickEventHandler implements javafx.event.EventHandler<Mouse
     final private GraphicObject graphicObject;
     final private ListController ListController;
     
+    /**
+     *
+     * @param o
+     * @param lc
+     */
     public GraphicClickEventHandler(GraphicObject o, ListController lc){
         
         graphicObject = o;
@@ -27,6 +32,10 @@ public class GraphicClickEventHandler implements javafx.event.EventHandler<Mouse
         
     }
     
+    /**
+     *
+     * @param t
+     */
     @Override
     public void handle(MouseEvent t) {
         
