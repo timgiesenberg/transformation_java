@@ -6,8 +6,8 @@
 
 package App;
 
-import GraphicObjects.GraphicObject;
 import GraphicObjects.Circle;
+import GraphicObjects.GraphicObject;
 import GraphicObjects.Line;
 import GraphicObjects.Polygon;
 import GraphicObjects.Rectangle;
@@ -22,6 +22,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
