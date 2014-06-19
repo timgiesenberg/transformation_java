@@ -3,6 +3,7 @@
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -13,6 +14,8 @@
 
 <AnchorPane fx:id="AppUi" prefHeight="800.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="App.AppController">
   <children>
+    <!-- Canvas -->
+    <Pane fx:id="canvas" layoutX="20.0" layoutY="70.0" prefHeight="580.0" prefWidth="960.0" />
     <!-- Buttonbar -->
     <HBox layoutX="0.0" layoutY="0.0" prefHeight="50.0" prefWidth="1200.0" styleClass="Leiste">
       <children>
@@ -23,6 +26,9 @@
           <stylesheets>
             <URL value="@../styles/Styles.css" />
           </stylesheets>
+          <tooltip>
+            <Tooltip text="Neue Datei" />
+          </tooltip>
           <HBox.margin>
             <Insets left="10.0" right="10.0" top="8.0" />
           </HBox.margin>
@@ -31,6 +37,9 @@
           <stylesheets>
             <URL value="@../styles/Styles.css" />
           </stylesheets>
+          <tooltip>
+            <Tooltip text="Speichern" />
+          </tooltip>
           <HBox.margin>
             <Insets right="2.0" top="8.0" />
           </HBox.margin>
@@ -39,6 +48,9 @@
           <stylesheets>
             <URL value="@../styles/Styles.css" />
           </stylesheets>
+          <tooltip>
+            <Tooltip text="Öffnen" />
+          </tooltip>
           <HBox.margin>
             <Insets left="8.0" right="10.0" top="8.0" />
           </HBox.margin>
@@ -47,140 +59,158 @@
           <stylesheets>
             <URL value="@../styles/Styles.css" />
           </stylesheets>
+          <tooltip>
+            <Tooltip text="Zurück" />
+          </tooltip>
           <HBox.margin>
-            <Insets right="10.0" top="8.0" fx:id="x4" />
+            <Insets right="10.0" top="8.0" />
           </HBox.margin>
         </Button>
-        <Button id="buttonleisteForward" contentDisplay="GRAPHIC_ONLY" font="$x1" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_vor, Alle_Button" text="&gt;" HBox.margin="$x4">
+        <Button id="buttonleisteForward" contentDisplay="GRAPHIC_ONLY" font="$x1" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="Button_vor, Alle_Button" text="&gt;">
           <stylesheets>
             <URL value="@../styles/Styles.css" />
           </stylesheets>
+          <tooltip>
+            <Tooltip text="Vor" />
+          </tooltip>
+          <HBox.margin>
+            <Insets right="10.0" top="8.0" />
+          </HBox.margin>
         </Button>
         <Separator opacity="0.45" orientation="VERTICAL" prefHeight="200.0" visible="true" />
         <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="7.0" mnemonicParsing="false" onAction="#handleButtonActionRectangle" prefHeight="30.0" prefWidth="30.0" style="" styleClass="Button, Button_Rechteck, Alle_Button" text="">
           <stylesheets>
             <URL value="@../styles/Styles.css" />
           </stylesheets>
+          <tooltip>
+            <Tooltip text="Rechteck" />
+          </tooltip>
           <HBox.margin>
-            <Insets left="10.0" top="8.0" fx:id="x3" />
+            <Insets left="10.0" top="8.0" />
           </HBox.margin>
         </Button>
-        <Button mnemonicParsing="false" onAction="#handleButtonActionCircle" prefHeight="30.0" prefWidth="29.9998779296875" styleClass="Button_Kreis, Alle_Button" text="" HBox.margin="$x3">
+        <Button mnemonicParsing="false" onAction="#handleButtonActionCircle" prefHeight="30.0" prefWidth="29.9998779296875" styleClass="Button_Kreis, Alle_Button" text="">
           <stylesheets>
             <URL value="@../styles/Styles.css" />
           </stylesheets>
+          <tooltip>
+            <Tooltip text="Kreis" />
+          </tooltip>
+          <HBox.margin>
+            <Insets left="10.0" top="8.0" />
+          </HBox.margin>
         </Button>
-        <Button mnemonicParsing="false" onAction="#handleButtonActionTriangle" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Dreieck, Alle_Button" text="" HBox.margin="$x3">
+        <Button mnemonicParsing="false" onAction="#handleButtonActionTriangle" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Dreieck, Alle_Button" text="">
           <stylesheets>
             <URL value="@../styles/Styles.css" />
           </stylesheets>
+          <tooltip>
+            <Tooltip text="Dreieck" />
+          </tooltip>
+          <HBox.margin>
+            <Insets left="10.0" top="8.0" />
+          </HBox.margin>
         </Button>
-        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handleButtonActionLine" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Linie, Alle_Button" text="" HBox.margin="$x3">
+        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handleButtonActionLine" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Linie, Alle_Button" text="">
           <stylesheets>
             <URL value="@../styles/Styles.css" />
           </stylesheets>
+          <tooltip>
+            <Tooltip text="Linien" />
+          </tooltip>
+          <HBox.margin>
+            <Insets left="10.0" top="8.0" />
+          </HBox.margin>
         </Button>
-        <Button mnemonicParsing="false" onAction="#handleButtonActionPolygon" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Polygon, Alle_Button" text="" HBox.margin="$x3">
+        <Button mnemonicParsing="false" onAction="#handleButtonActionPolygon" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Polygon, Alle_Button" text="">
           <stylesheets>
             <URL value="@../styles/Styles.css" />
           </stylesheets>
+          <tooltip>
+            <Tooltip text="Polygon" />
+          </tooltip>
+          <HBox.margin>
+            <Insets left="10.0" top="8.0" />
+          </HBox.margin>
         </Button>
         <TextField fx:id="polygonNumberOfAngles" prefWidth="35.0">
+          <tooltip>
+            <Tooltip text="Anzahl der Ecken" />
+          </tooltip>
           <HBox.margin>
             <Insets left="7.0" right="10.0" top="12.0" />
           </HBox.margin>
         </TextField>
         <Separator opacity="0.45" orientation="VERTICAL" prefHeight="200.0" />
-        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handleButtonCopyItem" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Kopieren, Alle_Button" text="" textAlignment="LEFT" HBox.margin="$x3">
+        <Button fx:id="buttonCopyItem" contentDisplay="GRAPHIC_ONLY" disable="true" mnemonicParsing="false" onAction="#handleButtonCopyItem" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Kopieren, Alle_Button" text="">
           <stylesheets>
             <URL value="@../styles/Styles.css" />
           </stylesheets>
+          <tooltip>
+            <Tooltip text="Kopieren" />
+          </tooltip>
+          <HBox.margin>
+            <Insets left="10.0" top="8.0" />
+          </HBox.margin>
         </Button>
-        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handleButtonDeleteItem" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Loeschen, Alle_Button" text="" textAlignment="LEFT" HBox.margin="$x3">
+        <Button fx:id="buttonDeleteItem" contentDisplay="GRAPHIC_ONLY" disable="true" mnemonicParsing="false" onAction="#handleButtonDeleteItem" prefHeight="30.0" prefWidth="30.0" styleClass="Button_Loeschen, Alle_Button" text="">
           <stylesheets>
             <URL value="@../styles/Styles.css" />
           </stylesheets>
+          <tooltip>
+            <Tooltip text="Löschen" />
+          </tooltip>
+          <HBox.margin>
+            <Insets left="10.0" top="8.0" />
+          </HBox.margin>
         </Button>
       </children>
       <stylesheets>
         <URL value="@../styles/Styles.css" />
       </stylesheets>
     </HBox>
-    <!-- ListView -->
-    <ListView fx:id="ObjectListView" editable="true" layoutX="980.0" layoutY="73.0" onMouseClicked="#handleListViewClick" prefHeight="353.0" prefWidth="220.0" />
     <!-- ListView Title -->
-    <TitledPane animated="false" layoutX="980.0" layoutY="50.0" prefHeight="17.0" prefWidth="220.0" text="Objekt-Liste">
+    <TitledPane animated="false" layoutX="980.0" layoutY="50.0" prefHeight="370.0" prefWidth="220.0" text="Objekt-Liste">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0" />
+        <!-- ListView -->
+        <ListView fx:id="ObjectListView" editable="true" onMouseClicked="#handleListViewClick" prefHeight="331.0" prefWidth="216.0" />
       </content>
       <font>
         <Font size="13.0" fx:id="x2" />
       </font>
     </TitledPane>
-    <!-- Canvas -->
-    <Pane fx:id="canvas" layoutX="0.0" layoutY="49.0" prefHeight="600.0" prefWidth="980.0" />
-    <!-- Properties -->
-    <TitledPane animated="false" font="$x2" layoutX="980.0" layoutY="420.0" minWidth="220.0" prefHeight="380.0" prefWidth="220.0" text="Objekt-Eigenschaften">
-      <content>
-        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="220.0">
-          <children>
-            <Label layoutX="14.0" layoutY="7.0" text="Kreis" />
-            <Label layoutX="14.0" layoutY="35.0" text="Name:">
-              <font>
-                <Font size="11.0" fx:id="x1_1" />
-              </font>
-            </Label>
-            <TextField id="obj" fx:id="CircleName" layoutX="64.0" layoutY="32.0" prefWidth="120.0" promptText="" text="" />
-            <Label font="$x1" layoutX="13.0" layoutY="138.0" text="Position:" />
-            <TextField id="Circle" fx:id="CircleXPosition" layoutX="31.0" layoutY="159.0" prefWidth="59.0" promptText="" text="" />
-            <Label layoutX="13.0" layoutY="160.0" text="x:">
-              <font>
-                <Font size="10.0" fx:id="x1_2" />
-              </font>
-            </Label>
-            <TextField id="Circle_YPosition" fx:id="CircleYPosition" layoutX="124.0" layoutY="160.0" prefWidth="59.0" promptText="" text="" />
-            <Label font="$x1" layoutX="106.0" layoutY="161.0" text="y:" />
-            <Label font="$x1" layoutX="13.0" layoutY="61.0" text="Größe:" />
-            <TextField fx:id="CircleHeight" layoutX="32.0" layoutY="106.0" prefWidth="59.0" promptText="" text="" />
-            <Label font="$x1" layoutX="14.0" layoutY="107.0" text="H:" />
-            <TextField fx:id="CircleWidth" layoutX="125.0" layoutY="107.0" prefWidth="59.0" promptText="" text="" />
-            <Label font="$x1" layoutX="107.0" layoutY="108.0" text="B:" />
-            <TextField id="Radius" fx:id="CircleRadius" layoutX="32.0" layoutY="81.0" prefWidth="59.0" promptText="" text="" />
-            <Label font="$x1" layoutX="14.0" layoutY="82.0" text="r:" />
-            <Label font="$x1" layoutX="14.0" layoutY="191.0" text="Rotation:" />
-            <Slider fx:id="CircleRotation" blockIncrement="10.0" disable="false" layoutX="16.0" layoutY="214.0" majorTickUnit="45.0" max="180.0" minorTickCount="4" prefWidth="169.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-            <Label font="$x1" layoutX="15.0" layoutY="259.0" text="Spiegelung:" />
-            <Button fx:id="CircleReflectX" font="$x1" layoutX="80.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleButtonSpiegelungHorizontal" text="horizontal" wrapText="false" />
-            <Button fx:id="CircleReflectY" font="$x1" layoutX="148.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleButtonSpiegelungVertikal" prefWidth="52.999908447265625" text="vertikal" wrapText="false" />
-            <Label font="$x1" layoutX="15.0" layoutY="300.0" text="Farbe:" />
-            <ColorPicker fx:id="CircleColorFill" layoutX="96.0" layoutY="300.0" minHeight="30.0" prefHeight="30.0" prefWidth="87.0" />
-            <Separator layoutX="8.0" layoutY="24.0" prefWidth="184.0" />
-          </children>
-        </AnchorPane>
-      </content>
-    </TitledPane>
-    <SplitPane dividerPositions="0.5" focusTraversable="true" layoutX="30.0" layoutY="90.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" visible="false">
-      <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-      </items>
-    </SplitPane>
     <!-- Transformationsbar -->
-    <Pane id="AppUi" disable="false" layoutX="1.0" layoutY="651.0" opacity="1.0" prefHeight="150.0" prefWidth="980.0" styleClass="TransformationsleisteFenster">
+    <Pane id="AppUi" disable="false" layoutX="0.0" layoutY="650.0" opacity="1.0" prefHeight="150.0" prefWidth="980.0" styleClass="TransformationsleisteFenster">
       <Line endX="980.0" smooth="false" startX="0.0" strokeLineCap="SQUARE" strokeLineJoin="MITER" strokeMiterLimit="10.0" strokeType="OUTSIDE" strokeWidth="0.2" />
-      <Label alignment="CENTER" layoutX="105.0" layoutY="84.0" prefHeight="16.0" prefWidth="93.0" text="Translation" />
-      <Label alignment="CENTER" layoutX="318.0" layoutY="85.0" prefHeight="16.0" prefWidth="80.0" text="Rotation" />
-      <Label alignment="CENTER" layoutX="530.0" layoutY="85.0" prefHeight="16.0" prefWidth="40.0" text="Scale" />
+      <Label alignment="CENTER" layoutX="105.0" layoutY="84.0" prefHeight="16.0" prefWidth="93.0" text="Translation">
+        <tooltip>
+          <Tooltip text="Verschiebung, Horizontal oder Vertikal" />
+        </tooltip>
+      </Label>
+      <Label alignment="CENTER" layoutX="318.0" layoutY="85.0" prefHeight="16.0" prefWidth="80.0" text="Rotation">
+        <tooltip>
+          <Tooltip text="Drehung um den Mittelpunkt" />
+        </tooltip>
+      </Label>
+      <Label alignment="CENTER" layoutX="517.0" layoutY="85.0" prefHeight="16.0" prefWidth="74.0" text="Skalierung">
+        <tooltip>
+          <Tooltip text="Vergrößerung oder Verkleinerung" />
+        </tooltip>
+      </Label>
       <Label alignment="CENTER" layoutX="243.0" layoutY="35.0" prefWidth="13.000199999994948" text="X" />
       <Label alignment="CENTER" layoutX="460.0" layoutY="35.0" prefWidth="13.000099999997474" text="X" />
       <Label layoutX="630.0" layoutY="35.0" prefWidth="13.0001220703125" text="=" />
-      <Button fx:id="transformationOfAll" layoutX="826.0" layoutY="29.0" mnemonicParsing="false" onAction="#transformationOfAll" prefHeight="26.0" prefWidth="129.0" text="Transformieren!" />
-      <TextField fx:id="translationToY" layoutX="180.0" layoutY="109.0" prefWidth="41.9999915527369" />
       <TextField fx:id="translationToX" layoutX="109.0" layoutY="109.0" prefWidth="42.0" />
+      <TextField fx:id="translationToY" layoutX="180.0" layoutY="109.0" prefWidth="41.9999915527369" />
       <TextField id="rotate" fx:id="rotateAt" layoutX="336.0" layoutY="109.0" prefWidth="42.0" />
       <TextField fx:id="scalePercent" layoutX="532.0" layoutY="109.0" prefWidth="42.0" />
+      <Button fx:id="transformationOfAll" layoutX="826.0" layoutY="29.0" mnemonicParsing="false" onAction="#transformationOfAll" prefHeight="26.0" prefWidth="129.0" text="Transformieren!">
+        <tooltip>
+          <Tooltip text="Transformieren" />
+        </tooltip>
+      </Button>
       <Label layoutX="579.0" layoutY="112.0" prefWidth="13.0" text="\%" />
-      <Label layoutX="381.0" layoutY="112.0" minWidth="2.9998779296875" prefWidth="13.0" text="°" />
+      <Label layoutX="318.0" layoutY="112.0" minWidth="2.9998779296875" prefWidth="15.0" text="α:" />
       <Label layoutX="85.0" layoutY="111.0" prefWidth="-1.0" text="xT:" />
       <Label layoutX="159.0" layoutY="111.0" text="yT:" />
       <GridPane gridLinesVisible="false" layoutX="114.0" layoutY="12.0" prefHeight="60.0" prefWidth="80.0">
@@ -255,13 +285,13 @@
       <GridPane gridLinesVisible="false" layoutX="307.0" layoutY="12.0" prefHeight="60.0" prefWidth="120.0">
         <children>
           <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-          <Label fx:id="rotation0_0" alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="32.0" text="cos α" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-          <Label fx:id="rotation0_1" alignment="CENTER" contentDisplay="LEFT" font="$x1" prefHeight="20.0" prefWidth="38.0" text="-sin α" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-          <Label fx:id="rotation1_0" alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="32.0" text="sin α" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+          <Label fx:id="rotation0_0" alignment="CENTER" font="$x1" prefHeight="20.0" prefWidth="46.0" text="cos α" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+          <Label fx:id="rotation0_1" alignment="CENTER" contentDisplay="LEFT" font="$x1" prefHeight="20.0" prefWidth="42.0" text="-sin α" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+          <Label fx:id="rotation1_0" alignment="CENTER" font="$x1" prefHeight="20.0" prefWidth="45.0" text="sin α" GridPane.columnIndex="0" GridPane.rowIndex="1" />
           <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-          <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+          <Label alignment="CENTER" font="$x1" prefHeight="20.0" prefWidth="45.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
           <Label alignment="CENTER" font="$x1" prefHeight="20.0" prefWidth="42.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-          <Label fx:id="rotation1_1" alignment="CENTER" font="$x1" prefHeight="20.0" prefWidth="37.0" text="cos α" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+          <Label fx:id="rotation1_1" alignment="CENTER" font="$x1" prefHeight="20.0" prefWidth="42.0" text="cos α" GridPane.columnIndex="1" GridPane.rowIndex="1" />
           <Label alignment="CENTER" font="$x1" prefHeight="30.0" prefWidth="30.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="2" />
         </children>
         <columnConstraints>
@@ -279,16 +309,219 @@
       <QuadCurve controlX="-5.0" controlY="-100.0" endX="50.0" fill="TRANSPARENT" layoutX="294.0" layoutY="66.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
       <QuadCurve controlX="-5.0" controlY="-100.0" endX="50.0" fill="TRANSPARENT" layoutX="504.0" layoutY="66.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
       <QuadCurve controlX="-5.0" controlY="-100.0" endX="50.0" fill="TRANSPARENT" layoutX="669.0" layoutY="66.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
-      <QuadCurve controlX="-5.0" controlY="100.0" endX="50.0" fill="TRANSPARENT" layoutX="205.0" layoutY="17.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
+      <QuadCurve controlX="-5.0" controlY="100.0" endX="50.0" fill="TRANSPARENT" layoutX="205.0" layoutY="14.0" rotate="-90.0" scaleX="0.6700000076293945" scaleY="0.20991817452317346" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
       <QuadCurve controlX="-5.0" controlY="100.0" endX="50.0" fill="TRANSPARENT" layoutX="426.0" layoutY="16.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
       <QuadCurve controlX="-5.0" controlY="100.0" endX="50.0" fill="TRANSPARENT" layoutX="598.0" layoutY="17.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
       <QuadCurve controlX="-5.0" controlY="100.0" endX="50.0" fill="TRANSPARENT" layoutX="786.0" layoutY="16.0" rotate="-90.0" scaleX="0.6" scaleY="0.20991859436035157" startX="-50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
-      <Label alignment="CENTER" layoutX="678.0" layoutY="84.0" prefHeight="16.0" prefWidth="100.0" text="Matrix-Sum" textAlignment="CENTER" />
+      <Label alignment="CENTER" layoutX="678.0" layoutY="84.0" prefHeight="16.0" prefWidth="100.0" text="Gesamtmatrix" textAlignment="CENTER">
+        <tooltip>
+          <Tooltip text="Gesamtmatrix" />
+        </tooltip>
+      </Label>
       <Label layoutX="512.0" layoutY="112.0" text="sT:" />
       <stylesheets>
         <URL value="@../styles/Styles.css" />
       </stylesheets>
+      <Button fx:id="clearTransformartionBar" layoutX="826.0" layoutY="93.0" mnemonicParsing="false" onAction="#clearTransformationBar" prefHeight="26.0" prefWidth="129.0" text="Ansicht leeren!">
+        <tooltip>
+          <Tooltip text="Ursprungs Ansicht" />
+        </tooltip>
+      </Button>
+      <Label layoutX="380.0" layoutY="112.0" prefWidth="10.495849609375" text="°" />
     </Pane>
+    <!-- Lineale -->
+    <Pane id="lineal_horizonzal" fx:id="linealHorizontal" layoutX="0.0" layoutY="50.0" prefHeight="20.0" prefWidth="980.0" styleClass="Lineal_horizontal">
+      <stylesheets>
+        <URL value="@../styles/Styles.css" />
+      </stylesheets>
+    </Pane>
+    <Pane id="" fx:id="linealVertikal" layoutX="0.0" layoutY="70.0" prefHeight="580.0" prefWidth="20.0" styleClass="Lineal_vertikal">
+      <stylesheets>
+        <URL value="@../styles/Styles.css" />
+      </stylesheets>
+    </Pane>
+    <!-- Objekteigenschaften -->
+    <TitledPane animated="false" font="$x2" layoutX="980.0" layoutY="420.0" minWidth="220.0" prefHeight="380.0" prefWidth="220.0" text="Objekt-Eigenschaften" visible="true">
+      <content>
+        <StackPane fx:id="propertyPane" prefHeight="380.0" prefWidth="220.0">
+          <children>
+            <!-- Kein Objekt ausgewählt -->
+            <Pane id="" fx:id="noObjectSelectedPane" prefHeight="353.0" prefWidth="216.0" visible="true">
+              <children>
+                <Label alignment="CENTER" layoutX="22.0" layoutY="134.0" prefHeight="48.0" prefWidth="158.0" text="Wählen Sie ein Objekt aus!" visible="true" />
+              </children>
+            </Pane>
+            <!-- Kreis ausgewählt -->
+            <Pane id="" fx:id="circlePane" disable="false" prefHeight="353.0" prefWidth="216.0" visible="false">
+              <children>
+                <Label layoutX="14.0" layoutY="0.0" text="Kreis" />
+                <Separator layoutX="10.0" layoutY="17.0" prefWidth="176.0" />
+                <Label layoutX="14.0" layoutY="35.0" text="Name:">
+                  <font>
+                    <Font size="11.0" fx:id="x3" />
+                  </font>
+                </Label>
+                <TextField id="" fx:id="circleName" layoutX="64.0" layoutY="32.0" onAction="#changeName" prefWidth="120.0" promptText="" text="" />
+                <Label font="$x3" layoutX="14.0" layoutY="64.0" text="Größe:" />
+                <Label layoutX="14.0" layoutY="90.0" text="r:">
+                  <font>
+                    <Font size="10.0" fx:id="x4" />
+                  </font>
+                </Label>
+                <TextField id="" fx:id="circleRadius" editable="false" layoutX="31.0" layoutY="86.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x3" layoutX="14.0" layoutY="117.0" text="Position:" />
+                <Label font="$x4" layoutX="14.0" layoutY="142.0" text="x:" />
+                <TextField id="" fx:id="circleX" editable="false" layoutX="32.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x4" layoutX="107.0" layoutY="142.0" text="y:" />
+                <TextField id="" fx:id="circleY" editable="false" layoutX="125.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x3" layoutX="14.0" layoutY="172.0" text="Rotation:" />
+                <Slider id="" fx:id="circleRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="190.0" majorTickUnit="45.0" max="180.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                <Label font="$x3" layoutX="14.0" layoutY="253.0" prefWidth="58.9998779296875" text="Spiegeln:" />
+                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="79.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungHorizontal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Hori" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
+                  <stylesheets>
+                    <URL value="@../styles/Styles.css" />
+                  </stylesheets>
+                </Button>
+                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="134.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungVertikal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Verti" text="vertikal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
+                  <stylesheets>
+                    <URL value="@../styles/Styles.css" />
+                  </stylesheets>
+                </Button>
+                <Label font="$x3" layoutX="14.0" layoutY="308.0" text="Farbe:" />
+                <ColorPicker id="" fx:id="circleColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0" />
+              </children>
+            </Pane>
+            <!-- Rechteck ausgewählt -->
+            <Pane id="" fx:id="rectanglePane" disable="false" prefHeight="353.0" prefWidth="216.0" visible="false">
+              <children>
+                <Label layoutX="14.0" layoutY="0.0" text="Rechteck" />
+                <Separator layoutX="10.0" layoutY="17.0" prefWidth="176.0" />
+                <Label font="$x3" layoutX="14.0" layoutY="35.0" text="Name:" />
+                <TextField id="" fx:id="rectangleName" layoutX="64.0" layoutY="32.0" onAction="#changeName" prefWidth="120.0" promptText="" text="" />
+                <Label font="$x3" layoutX="14.0" layoutY="64.0" text="Größe:" />
+                <Label font="$x4" layoutX="14.0" layoutY="90.0" prefWidth="15.0" text="H:" />
+                <TextField id="" fx:id="rectangleHeight" editable="false" layoutX="32.0" layoutY="86.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x4" layoutX="107.0" layoutY="90.0" prefWidth="15.0001220703125" text="B:" />
+                <TextField id="" fx:id="rectangleWidth" editable="false" layoutX="125.0" layoutY="86.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x3" layoutX="14.0" layoutY="117.0" text="Position:" />
+                <Label font="$x4" layoutX="14.0" layoutY="142.0" text="x:" />
+                <TextField id="" fx:id="rectangleX" editable="false" layoutX="32.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x4" layoutX="107.0" layoutY="142.0" text="y:" />
+                <TextField id="" fx:id="rectangleY" disable="false" editable="false" layoutX="125.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x3" layoutX="14.0" layoutY="172.0" text="Rotation:" />
+                <Slider id="" fx:id="rectangleRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="190.0" majorTickUnit="45.0" max="180.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                <Label font="$x3" layoutX="14.0" layoutY="253.0" prefWidth="58.9998779296875" text="Spiegeln:" />
+                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="79.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungHorizontal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Hori" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
+                  <stylesheets>
+                    <URL value="@../styles/Styles.css" />
+                  </stylesheets>
+                </Button>
+                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="134.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungVertikal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Verti" text="vertikal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
+                  <stylesheets>
+                    <URL value="@../styles/Styles.css" />
+                  </stylesheets>
+                </Button>
+                <Label font="$x3" layoutX="14.0" layoutY="308.0" text="Farbe:" />
+                <ColorPicker id="" fx:id="rectangleColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0" />
+              </children>
+            </Pane>
+            <!-- Polygon ausgewählt -->
+            <Pane id="" fx:id="polygonPane" disable="false" prefHeight="353.0" prefWidth="216.0" visible="false">
+              <children>
+                <Label layoutX="14.0" layoutY="0.0" text="Polygon" />
+                <Separator layoutX="10.0" layoutY="17.0" prefWidth="176.0" />
+                <Label font="$x3" layoutX="14.0" layoutY="47.0" text="Name:" />
+                <TextField id="" fx:id="polygonName" layoutX="64.0" layoutY="44.0" onAction="#changeName" prefWidth="120.0" promptText="" text="" />
+                <Label font="$x3" layoutX="15.0" layoutY="87.0" text="Position:" />
+                <Label font="$x4" layoutX="14.0" layoutY="112.0" prefWidth="8.0001220703125" text="x:" />
+                <TextField id="" fx:id="polygonX" editable="false" layoutX="33.0" layoutY="108.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x4" layoutX="107.0" layoutY="112.0" text="y:" />
+                <TextField id="" fx:id="polygonY" editable="false" layoutX="125.0" layoutY="108.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x3" layoutX="14.0" layoutY="154.0" text="Rotation:" />
+                <Slider id="" fx:id="polygonRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="172.0" majorTickUnit="45.0" max="180.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                <Label font="$x3" layoutX="14.0" layoutY="243.0" prefWidth="58.9998779296875" text="Spiegeln:" />
+                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="79.0" layoutY="225.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungHorizontal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Hori" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
+                  <stylesheets>
+                    <URL value="@../styles/Styles.css" />
+                  </stylesheets>
+                </Button>
+                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="134.0" layoutY="225.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungVertikal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Verti" text="vertikal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
+                  <stylesheets>
+                    <URL value="@../styles/Styles.css" />
+                  </stylesheets>
+                </Button>
+                <Label font="$x3" layoutX="14.0" layoutY="308.0" text="Farbe:" />
+                <ColorPicker id="" fx:id="polygonColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0" />
+              </children>
+            </Pane>
+            <!-- Dreieck ausgewählt -->
+            <Pane id="" fx:id="trianglePane" disable="false" prefHeight="353.0" prefWidth="216.0" visible="false">
+              <children>
+                <Label layoutX="14.0" layoutY="0.0" text="Dreieck" />
+                <Separator layoutX="10.0" layoutY="17.0" prefWidth="176.0" />
+                <Label font="$x3" layoutX="14.0" layoutY="35.0" text="Name:" />
+                <TextField id="" fx:id="triangleName" layoutX="64.0" layoutY="32.0" onAction="#changeName" prefWidth="120.0" promptText="" text="" />
+                <Label font="$x3" layoutX="14.0" layoutY="64.0" text="Größe:" />
+                <Label font="$x4" layoutX="14.0" layoutY="90.0" prefWidth="58.999900000002526" text="Seitenlänge:" />
+                <TextField id="" fx:id="triangleSideLength" editable="false" layoutX="125.0" layoutY="86.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x3" layoutX="14.0" layoutY="117.0" text="Position:" />
+                <Label font="$x4" layoutX="14.0" layoutY="142.0" text="x:" />
+                <TextField id="" fx:id="triangleX" editable="false" layoutX="32.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x4" layoutX="107.0" layoutY="142.0" text="y:" />
+                <TextField id="" fx:id="triangleY" editable="false" layoutX="125.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x3" layoutX="14.0" layoutY="172.0" text="Rotation:" />
+                <Slider id="" fx:id="triangleRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="190.0" majorTickUnit="45.0" max="180.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                <Label font="$x3" layoutX="14.0" layoutY="253.0" prefWidth="58.9998779296875" text="Spiegeln:" />
+                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="79.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungHorizontal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Hori" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
+                  <stylesheets>
+                    <URL value="@../styles/Styles.css" />
+                  </stylesheets>
+                </Button>
+                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="134.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungVertikal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Verti" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
+                  <stylesheets>
+                    <URL value="@../styles/Styles.css" />
+                  </stylesheets>
+                </Button>
+                <Label font="$x3" layoutX="14.0" layoutY="308.0" text="Farbe:" />
+                <ColorPicker id="" fx:id="triangleColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0" />
+              </children>
+            </Pane>
+            <!-- Linie ausgewählt -->
+            <Pane id="" fx:id="linePane" disable="false" prefHeight="353.0" prefWidth="216.0" visible="false">
+              <children>
+                <Label layoutX="14.0" layoutY="0.0" text="Linie" />
+                <Separator layoutX="10.0" layoutY="17.0" prefWidth="176.0" />
+                <Label font="$x3" layoutX="14.0" layoutY="35.0" text="Name:" />
+                <TextField id="" fx:id="lineName" layoutX="64.0" layoutY="32.0" onAction="#changeName" prefWidth="120.0" promptText="" text="" />
+                <Label font="$x3" layoutX="14.0" layoutY="64.0" text="Länge:" />
+                <Label font="$x4" layoutX="14.0" layoutY="90.0" prefWidth="7.0001220703125" text="L:" />
+                <TextField id="" fx:id="lineLength" disable="false" editable="false" layoutX="31.0" layoutY="86.0" prefWidth="59.0" promptText="" text="" visible="true" />
+                <Label font="$x3" layoutX="14.0" layoutY="117.0" text="Position:" />
+                <Label font="$x4" layoutX="14.0" layoutY="142.0" text="x:" />
+                <TextField id="" fx:id="lineX" editable="false" layoutX="32.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x4" layoutX="107.0" layoutY="142.0" text="y:" />
+                <TextField id="" fx:id="lineY" editable="false" layoutX="125.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x3" layoutX="14.0" layoutY="172.0" text="Rotation:" />
+                <Slider id="" fx:id="lineRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="190.0" majorTickUnit="45.0" max="180.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                <Label font="$x3" layoutX="14.0" layoutY="253.0" prefWidth="58.9998779296875" text="Spiegeln:" />
+                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="79.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungHorizontal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Hori" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
+                  <stylesheets>
+                    <URL value="@../styles/Styles.css" />
+                  </stylesheets>
+                </Button>
+                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="134.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungVertikal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Verti" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
+                  <stylesheets>
+                    <URL value="@../styles/Styles.css" />
+                  </stylesheets>
+                </Button>
+                <Label font="$x3" layoutX="14.0" layoutY="308.0" text="Farbe:" />
+                <ColorPicker id="" fx:id="lineColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0" />
+              </children>
+            </Pane>
+          </children>
+        </StackPane>
+      </content>
+    </TitledPane>
   </children>
   <stylesheets>
     <URL value="@../styles/Styles.css" />

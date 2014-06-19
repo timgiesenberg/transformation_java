@@ -14,6 +14,18 @@ import javafx.scene.paint.Paint;
  */
 public class Polygon extends GraphicObject {
     
+    // Class-Variable: Zähler für Benennung von unbenannten Polygone
+    private static int numberOfPolygons;
+    
+    /**
+     * Static-Initialisierer, setzt den Zähler für unbenannte Polygone auf 1
+     */
+    static {
+        
+        numberOfPolygons = 1;
+        
+    }
+    
     /**
      * Constructor, der ein neues Polygon mit übergebenem Namen und Farbe
      * sowie der übergebenen Anzahl an Ecken erstellt
@@ -27,7 +39,7 @@ public class Polygon extends GraphicObject {
         
         // Super-Constructor für ein Polygon aufrufen
         super(
-            name, // Name
+            Polygon.generatedName(name), // Name
             numberOfAngles, // Anzahl der Ecken
             new Point2D(centerX, centerY), // Mittelpunkt des Polygons
             50 // Radius des Polygons, DEFAULT
@@ -36,6 +48,20 @@ public class Polygon extends GraphicObject {
         // Wenn Farbe übergeben wurde, diese setzen, sonst default
         if (c != null) this.setFill(c);
         else this.setFill(Color.BLACK);
+        
+    }
+    
+    /**
+     * Die Class-Methode generatedName() ermittelt den Namen des Polygons.
+     * @param s Namens-String, der zu überprüfen ist
+     * @return Den Parameter-String oder einen generierten Namen, wenn dieser
+     * null ist
+     */
+    private static String generatedName(String s) {
+        
+        // Namen überprüfen und ggf. abändern
+        if (s == null) s = "Polygon " + numberOfPolygons++;
+        return s;
         
     }
     

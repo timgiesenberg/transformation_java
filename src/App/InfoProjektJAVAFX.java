@@ -55,6 +55,8 @@ public class InfoProjektJAVAFX extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Atemberaubendes Transformationsprogramm");
+        stage.setResizable(false);
+        stage.sizeToScene();
         stage.show();
         
     }

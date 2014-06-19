@@ -14,6 +14,18 @@ import javafx.scene.paint.Paint;
  */
 public class Circle extends GraphicObject {
     
+    // Class-Variable: Zähler für Benennung von unbenannten Kreisen
+    private static int numberOfCircles;
+    
+    /**
+     * Static-Initialisierer, setzt den Zähler für unbenannte Kreise auf 1
+     */
+    static {
+        
+        numberOfCircles = 1;
+        
+    }
+    
     /**
      * Constructor, der einen neuen Kreis mit übergebenem Namen und Farbe
      * erstellt
@@ -27,7 +39,7 @@ public class Circle extends GraphicObject {
         
         // Super-Constructor für einen Kreis aufrufen
         super(
-            name, // Name
+            Circle.generatedName(name), // Name
             3600, // Anzahl der Ecken
             new Point2D(centerX,centerY), // Mittelpunkt 
             radius // Radius
@@ -36,6 +48,20 @@ public class Circle extends GraphicObject {
         // Wenn Farbe übergeben wurde, diese setzen, sonst default: Schwarz
         if (c != null) this.setFill(c);
         else this.setFill(Color.BLACK);
+        
+    }
+    
+    /**
+     * Die Class-Methode generatedName() ermittelt den Namen des Kreises.
+     * @param s Namens-String, der zu überprüfen ist
+     * @return Den Parameter-String oder einen generierten Namen, wenn dieser
+     * null ist
+     */
+    private static String generatedName(String s) {
+        
+        // Namen überprüfen und ggf. abändern
+        if (s == null) s = "Kreis " + numberOfCircles++;
+        return s;
         
     }
     

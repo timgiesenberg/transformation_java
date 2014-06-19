@@ -12,7 +12,7 @@ package Utils;
  */
 public class Point2D {
     
-    double x, y;
+    private double x, y;
     
     public Point2D() {
         

@@ -14,6 +14,18 @@ import javafx.scene.paint.Paint;
  */
 public class Triangle extends GraphicObject {
     
+    // Class-Variable: Zähler für Benennung von unbenannten Dreiecken
+    private static int numberOfTriangles;
+    
+    /**
+     * Static-Initialisierer, setzt den Zähler für unbenannte Dreiecken auf 1
+     */
+    static {
+        
+        numberOfTriangles = 1;
+        
+    }
+    
     /**
      * Constructor, der ein neues Dreieck mit übergebenem Namen und Farbe
      * erstellt
@@ -27,7 +39,7 @@ public class Triangle extends GraphicObject {
         
         // Super-Constructor für ein Dreieck aufrufen
         super(
-            name, // Name
+            Triangle.generatedName(name), // Name
             3, // Anzahl der Ecken
             new Point2D(centerX, centerY), // Mittelpunkt des Dreiecks
             Math.sqrt(side*side/3) // 'Radius' des Dreiecks, errechnet aus der Seitenlänge // Wurzel aus (1/3)*s^2
@@ -37,6 +49,20 @@ public class Triangle extends GraphicObject {
         if (c != null) this.setFill(c);
         else this.setFill(Color.BLACK);
           
+    }
+    
+    /**
+     * Die Class-Methode generatedName() ermittelt den Namen des Dreiecks.
+     * @param s Namens-String, der zu überprüfen ist
+     * @return Den Parameter-String oder einen generierten Namen, wenn dieser
+     * null ist
+     */
+    private static String generatedName(String s) {
+        
+        // Namen überprüfen und ggf. abändern
+        if (s == null) s = "Dreieck " + numberOfTriangles++;
+        return s;
+        
     }
     
     /**

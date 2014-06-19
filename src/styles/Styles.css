@@ -8,11 +8,10 @@ and open the template in the editor.
     Author     : Domi
 */
 .Alle_Button {
-     -fx-background-color: #a9a9a9;
+    -fx-background-color:rgba(144,144,144, 0);
 }
 
-.Button_Neu
-{
+.Button_Neu {
     -fx-background-image: url("../img/Neu.png");
 }
 
@@ -59,13 +58,33 @@ and open the template in the editor.
 .Button_Loeschen {
     -fx-background-image: url("../img/löschen.png");
 }
+
 .Leiste {
-    -fx-background-color: #a9a9a9;
-    -fx-border-width:   1.5px;
+    -fx-background-color: #F4F4F4;
+    -fx-border-width:   0px 0px 0.5px 0px;
     -fx-border-color:   rgb(150, 150, 150);
 }
 
 .TransformationsleisteFenster {
-    -fx-background-color: linear-gradient(to top, #888B88  1%,e0e0e0 3.8%);
-    -fx-opacity:          1;
+    -fx-background-color: #F4F4F4;
+    -fx-border-width:   0.5px 0px 0px 0px;
+    -fx-border-color:   rgb(150, 150, 150);
+}
+
+.Lineal_vertikal {
+    -fx-background-image: url("../img/lineal_vertikal.png");
+}
+
+.Lineal_horizontal {
+    -fx-background-image: url("../img/lineal_horizontal.png");
+}
+
+.Spiegelung_Hori{
+    -fx-background-image: url("../img/icon_hori.gif");
+    -fx-background-repeat: no-repeat;
+}
+
+.Spiegelung_Verti{
+    -fx-background-image: url("../img/icon_verti.gif");
+    -fx-background-repeat: no-repeat;
 }

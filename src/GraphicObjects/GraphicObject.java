@@ -43,7 +43,7 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
         else {
             
             // Default: Durchnummerierte Objekte, Zähler ist Class-Variable
-            this.name = "Object " + GraphicObject.numberOfObjects;
+            this.name = "Objekt " + GraphicObject.numberOfObjects;
             GraphicObject.numberOfObjects++;
             
         }        

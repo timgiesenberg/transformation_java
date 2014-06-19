@@ -14,6 +14,18 @@ import javafx.scene.paint.Paint;
  */
 public class Rectangle extends GraphicObject {
     
+    // Class-Variable: Zähler für Benennung von unbenannten Rechtecken
+    private static int numberOfRectangles;
+    
+    /**
+     * Static-Initialisierer, setzt den Zähler für unbenannte Rechtecke auf 1
+     */
+    static {
+        
+        numberOfRectangles = 1;
+        
+    }
+    
     /**
      * Constructor, der ein neues Rechteck mit übergebenem Namen und Farbe
      * erstellt
@@ -28,7 +40,7 @@ public class Rectangle extends GraphicObject {
         
         // Super-Constructor für ein Viereck aufrufen
         super(
-            name, // Name
+            Rectangle.generatedName(name), // Name
             new Point2D[] {new Point2D(x,y), new Point2D(x+w,y), new Point2D(x+w,y+h), new Point2D(x,y+h)}, // Punkte des Rechtecks
             new Point2D((x+(w/2)), (y+(h/2))) // Mittelpunkt des Rechtecks
         );
@@ -36,6 +48,20 @@ public class Rectangle extends GraphicObject {
         // Wenn Farbe übergeben wurde, diese setzen, sonst default
         if (c != null) this.setFill(c);
         else this.setFill(Color.BLACK);
+        
+    }
+    
+    /**
+     * Die Class-Methode generatedName() ermittelt den Namen des Rechtecks.
+     * @param s Namens-String, der zu überprüfen ist
+     * @return Den Parameter-String oder einen generierten Namen, wenn dieser
+     * null ist
+     */
+    private static String generatedName(String s) {
+        
+        // Namen überprüfen und ggf. abändern
+        if (s == null) s = "Rechteck " + numberOfRectangles++;
+        return s;
         
     }
     

@@ -157,6 +157,19 @@ public final class Transformate {
         
     }
     
+    public static Matrix getRotateAroundCenterMatrix(double rotateAngle, Point2D center) {
+        
+        Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(center);
+        Matrix rotateMatrix = Transformate.getRotateMatrix(rotateAngle);
+        Matrix translationMatrix = Transformate.getTranslationMatrix(center.getX(), center.getY());
+        
+        Matrix totalMatrix = Transformate.multiplyMatrices(rotateMatrix, translationToOriginMatrix);
+        totalMatrix = Transformate.multiplyMatrices(translationMatrix, totalMatrix);
+        
+        return totalMatrix;
+        
+    }
+    
     /**
      * Zeile mal Spalte
      * @param m

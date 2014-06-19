@@ -14,6 +14,18 @@ import javafx.scene.paint.Paint;
  */
 public class Line extends GraphicObject {
     
+    // Class-Variable: Zähler für Benennung von unbenannten Linien
+    private static int numberOfLines;
+    
+    /**
+     * Static-Initialisierer, setzt den Zähler für unbenannte Linien auf 1
+     */
+    static {
+        
+        numberOfLines = 1;
+        
+    }
+    
     /**
      * Constructor, der eine neue Linie mit übergebenem Namen und Farbe
      * erstellt
@@ -28,7 +40,7 @@ public class Line extends GraphicObject {
         
         // Super-Constructor für eine Linie aufrufen
         super(
-            name, // Name
+            Line.generatedName(name), // Name
             new Point2D[] {new Point2D(fromX, fromY),new Point2D(toX, toY)}, // Punkte der Linie
             new Point2D((fromX + toX) / 2,(fromY + toY) / 2) // Mittelpunkt der Linie
         );
@@ -42,6 +54,20 @@ public class Line extends GraphicObject {
         if (c != null) this.setStroke(c);
         else this.setStroke(Color.BLACK);
         this.setStrokeWidth(3);
+        
+    }
+    
+    /**
+     * Die Class-Methode generatedName() ermittelt den Namen der Linie.
+     * @param s Namens-String, der zu überprüfen ist
+     * @return Den Parameter-String oder einen generierten Namen, wenn dieser
+     * null ist
+     */
+    private static String generatedName(String s) {
+        
+        // Namen überprüfen und ggf. abändern
+        if (s == null) s = "Linie " + numberOfLines++;
+        return s;
         
     }
     
