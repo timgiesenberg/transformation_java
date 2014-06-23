@@ -7,16 +7,22 @@
 package ListView;
 
 import GraphicObjects.GraphicObject;
-import GraphicObjects.Line;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.util.Callback;
 
 /**
- *
+ * ListController handles all interaction with the ListView in the application.
  * @author tim.giesenberg@me.com
  */
 public class ListController {
@@ -25,6 +31,9 @@ public class ListController {
     
     private ListView<GraphicObject> objectListView = null;
     
+    /**
+     * keeps instance of own class for use of singleton pattern
+     */
     private static ListController instance = null;
     
     /**
@@ -43,9 +52,55 @@ public class ListController {
             }
         );
         objectListView.setItems(items);
+        
+        objectListView.setOnDragDetected(new EventHandler<MouseEvent>(){
+            
+            @Override
+            public void handle(MouseEvent event){
+                /* drag was detected, start drag-and-drop gesture*/
+                System.out.println("onDragDetected");
+                
+                /* allow any transfer mode */
+                Dragboard db = objectListView.startDragAndDrop(TransferMode.MOVE);
+                
+                /* put a string on dragboard */
+                ClipboardContent content = new ClipboardContent();
+                //content.putString(objectListView.getSelectionModel().getSelectedItem().getName());
+                content.putString("Please Display me");
+                db.setContent(content);
+                
+                event.consume();
+            }
+        });
+        
+        objectListView.setOnDragOver(new EventHandler<DragEvent>(){
+            
+            @Override
+            public void handle(DragEvent event){
+                /* drag was detected, start drag-and-drop gesture*/
+                System.out.println("onDragDetected");
+                
+                /* allow any transfer mode */
+                Dragboard db = objectListView.startDragAndDrop(TransferMode.MOVE);
+                
+                /* put a string on dragboard */
+                ClipboardContent content = new ClipboardContent();
+                //content.putString(objectListView.getSelectionModel().getSelectedItem().getName());
+                content.putString("Please Display me");
+                db.setContent(content);
+                
+                event.consume();
+            }
+        });
         System.out.println("Constructor call was successful");
     }
     
+    /**
+     * returns an instance of this class, deciding wether an instance has to be
+     * created or not.
+     * @param lv - ListView to generate a Listcontroller
+     * @return 
+     */
     public static ListController getInstance(ListView lv) {
       if(instance == null) {
          instance = new ListController(lv);
@@ -57,40 +112,26 @@ public class ListController {
    }
     
     /**
-     * set the ListView
-     * @param lv 
-     */
-    public void setListView(ListView lv){
-        objectListView = lv;
-        generateCellFactory();
-        //Immediately set new cell Factory
-    }
-    
-    /**
      * return all Elements in List in a String array
      * @return 
      */
-    public ObservableList<GraphicObject> getItems(){
+    private ObservableList<GraphicObject> getItems(){
         System.out.print("ListGetItems");
         return null;//this;
     }
     
     /**
      * returns a Graphicobject by its Id
-     * @param id
+     * @param id ID of desired graphic object
      * @return 
      */
     public GraphicObject getItem(int id){
         return items.get(id);
     }
     
-    public void setItems(ObservableList<GraphicObject> list){
-        //this = list;
-    }
-    
     /**
      * insert a Graphic Object into the List
-     * @param g
+     * @param g reference of the graphic object that will be inserted into list
      */
     public void addItem(GraphicObject g){
         items.add(g);
@@ -99,8 +140,8 @@ public class ListController {
     }
     
     /**
-     * delete a graphicobject from List
-     * @param g
+     * delete a graphic object from List
+     * @param g graphic object that will be deleted
      * @return 
      */
     public void deleteItem(GraphicObject g){
@@ -108,7 +149,7 @@ public class ListController {
     }
     
     /**
-     * returns the reference of the GraphicObject that is selected in ListView
+     * returns the reference of the graphic object that is selected in ListView
      * @return 
      */
     public GraphicObject getSelectedItem(){
@@ -118,7 +159,7 @@ public class ListController {
     /**
      * sets the selecteted Object in the ListView
      * object is then highlighted
-     * @param g 
+     * @param g refernce of selected graphic object
      */
     public void setFocus(GraphicObject g){
         objectListView.getSelectionModel().select(g);
