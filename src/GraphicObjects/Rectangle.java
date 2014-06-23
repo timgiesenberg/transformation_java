@@ -117,4 +117,33 @@ public class Rectangle extends GraphicObject {
         
     }
     
+    /**
+     * Die Methode toString() liefert eine Zusammenfassung des Objekts als String.
+     * @return Zusammenfassung des Objekts als String
+     */
+    @Override
+    public String toString() {
+        
+        final StringBuilder sb = new StringBuilder("Rectangle[");
+
+        sb.append("points=").append(this.getPoints());
+        
+        sb.append(", center=[").append(this.getCenter().getX()).append(", ").append(this.getCenter().getY()).append("]");
+
+        sb.append(", fill=").append(this.getFill());
+        
+        sb.append(", name=").append(this.getName());
+
+        return sb.append("]").toString();
+    }
+    
+    /**
+     * Die Methode resetCounter() setzt den Objektzähler zur Benennung von
+     * Objekten zurück.
+     */
+    public static void resetCounter() {
+        
+        numberOfRectangles = 1;
+        
+    }
 }

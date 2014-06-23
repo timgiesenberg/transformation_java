@@ -107,6 +107,10 @@ public class ListController {
         items.remove(g);
     }
     
+    public void deleteAllItems() {
+        items.clear();
+    }
+    
     /**
      * returns the reference of the GraphicObject that is selected in ListView
      * @return 

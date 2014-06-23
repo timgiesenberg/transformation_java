@@ -195,7 +195,7 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
      * Die Methode setPoints2D() setzt die Koordinaten des Objekts neu.
      * @param newPoints Die neuen Koordinaten
      */
-    protected void setPoints2D(Point2D[] newPoints) {
+    public void setPoints2D(Point2D[] newPoints) {
         
         // Wenn überhaupt neue Punkte und die richtige Anzahl übergeben wurden
         if ((newPoints != null) && (newPoints.length == this.numberOfAngles)) {
@@ -224,7 +224,7 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
      * Die Methode setCenter setzt den Mittelpunkt des Objekts neu.
      * @param _center zu setzender Mittelpunkt
      */
-    protected void setCenter(Point2D _center) {
+    public void setCenter(Point2D _center) {
         
         // Wenn ein Punkt übergeben wurde, diesen setzen
         if (_center != null) this.center = _center;
@@ -294,5 +294,23 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
      * @return Kopie des angesprochenen Objekts
      */
     public abstract GraphicObject getCopyInstance();
+    
+    /**
+     * Subklassenobjekte müssen zur Speicherung die toString-Methode 
+     * redefinieren.
+     * @return Zusammenfassung des GraphicObjects, optimiert zur Speicherung
+     */
+    @Override
+    public abstract String toString();
+    
+    /**
+     * Die Methode resetCounter() setzt den Objektzähler zur Benennung von
+     * Objekten zurück.
+     */
+    public static void resetCounter() {
+        
+        numberOfObjects = 1;
+        
+    }
     
 }
