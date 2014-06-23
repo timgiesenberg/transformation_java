@@ -1,24 +1,33 @@
 package App;
 
 import GraphicObjects.*;
+import IO.*;
+
 import ListView.ListController;
 import Utils.*;
-
-import java.io.File;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.StrokeTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.*;
 import javafx.fxml.*;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.media.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 
 /**
  *
@@ -238,7 +247,7 @@ public class AppController implements Initializable {
             // enable buttons
             this.buttonCopyItem.setDisable(false);
             this.buttonDeleteItem.setDisable(false);
-                        
+            
         }
         
         // Alle Panes unsichtbar machen
@@ -366,7 +375,7 @@ public class AppController implements Initializable {
             });
             
         }
-                
+        
     }
     
     @FXML
@@ -403,15 +412,23 @@ public class AppController implements Initializable {
                 list.deleteItem(g);
             }
         }
-        
         canvas.getChildren().clear();
+        
         // Eigenschaften-Pane zurücksetzen
         this.setInputFieldValues(null);
-        // Transformationsleiste zurücksetzen
+        // Eingabefelder zurücksetzen
         this.clearTransformationBar(null);
-        // disable buttons
+        polygonNumberOfAngles.clear();
+        // Disable buttons
         this.buttonCopyItem.setDisable(true);
         this.buttonDeleteItem.setDisable(true);
+        // Objekte-Zähler zurücksetzen
+        GraphicObject.resetCounter();
+        Circle.resetCounter();
+        Line.resetCounter();
+        Polygon.resetCounter();
+        Rectangle.resetCounter();
+        Triangle.resetCounter();
         
         // Explosion
         Media m = new Media(new File("explosion.mp4").toURI().toString());
@@ -419,10 +436,107 @@ public class AppController implements Initializable {
         video.setAutoPlay(true);
         MediaView mediaView = new MediaView(video);
         mediaView.setFitWidth(1200);
-        
         AppUi.getChildren().add(mediaView);
-        
         video.setOnEndOfMedia(new ExplosionRemover(AppUi, mediaView));
+        
+    }
+    
+    @FXML
+    private void handleButtonSave(Event event) {
+        
+        // Fenster anlegen
+        FileChooser fileChooser = new FileChooser();
+        // Dateiendungen und weitere Eigenschaften festlegen
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setTitle("Speicher unter...");
+        fileChooser.setInitialFileName("Unbenannt");
+        
+        // Fenster anziegen
+        File file = fileChooser.showSaveDialog(null);
+        
+        // Wenn Dateipfad ausgewählt
+        if (file != null) try {
+            
+            // Dort Objekte abspeichern
+            GraphicObjectWriter gow = new GraphicObjectWriter(file.getPath());
+            gow.write(list.getItems());
+            
+        } catch (IOException ex) {
+            
+            // Wenn ein Fehler auftritt, Fehlermeldung anzeigen
+            Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(VBoxBuilder.create().
+                children(new Text("Beim Speichern ist ein Fehler aufgetreten.")).
+                alignment(Pos.CENTER).padding(new Insets(5)).build()));
+            dialogStage.show();
+            
+        }
+        
+    }
+    
+    @FXML
+    private void handleButtonOpen(Event event) {
+        
+        // Fenster anlegen
+        FileChooser fileChooser = new FileChooser();
+        // Dateiendungen und weitere Eigenschaften festlegen
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setTitle("Öffnen...");
+        
+        // Fenster anziegen
+        File file = fileChooser.showOpenDialog(null);
+        
+        // Wenn Dateipfad ausgewählt
+        if (file != null) try {
+            
+            // Alte Objekte entfernen
+            canvas.getChildren().clear();
+            list.deleteAllItems();
+            
+            // GraphicObjects auslesen und dem Programm hinzufügen
+            GraphicObjectReader gor = new GraphicObjectReader(file.getPath());
+            GraphicObject g;
+            do {
+                
+                g = gor.read();
+                if (g != null) {
+                    g.setOnMousePressed(new GraphicClickEventHandler(g, list, this));
+                    list.addItem(g);
+                    canvas.getChildren().add(g);
+                }
+                
+            }
+            // Wenn g == null, dann ist das File zu Ende
+            while (g != null);
+            
+        } catch (FileNotFoundException fnfe) {
+            
+            // Wenn ein Fehler auftritt, Fehlermeldung anzeigen
+            Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(VBoxBuilder.create().
+                children(new Text("Beim Öffnen ist ein Fehler aufgetreten.")).
+                alignment(Pos.CENTER).padding(new Insets(5)).build()));
+            dialogStage.show();
+            
+        } catch (IOException ioe) {
+            
+            // Wenn ein Fehler auftritt, Fehlermeldung anzeigen
+            Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(VBoxBuilder.create().
+                children(new Text("Beim Lesen der Datei ist ein Fehler aufgetreten.")).
+                alignment(Pos.CENTER).padding(new Insets(5)).build()));
+            dialogStage.show();
+            
+            // Ggf. hinzugefügte Objekte wieder entfernen
+            canvas.getChildren().clear();
+            list.deleteAllItems();
+            
+        }
         
     }
     
@@ -511,14 +625,17 @@ public class AppController implements Initializable {
     @FXML
     private void handleButtonCopyItem(Event event) {
         
+        // Aktuelles Objekt ermitteln
         GraphicObject g = list.getSelectedItem();
         
+        // Wenn ein Objekt ausgewählt ist
         if (g != null) {
+            // Kopie des Objekts anlegen
             GraphicObject copyOfObject = g.getCopyInstance();
             copyOfObject.setOnMousePressed(
                 new GraphicClickEventHandler(copyOfObject, list, this)
             );
-
+            // Kopie hinzufügen
             list.addItem(copyOfObject);
             canvas.getChildren().add(copyOfObject);
         }
@@ -641,11 +758,9 @@ public class AppController implements Initializable {
         rotation1_0.setText("sin ("+rotateAt.getText()+")");
         rotation1_1.setText("cos ("+rotateAt.getText()+")");
         
-        // Scalieren-Darstellung
-        
+        // Skalieren-Darstellung
         scale0_0.setText(""+Double.parseDouble(scalePercent.getText())/100);
         scale1_1.setText(""+Double.parseDouble(scalePercent.getText())/100);
-        
         
         // eingegebene Punkte in eine Matrix setzen
         Matrix transformationMatrix = Transformate.getTranslationMatrix(Double.parseDouble(translation0_2.getText()),Double.parseDouble(translation1_2.getText()));
@@ -665,6 +780,7 @@ public class AppController implements Initializable {
         total1_1.setText(""+totalMatrix.mat[1][1]);
         total1_2.setText(""+totalMatrix.mat[1][2]);
         
+        // Objekt transformieren
         GraphicObject s = list.getSelectedItem();
         if (s != null) s.transform(totalMatrix);
         
