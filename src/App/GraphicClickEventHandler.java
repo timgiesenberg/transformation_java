@@ -32,6 +32,10 @@ public class GraphicClickEventHandler implements javafx.event.EventHandler<Mouse
         
     }
     
+    /**
+     *
+     * @param t
+     */
     @Override
     public void handle(MouseEvent t) {
         

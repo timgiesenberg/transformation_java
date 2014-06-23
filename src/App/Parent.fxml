@@ -180,6 +180,8 @@
         <URL value="@../styles/Styles.css" />
       </stylesheets>
     </HBox>
+    <!-- ListView -->
+    <ListView fx:id="ObjectListView" editable="true" layoutX="980.0" layoutY="72.0" onDragDetected="#handleListDrag" onMouseClicked="#handleListViewClick" prefHeight="348.0000999999975" prefWidth="220.0" />
     <!-- ListView Title -->
     <TitledPane animated="false" layoutX="980.0" layoutY="50.0" prefHeight="370.0" prefWidth="220.0" text="Objekt-Liste">
       <content>
