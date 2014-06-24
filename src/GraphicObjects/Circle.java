@@ -2,6 +2,7 @@
 package GraphicObjects;
 
 // Benötigte Libraries importieren
+import Utils.Matrix;
 import Utils.Point2D;
 import Utils.Transformate;
 import javafx.scene.paint.Color;
@@ -132,4 +133,25 @@ public class Circle extends GraphicObject {
         numberOfCircles = 1;
         
     }
+    
+    /**
+     * Die Methode setRadius() transformiert einen Kreis so, dass sein Radius
+     * danach dem Wert des Parameters entspricht.
+     * @param r Neuer Radius-Wert des Kreises
+     */
+    public void setRadius(double r) {
+        
+        double scalePercent = (r / this.getRadius()) * 100;
+        
+        Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
+        Matrix scaleMatrix = Transformate.getScaleMatrix(scalePercent);
+        Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
+        
+        Matrix total = Transformate.multiplyMatrices(scaleMatrix, translationToOriginMatrix);
+        total = Transformate.multiplyMatrices(translationMatrix, total);
+        
+        this.transform(total);
+        
+    }
+    
 }

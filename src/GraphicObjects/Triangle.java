@@ -2,6 +2,7 @@
 package GraphicObjects;
 
 // Benötigte Libraries importieren
+import Utils.Matrix;
 import Utils.Point2D;
 import Utils.Transformate;
 import javafx.scene.paint.Color;
@@ -132,4 +133,25 @@ public class Triangle extends GraphicObject {
         numberOfTriangles = 1;
         
     }
+    
+    /**
+     * Die Methode setSideLength() transformiert ein Dreieck so, dass die
+     * Seitenlänge des Dreiecks dem Wert des Parameters entspricht.
+     * @param s Neuer Radius-Wert des Kreises
+     */
+    public void setSideLength(double s) {
+        
+        double scalePercent = (s / this.getSideLength()) * 100;
+        
+        Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
+        Matrix scaleMatrix = Transformate.getScaleMatrix(scalePercent);
+        Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
+        
+        Matrix total = Transformate.multiplyMatrices(scaleMatrix, translationToOriginMatrix);
+        total = Transformate.multiplyMatrices(translationMatrix, total);
+        
+        this.transform(total);
+        
+    }
+    
 }

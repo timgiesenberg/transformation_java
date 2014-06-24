@@ -1,27 +1,45 @@
 package App;
 
-import GraphicObjects.*;
-import IO.*;
-
+import GraphicObjects.Circle;
+import GraphicObjects.GraphicObject;
+import GraphicObjects.Line;
+import GraphicObjects.Polygon;
+import GraphicObjects.Rectangle;
+import GraphicObjects.Triangle;
+import IO.GraphicObjectReader;
+import IO.GraphicObjectWriter;
 import ListView.ListController;
-import Utils.*;
-import java.io.*;
+import Utils.Matrix;
+import Utils.Transformate;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.StrokeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.*;
-import javafx.fxml.*;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.scene.media.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBoxBuilder;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -432,7 +450,10 @@ public class AppController implements Initializable {
         MediaPlayer video = new MediaPlayer(m);
         video.setAutoPlay(true);
         MediaView mediaView = new MediaView(video);
+        mediaView.setPreserveRatio(false);
+        mediaView.setFitHeight(800);
         mediaView.setFitWidth(1200);
+        
         AppUi.getChildren().add(mediaView);
         video.setOnEndOfMedia(new ExplosionRemover(AppUi, mediaView));
         
@@ -457,7 +478,7 @@ public class AppController implements Initializable {
             
             // Dort Objekte abspeichern
             GraphicObjectWriter gow = new GraphicObjectWriter(file.getPath());
-            gow.write(list.getItems());
+            gow.write(ObjectListView.getItems());
             
         } catch (IOException ex) {
             
@@ -540,7 +561,7 @@ public class AppController implements Initializable {
     @FXML
     private void handleButtonActionRectangle(Event event) {
         
-        final Rectangle r = new Rectangle(null, Color.GREEN, 100, 100, 100, 100);
+        final Rectangle r = new Rectangle(null, Color.valueOf("#435555"), 100, 100, 100, 100);
         r.setOnMousePressed(new GraphicClickEventHandler(r, list, this));
         list.addItem(r);
         canvas.getChildren().add(r);
@@ -550,7 +571,7 @@ public class AppController implements Initializable {
     @FXML
     private void handleButtonActionCircle(Event event) {
         
-        final Circle c = new Circle(null, Color.BLUE, 100, 100, 40);
+        final Circle c = new Circle(null, Color.valueOf("#4499DC"), 100, 100, 40);
         c.setOnMousePressed(new GraphicClickEventHandler(c, list, this));
         list.addItem(c);
         canvas.getChildren().add(c);
@@ -560,7 +581,7 @@ public class AppController implements Initializable {
     @FXML
     private void handleButtonActionTriangle(Event event) {
         
-        final Triangle t = new Triangle(null, Color.YELLOW, 60, 60, 80);
+        final Triangle t = new Triangle(null, Color.valueOf("#879999"), 60, 60, 80);
         t.setOnMousePressed(new GraphicClickEventHandler(t, list, this));
         list.addItem(t);
         canvas.getChildren().add(t);
@@ -570,7 +591,7 @@ public class AppController implements Initializable {
     @FXML
     private void handleButtonActionLine(Event event) {
         
-        final Line l = new Line(null, Color.RED, 100, 50, 150, 100);
+        final Line l = new Line(null, Color.valueOf("#DDDDDD"), 100, 50, 150, 100);
         l.setOnMousePressed(new GraphicClickEventHandler(l, list, this));
         list.addItem(l);
         canvas.getChildren().add(l);
@@ -586,7 +607,7 @@ public class AppController implements Initializable {
             int numberOfAngles = Integer.parseInt(s);
             if (numberOfAngles > 2) {
                 
-                final Polygon p = new Polygon(null, Color.GRAY, numberOfAngles, 200, 200);
+                final Polygon p = new Polygon(null, Color.valueOf("#AACCCD"), numberOfAngles, 200, 200);
                 p.setOnMousePressed(new GraphicClickEventHandler(p, list, this));
                 list.addItem(p);
                 canvas.getChildren().add(p);

@@ -126,6 +126,40 @@ public final class Transformate {
     }
     
     /**
+     * (sx 0 0)
+     * (0  1 0)
+     * (0  0 1) 
+     * @param percent
+     * @return 
+     */
+    public static Matrix getScaleXMatrix(double percent){
+        Matrix m = new Matrix();
+        m.mat[0][0] = percent/100;
+        m.mat[1][1] = 1;
+        m.mat[2][2] = 1;
+       
+        //m.printMatrix("scale factor inserted");
+        return m;
+    }
+    
+    /**
+     * (1  0 0)
+     * (0 sy 0)
+     * (0  0 1) 
+     * @param percent
+     * @return 
+     */
+    public static Matrix getScaleYMatrix(double percent){
+        Matrix m = new Matrix();
+        m.mat[0][0] = 1;
+        m.mat[1][1] = percent/100;
+        m.mat[2][2] = 1;
+       
+        //m.printMatrix("scale factor inserted");
+        return m;
+    }
+    
+    /**
      * (1  0 0)
      * (0 -1 0)
      * (0  0 1) 

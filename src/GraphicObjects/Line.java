@@ -2,6 +2,7 @@
 package GraphicObjects;
 
 // Benötigte Libraries importieren
+import Utils.Matrix;
 import Utils.Point2D;
 import Utils.Transformate;
 import javafx.scene.paint.Color;
@@ -143,4 +144,25 @@ public class Line extends GraphicObject {
         numberOfLines = 1;
         
     }
+    
+    /**
+     * Die Methode setLength() transformiert eine Linie so, dass sie so lang
+     * wie der Wert des Parameters ist.
+     * @param l Neuer Radius-Wert des Kreises
+     */
+    public void setLength(double l) {
+        
+        double scalePercent = (l / this.getLength()) * 100;
+        
+        Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
+        Matrix scaleMatrix = Transformate.getScaleMatrix(scalePercent);
+        Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
+        
+        Matrix total = Transformate.multiplyMatrices(scaleMatrix, translationToOriginMatrix);
+        total = Transformate.multiplyMatrices(translationMatrix, total);
+        
+        this.transform(total);
+        
+    }
+    
 }
