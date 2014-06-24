@@ -1,8 +1,16 @@
 package IO;
 // Benötigte Libraries importieren
-import GraphicObjects.*;
+import GraphicObjects.Circle;
+import GraphicObjects.GraphicObject;
+import GraphicObjects.Line;
+import GraphicObjects.Polygon;
+import GraphicObjects.Rectangle;
+import GraphicObjects.Triangle;
 import Utils.Point2D;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.paint.Color;
 

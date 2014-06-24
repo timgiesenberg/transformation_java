@@ -313,4 +313,30 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
         
     }
     
+    /**
+     * Die Methode moveToX() verschiebt das Objekt so, dass die x-Koordinate des
+     * Mittelpunkts dem Wert des Parameters entspricht.
+     * @param x Neue x-Koordinate des Mittelpunktes
+     */
+    public void moveToX(double x) {
+        
+        double translation = x - this.center.getX();
+        Matrix matrix = Transformate.getTranslationMatrix(translation, 0);
+        this.transform(matrix);
+        
+    }
+    
+    /**
+     * Die Methode moveToY() verschiebt das Objekt so, dass die y-Koordinate des
+     * Mittelpunkts dem Wert des Parameters entspricht.
+     * @param y Neue y-Koordinate des Mittelpunktes
+     */
+    public void moveToY(double y) {
+        
+        double translation = y - this.center.getY();
+        Matrix matrix = Transformate.getTranslationMatrix(0, translation);
+        this.transform(matrix);
+        
+    }
+    
 }
