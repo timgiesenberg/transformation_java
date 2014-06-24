@@ -66,9 +66,6 @@ public class AppController implements Initializable {
             
         //create new ListController
         list = ListController.getInstance(ObjectListView);
-        
-        list.setListView(ObjectListView);
-        
     }
     
     private StrokeTransition aktuelleST;

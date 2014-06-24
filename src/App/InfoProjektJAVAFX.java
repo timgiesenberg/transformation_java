@@ -16,6 +16,7 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -32,6 +33,9 @@ public class InfoProjektJAVAFX extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
+        
+        //Get JavaFX version
+        System.out.println("Your Comput is running JavaFX version " + com.sun.javafx.runtime.VersionInfo.getRuntimeVersion());
          // FXML-Dateien importieren
         Parent canvas = FXMLLoader.load(getClass().getResource("/App/Parent.fxml"));
         /* Parent canvas = FXMLLoader.load(getClass().getResource("/Utils/Canvas.fxml"));
@@ -60,6 +64,8 @@ public class InfoProjektJAVAFX extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Atemberaubendes Transformationsprogramm");
+        //TODO set AppIcon
+        stage.getIcons().add(new Image("/img/Neu.png"));
         stage.setResizable(false);
         stage.sizeToScene();
         stage.show();

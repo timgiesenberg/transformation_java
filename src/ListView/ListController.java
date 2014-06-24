@@ -72,26 +72,6 @@ public class ListController {
                 event.consume();
             }
         });
-        
-        objectListView.setOnDragOver(new EventHandler<DragEvent>(){
-            
-            @Override
-            public void handle(DragEvent event){
-                /* drag was detected, start drag-and-drop gesture*/
-                System.out.println("onDragDetected");
-                
-                /* allow any transfer mode */
-                Dragboard db = objectListView.startDragAndDrop(TransferMode.MOVE);
-                
-                /* put a string on dragboard */
-                ClipboardContent content = new ClipboardContent();
-                //content.putString(objectListView.getSelectionModel().getSelectedItem().getName());
-                content.putString("Please Display me");
-                db.setContent(content);
-                
-                event.consume();
-            }
-        });
         System.out.println("Constructor call was successful");
     }
     
@@ -115,7 +95,7 @@ public class ListController {
      * return all Elements in List in a String array
      * @return 
      */
-    private ObservableList<GraphicObject> getItems(){
+    public ObservableList<GraphicObject> getItems(){
         System.out.print("ListGetItems");
         return null;//this;
     }
@@ -126,6 +106,7 @@ public class ListController {
      * @return 
      */
     public GraphicObject getItem(int id){
+        
         return items.get(id);
     }
     
@@ -157,16 +138,32 @@ public class ListController {
      * @return 
      */
     public GraphicObject getSelectedItem(){
+        //setFocus(objectListView.getSelectionModel().getSelectedItem());
         return objectListView.getSelectionModel().getSelectedItem();
     }
     
     /**
      * sets the selecteted Object in the ListView
      * object is then highlighted
+     * reorder the list and place selected item in first place
      * @param g refernce of selected graphic object
      */
     public void setFocus(GraphicObject g){
+        
+        //gets selected item
         objectListView.getSelectionModel().select(g);
+        
+        //copy the current list
+        ObservableList<GraphicObject> ol = items;
+        
+        //replace all other elements down by incrementing index
+        for(int i = 1; i < items.size(); i++){
+            items.set(i , ol.get( i - 1 ));
+        }/**/
+        //replace first element in list
+        items.set(0, g);
+        
+        objectListView.setItems(items);
     }
     
     private void generateCellFactory(){

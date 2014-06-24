@@ -1,7 +1,6 @@
 build.xml
 build/
-dist/*
+dist/
 lib/
 manifest.mf
 nbproject/
-!dist/javadoc
