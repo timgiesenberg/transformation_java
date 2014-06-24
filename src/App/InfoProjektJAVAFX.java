@@ -35,7 +35,7 @@ public class InfoProjektJAVAFX extends Application {
     public void start(Stage stage) throws Exception {
         
         //Get JavaFX version
-        System.out.println("Your Comput is running JavaFX version " + com.sun.javafx.runtime.VersionInfo.getRuntimeVersion());
+        System.out.println("Your Computer is running JavaFX version " + com.sun.javafx.runtime.VersionInfo.getRuntimeVersion());
          // FXML-Dateien importieren
         Parent canvas = FXMLLoader.load(getClass().getResource("/App/Parent.fxml"));
         /* Parent canvas = FXMLLoader.load(getClass().getResource("/Utils/Canvas.fxml"));

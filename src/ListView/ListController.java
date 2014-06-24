@@ -138,32 +138,36 @@ public class ListController {
      * @return 
      */
     public GraphicObject getSelectedItem(){
-        //setFocus(objectListView.getSelectionModel().getSelectedItem());
-        return objectListView.getSelectionModel().getSelectedItem();
+        System.out.println("getSelectedItem");
+        GraphicObject selected = objectListView.getSelectionModel().getSelectedItem();
+        sort(selected);
+        return selected;
     }
     
     /**
      * sets the selecteted Object in the ListView
      * object is then highlighted
-     * reorder the list and place selected item in first place
      * @param g refernce of selected graphic object
      */
     public void setFocus(GraphicObject g){
-        
-        //gets selected item
+        System.out.println("set Focus");
+        sort(g);
         objectListView.getSelectionModel().select(g);
-        
-        //copy the current list
-        ObservableList<GraphicObject> ol = items;
-        
-        //replace all other elements down by incrementing index
-        for(int i = 1; i < items.size(); i++){
-            items.set(i , ol.get( i - 1 ));
-        }/**/
-        //replace first element in list
-        items.set(0, g);
-        
-        objectListView.setItems(items);
+    }
+    
+    /**
+     * 
+     * reorder the list and place selected item in first place
+     * @param g 
+     */
+    public void sort(GraphicObject g){
+        if(items.indexOf(g) != 0){
+            if(items.contains(g)){
+                items.remove(g);
+            }
+            //insert first element in list
+            items.add(0, g);
+        }
     }
     
     private void generateCellFactory(){

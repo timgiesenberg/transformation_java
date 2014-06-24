@@ -428,6 +428,7 @@ public class AppController implements Initializable {
             }
         }
         canvas.getChildren().clear();
+        list.deleteAllItems();
         
         // Eigenschaften-Pane zurücksetzen
         this.setInputFieldValues(null);
