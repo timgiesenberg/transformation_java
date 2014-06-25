@@ -40,8 +40,11 @@ public class GraphicClickEventHandler implements javafx.event.EventHandler<Mouse
     public void handle(MouseEvent t) {
         
         System.out.println("Das Objekt: " + graphicObject.getName() + " wurde ausgewählt.");
-        graphicObject.toFront();
         
+        //set the focus at the listController
+        listController.setFocus(graphicObject);
+        //bring the object to the front on canvas
+        graphicObject.toFront();
         
         // Konturrand beim letzten ausgewählten Objekt entfernen
         GraphicObject selectedItem = this.listController.getSelectedItem();
@@ -63,8 +66,6 @@ public class GraphicClickEventHandler implements javafx.event.EventHandler<Mouse
         aktuelleST.setAutoReverse(true);
         aktuelleST.play();
         appController.setStrokeTransition(aktuelleST);
-        
-        listController.setFocus(graphicObject);
         
         appController.setInputFieldValues(graphicObject);
         

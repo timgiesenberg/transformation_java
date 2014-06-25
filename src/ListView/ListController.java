@@ -7,10 +7,13 @@
 package ListView;
 
 import GraphicObjects.GraphicObject;
+import GraphicObjects.Line;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -19,7 +22,9 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
+import javax.swing.event.ChangeListener;
 
 /**
  * ListController handles all interaction with the ListView in the application.
@@ -52,46 +57,6 @@ public class ListController {
             }
         );
         objectListView.setItems(items);
-        
-        objectListView.setOnDragDetected(new EventHandler<MouseEvent>(){
-            
-            @Override
-            public void handle(MouseEvent event){
-                /* drag was detected, start drag-and-drop gesture*/
-                System.out.println("onDragDetected");
-                
-                /* allow any transfer mode */
-                Dragboard db = objectListView.startDragAndDrop(TransferMode.MOVE);
-                
-                /* put a string on dragboard */
-                ClipboardContent content = new ClipboardContent();
-                //content.putString(objectListView.getSelectionModel().getSelectedItem().getName());
-                content.putString("Please Display me");
-                db.setContent(content);
-                
-                event.consume();
-            }
-        });
-        
-        objectListView.setOnDragOver(new EventHandler<DragEvent>(){
-            
-            @Override
-            public void handle(DragEvent event){
-                /* drag was detected, start drag-and-drop gesture*/
-                System.out.println("onDragDetected");
-                
-                /* allow any transfer mode */
-                Dragboard db = objectListView.startDragAndDrop(TransferMode.MOVE);
-                
-                /* put a string on dragboard */
-                ClipboardContent content = new ClipboardContent();
-                //content.putString(objectListView.getSelectionModel().getSelectedItem().getName());
-                content.putString("Please Display me");
-                db.setContent(content);
-                
-                event.consume();
-            }
-        });
         System.out.println("Constructor call was successful");
     }
     
@@ -115,7 +80,7 @@ public class ListController {
      * return all Elements in List in a String array
      * @return 
      */
-    private ObservableList<GraphicObject> getItems(){
+    public ObservableList<GraphicObject> getItems(){
         System.out.print("ListGetItems");
         return null;//this;
     }
@@ -126,6 +91,7 @@ public class ListController {
      * @return 
      */
     public GraphicObject getItem(int id){
+        
         return items.get(id);
     }
     
@@ -157,7 +123,9 @@ public class ListController {
      * @return 
      */
     public GraphicObject getSelectedItem(){
-        return objectListView.getSelectionModel().getSelectedItem();
+        GraphicObject selected = objectListView.getSelectionModel().getSelectedItem();
+        sort(selected);
+        return selected;
     }
     
     /**
@@ -166,7 +134,23 @@ public class ListController {
      * @param g refernce of selected graphic object
      */
     public void setFocus(GraphicObject g){
+        sort(g);
         objectListView.getSelectionModel().select(g);
+    }
+    
+    /**
+     * 
+     * reorder the list and place selected item in first place
+     * @param g 
+     */
+    public void sort(GraphicObject g){
+        if(items.indexOf(g) != 0){
+            if(items.contains(g)){
+                items.remove(g);
+            }
+            //insert first element in list
+            items.add(0, g);
+        }
     }
     
     private void generateCellFactory(){

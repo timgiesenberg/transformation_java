@@ -84,9 +84,6 @@ public class AppController implements Initializable {
             
         //create new ListController
         list = ListController.getInstance(ObjectListView);
-        
-        //list.setListView(ObjectListView);
-        
     }
     
     private StrokeTransition aktuelleST;
@@ -415,8 +412,8 @@ public class AppController implements Initializable {
         else if (s instanceof Triangle) {
             s.setName(triangleName.getText());
         }
-        // Liste muss direkt geupdatet werden
-        
+        //TODO Liste muss direkt geupdatet werden
+        //list.update();
     }
     
     // ---------- Button Handler-Methoden ---------
@@ -431,6 +428,7 @@ public class AppController implements Initializable {
             }
         }
         canvas.getChildren().clear();
+        list.deleteAllItems();
         
         // Eigenschaften-Pane zurücksetzen
         this.setInputFieldValues(null);
@@ -481,7 +479,8 @@ public class AppController implements Initializable {
             
             // Dort Objekte abspeichern
             GraphicObjectWriter gow = new GraphicObjectWriter(file.getPath());
-            gow.write(ObjectListView.getItems());
+            //gow.write(ObjectListView.getItems());
+            gow.write(list.getItems());
             
         } catch (IOException ex) {
             
