@@ -94,7 +94,7 @@
             <URL value="@../styles/Styles.css" />
           </stylesheets>
           <tooltip>
-            <Tooltip text="Rechteck erstellen" />
+            <Tooltip id=".tooltip" style="&quot;color:blue&quot;" text="Rechteck erstellen" />
           </tooltip>
           <HBox.margin>
             <Insets left="10.0" top="8.0" />
@@ -354,41 +354,75 @@
             <!-- Kreis ausgewählt -->
             <Pane id="" fx:id="circlePane" disable="false" prefHeight="353.0" prefWidth="216.0" visible="false">
               <children>
-                <Label layoutX="14.0" layoutY="0.0" text="Kreis" />
+                <Label layoutX="14.0" layoutY="0.0" text="Kreis">
+                  <tooltip>
+                    <Tooltip text="" />
+                  </tooltip>
+                </Label>
                 <Separator layoutX="10.0" layoutY="17.0" prefWidth="176.0" />
                 <Label layoutX="14.0" layoutY="35.0" text="Name:">
                   <font>
                     <Font size="11.0" fx:id="x3" />
                   </font>
                 </Label>
-                <TextField id="" fx:id="circleName" layoutX="64.0" layoutY="32.0" onAction="#changeName" prefWidth="120.0" promptText="" text="" />
+                <TextField id="" fx:id="circleName" layoutX="64.0" layoutY="32.0" onAction="#changeName" prefWidth="120.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="Ausgewähltes Objekt" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="14.0" layoutY="64.0" text="Größe:" />
                 <Label layoutX="14.0" layoutY="90.0" text="r:">
                   <font>
                     <Font size="10.0" fx:id="x4" />
                   </font>
                 </Label>
-                <TextField id="" fx:id="circleRadius" editable="false" layoutX="31.0" layoutY="86.0" prefWidth="59.0" promptText="" text="" />
+                <TextField id="" fx:id="circleRadius" editable="false" layoutX="31.0" layoutY="86.0" prefWidth="59.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="Radios des Kreises" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="14.0" layoutY="117.0" text="Position:" />
                 <Label font="$x4" layoutX="14.0" layoutY="142.0" text="x:" />
-                <TextField id="" fx:id="circleX" editable="false" layoutX="32.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <TextField id="" fx:id="circleX" editable="false" layoutX="32.0" layoutY="138.0" prefWidth="59.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="x-Position des Mittelpunkt des Objekts" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x4" layoutX="107.0" layoutY="142.0" text="y:" />
-                <TextField id="" fx:id="circleY" editable="false" layoutX="125.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <TextField id="" fx:id="circleY" editable="false" layoutX="125.0" layoutY="138.0" prefWidth="59.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="y-Position des Mittelpunkt des Objekts" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="14.0" layoutY="172.0" text="Rotation:" />
-                <Slider id="" fx:id="circleRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="190.0" majorTickUnit="45.0" max="360.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                <Slider id="" fx:id="circleRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="190.0" majorTickUnit="45.0" max="360.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+                  <tooltip>
+                    <Tooltip text="Objekt Rotiert nach links bzw. nach recht" />
+                  </tooltip>
+                </Slider>
                 <Label font="$x3" layoutX="14.0" layoutY="253.0" prefWidth="58.9998779296875" text="Spiegeln:" />
                 <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="79.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungHorizontal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Hori" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
                   <stylesheets>
                     <URL value="@../styles/Styles.css" />
                   </stylesheets>
+                  <tooltip>
+                    <Tooltip text="Horizontale Spieglung" />
+                  </tooltip>
                 </Button>
                 <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="134.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungVertikal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Verti" text="vertikal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
                   <stylesheets>
                     <URL value="@../styles/Styles.css" />
                   </stylesheets>
+                  <tooltip>
+                    <Tooltip text="Vertikale Spieglung" />
+                  </tooltip>
                 </Button>
                 <Label font="$x3" layoutX="14.0" layoutY="308.0" text="Farbe:" />
-                <ColorPicker id="" fx:id="circleColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0" />
+                <ColorPicker id="" fx:id="circleColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0">
+                  <tooltip>
+                    <Tooltip text="Farbe des Objekts Auswählen" />
+                  </tooltip>
+                </ColorPicker>
               </children>
             </Pane>
             <!-- Rechteck ausgewählt -->
@@ -397,32 +431,66 @@
                 <Label layoutX="14.0" layoutY="0.0" text="Rechteck" />
                 <Separator layoutX="10.0" layoutY="17.0" prefWidth="176.0" />
                 <Label font="$x3" layoutX="14.0" layoutY="35.0" text="Name:" />
-                <TextField id="" fx:id="rectangleName" layoutX="64.0" layoutY="32.0" onAction="#changeName" prefWidth="120.0" promptText="" text="" />
+                <TextField id="" fx:id="rectangleName" layoutX="64.0" layoutY="32.0" onAction="#changeName" prefWidth="120.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="Ausgewähltes Objekt" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="14.0" layoutY="64.0" text="Größe:" />
                 <Label font="$x4" layoutX="14.0" layoutY="90.0" prefWidth="15.0" text="H:" />
-                <TextField id="" fx:id="rectangleHeight" editable="false" layoutX="32.0" layoutY="86.0" prefWidth="59.0" promptText="" text="" />
+                <TextField id="" fx:id="rectangleHeight" editable="false" layoutX="32.0" layoutY="86.0" prefWidth="59.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="Höhe des Objekts" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x4" layoutX="107.0" layoutY="90.0" prefWidth="15.0001220703125" text="B:" />
-                <TextField id="" fx:id="rectangleWidth" editable="false" layoutX="125.0" layoutY="86.0" prefWidth="59.0" promptText="" text="" />
+                <TextField id="" fx:id="rectangleWidth" editable="false" layoutX="125.0" layoutY="86.0" prefWidth="59.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="Breite des Objekts" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="14.0" layoutY="117.0" text="Position:" />
                 <Label font="$x4" layoutX="14.0" layoutY="142.0" text="x:" />
-                <TextField id="" fx:id="rectangleX" editable="false" layoutX="32.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <TextField id="" fx:id="rectangleX" editable="false" layoutX="32.0" layoutY="138.0" prefWidth="59.0" promptText="" text="x-Position des Mittelpunkt des Objekts">
+                  <tooltip>
+                    <Tooltip text="" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x4" layoutX="107.0" layoutY="142.0" text="y:" />
-                <TextField id="" fx:id="rectangleY" disable="false" editable="false" layoutX="125.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <TextField id="" fx:id="rectangleY" disable="false" editable="false" layoutX="125.0" layoutY="138.0" prefWidth="59.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="y-Position des Mittelpunkt des Objekts" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="14.0" layoutY="172.0" text="Rotation:" />
-                <Slider id="" fx:id="rectangleRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="190.0" majorTickUnit="45.0" max="360.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                <Slider id="" fx:id="rectangleRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="190.0" majorTickUnit="45.0" max="360.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+                  <tooltip>
+                    <Tooltip text="Objekt Rotiert nach links bzw. nach recht" />
+                  </tooltip>
+                </Slider>
                 <Label font="$x3" layoutX="14.0" layoutY="253.0" prefWidth="58.9998779296875" text="Spiegeln:" />
                 <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="79.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungHorizontal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Hori" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
                   <stylesheets>
                     <URL value="@../styles/Styles.css" />
                   </stylesheets>
+                  <tooltip>
+                    <Tooltip text="Horizontale Spieglung" />
+                  </tooltip>
                 </Button>
                 <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="134.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungVertikal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Verti" text="vertikal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
                   <stylesheets>
                     <URL value="@../styles/Styles.css" />
                   </stylesheets>
+                  <tooltip>
+                    <Tooltip text="Vertikale Spieglung" />
+                  </tooltip>
                 </Button>
                 <Label font="$x3" layoutX="14.0" layoutY="308.0" text="Farbe:" />
-                <ColorPicker id="" fx:id="rectangleColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0" />
+                <ColorPicker id="" fx:id="rectangleColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0">
+                  <tooltip>
+                    <Tooltip text="Farbe des Objekts Auswählen" />
+                  </tooltip>
+                </ColorPicker>
               </children>
             </Pane>
             <!-- Polygon ausgewählt -->
@@ -430,28 +498,70 @@
               <children>
                 <Label layoutX="14.0" layoutY="0.0" text="Polygon" />
                 <Separator layoutX="10.0" layoutY="17.0" prefWidth="176.0" />
-                <Label font="$x3" layoutX="14.0" layoutY="47.0" text="Name:" />
-                <TextField id="" fx:id="polygonName" layoutX="64.0" layoutY="44.0" onAction="#changeName" prefWidth="120.0" promptText="" text="" />
+                <Label font="$x3" layoutX="14.0" layoutY="47.0" text="Name:">
+                  <tooltip>
+                    <Tooltip text="Ausgewähltes Objekt" />
+                  </tooltip>
+                </Label>
+                <TextField id="" fx:id="polygonName" layoutX="64.0" layoutY="44.0" onAction="#changeName" prefWidth="120.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="Ausgewähltes Objekt" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="15.0" layoutY="87.0" text="Position:" />
-                <Label font="$x4" layoutX="14.0" layoutY="112.0" prefWidth="8.0001220703125" text="x:" />
-                <TextField id="" fx:id="polygonX" editable="false" layoutX="33.0" layoutY="108.0" prefWidth="59.0" promptText="" text="" />
-                <Label font="$x4" layoutX="107.0" layoutY="112.0" text="y:" />
-                <TextField id="" fx:id="polygonY" editable="false" layoutX="125.0" layoutY="108.0" prefWidth="59.0" promptText="" text="" />
+                <Label font="$x4" layoutX="14.0" layoutY="112.0" prefWidth="8.0001220703125" text="x:">
+                  <tooltip>
+                    <Tooltip text="x-Position des Mittelpunkt des Objekts" />
+                  </tooltip>
+                </Label>
+                <TextField id="" fx:id="polygonX" editable="false" layoutX="33.0" layoutY="108.0" prefWidth="59.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="x-Position des Mittelpunkt des Objekts" />
+                  </tooltip>
+                </TextField>
+                <Label font="$x4" layoutX="107.0" layoutY="112.0" text="y:">
+                  <tooltip>
+                    <Tooltip text="y-Position des Mittelpunkt des Objekts" />
+                  </tooltip>
+                </Label>
+                <TextField id="" fx:id="polygonY" editable="false" layoutX="125.0" layoutY="108.0" prefWidth="59.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="y-Position des Mittelpunkt des Objekts" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="14.0" layoutY="154.0" text="Rotation:" />
-                <Slider id="" fx:id="polygonRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="172.0" majorTickUnit="45.0" max="360.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                <Slider id="" fx:id="polygonRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="172.0" majorTickUnit="45.0" max="360.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+                  <tooltip>
+                    <Tooltip text="Objekt Rotiert nach links bzw. nach recht" />
+                  </tooltip>
+                </Slider>
                 <Label font="$x3" layoutX="14.0" layoutY="243.0" prefWidth="58.9998779296875" text="Spiegeln:" />
                 <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="79.0" layoutY="225.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungHorizontal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Hori" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
                   <stylesheets>
                     <URL value="@../styles/Styles.css" />
                   </stylesheets>
+                  <tooltip>
+                    <Tooltip text="Horizontale Spieglung" />
+                  </tooltip>
                 </Button>
                 <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="134.0" layoutY="225.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungVertikal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Verti" text="vertikal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
                   <stylesheets>
                     <URL value="@../styles/Styles.css" />
                   </stylesheets>
+                  <tooltip>
+                    <Tooltip text="Vertikale Spieglung" />
+                  </tooltip>
                 </Button>
-                <Label font="$x3" layoutX="14.0" layoutY="308.0" text="Farbe:" />
-                <ColorPicker id="" fx:id="polygonColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0" />
+                <Label font="$x3" layoutX="14.0" layoutY="308.0" text="Farbe:">
+                  <tooltip>
+                    <Tooltip text="Farbe des Objekts Auswählen" />
+                  </tooltip>
+                </Label>
+                <ColorPicker id="" fx:id="polygonColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0">
+                  <tooltip>
+                    <Tooltip text="Farbe des Objekts Auswählen" />
+                  </tooltip>
+                </ColorPicker>
               </children>
             </Pane>
             <!-- Dreieck ausgewählt -->
@@ -460,30 +570,60 @@
                 <Label layoutX="14.0" layoutY="0.0" text="Dreieck" />
                 <Separator layoutX="10.0" layoutY="17.0" prefWidth="176.0" />
                 <Label font="$x3" layoutX="14.0" layoutY="35.0" text="Name:" />
-                <TextField id="" fx:id="triangleName" layoutX="64.0" layoutY="32.0" onAction="#changeName" prefWidth="120.0" promptText="" text="" />
+                <TextField id="" fx:id="triangleName" layoutX="64.0" layoutY="32.0" onAction="#changeName" prefWidth="120.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="Ausgewähltes Objekt" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="14.0" layoutY="64.0" text="Größe:" />
                 <Label font="$x4" layoutX="14.0" layoutY="90.0" prefWidth="58.999900000002526" text="Seitenlänge:" />
-                <TextField id="" fx:id="triangleSideLength" editable="false" layoutX="125.0" layoutY="86.0" prefWidth="59.0" promptText="" text="" />
+                <TextField id="" fx:id="triangleSideLength" editable="false" layoutX="125.0" layoutY="86.0" prefWidth="59.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="Seitenlänge des Objekts" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="14.0" layoutY="117.0" text="Position:" />
                 <Label font="$x4" layoutX="14.0" layoutY="142.0" text="x:" />
-                <TextField id="" fx:id="triangleX" editable="false" layoutX="32.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <TextField id="" fx:id="triangleX" editable="false" layoutX="32.0" layoutY="138.0" prefWidth="59.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="x-Position des Mittelpunkt des Objekts" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x4" layoutX="107.0" layoutY="142.0" text="y:" />
-                <TextField id="" fx:id="triangleY" editable="false" layoutX="125.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <TextField id="" fx:id="triangleY" editable="false" layoutX="125.0" layoutY="138.0" prefWidth="59.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="y-Position des Mittelpunkt des Objekts" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="14.0" layoutY="172.0" text="Rotation:" />
-                <Slider id="" fx:id="triangleRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="190.0" majorTickUnit="45.0" max="360.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                <Slider id="" fx:id="triangleRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="190.0" majorTickUnit="45.0" max="360.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+                  <tooltip>
+                    <Tooltip text="Objekt Rotiert nach links bzw. nach recht" />
+                  </tooltip>
+                </Slider>
                 <Label font="$x3" layoutX="14.0" layoutY="253.0" prefWidth="58.9998779296875" text="Spiegeln:" />
                 <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="79.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungHorizontal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Hori" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
                   <stylesheets>
                     <URL value="@../styles/Styles.css" />
                   </stylesheets>
+                  <tooltip>
+                    <Tooltip text="Horizontale Spieglung" />
+                  </tooltip>
                 </Button>
-                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="134.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungVertikal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Verti" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
+                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="134.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungVertikal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Verti" text="Vertikal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
                   <stylesheets>
                     <URL value="@../styles/Styles.css" />
                   </stylesheets>
+                  <tooltip>
+                    <Tooltip text="Vertikale Spieglung" />
+                  </tooltip>
                 </Button>
                 <Label font="$x3" layoutX="14.0" layoutY="308.0" text="Farbe:" />
-                <ColorPicker id="" fx:id="triangleColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0" />
+                <ColorPicker id="" fx:id="triangleColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0">
+                  <tooltip>
+                    <Tooltip text="Farbe des Objekts Auswählen" />
+                  </tooltip>
+                </ColorPicker>
               </children>
             </Pane>
             <!-- Linie ausgewählt -->
@@ -492,30 +632,60 @@
                 <Label layoutX="14.0" layoutY="0.0" text="Linie" />
                 <Separator layoutX="10.0" layoutY="17.0" prefWidth="176.0" />
                 <Label font="$x3" layoutX="14.0" layoutY="35.0" text="Name:" />
-                <TextField id="" fx:id="lineName" layoutX="64.0" layoutY="32.0" onAction="#changeName" prefWidth="120.0" promptText="" text="" />
+                <TextField id="" fx:id="lineName" layoutX="64.0" layoutY="32.0" onAction="#changeName" prefWidth="120.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="Ausgewähltes Objekt" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="14.0" layoutY="64.0" text="Länge:" />
                 <Label font="$x4" layoutX="14.0" layoutY="90.0" prefWidth="7.0001220703125" text="L:" />
-                <TextField id="" fx:id="lineLength" disable="false" editable="false" layoutX="31.0" layoutY="86.0" prefWidth="59.0" promptText="" text="" visible="true" />
+                <TextField id="" fx:id="lineLength" disable="false" editable="false" layoutX="31.0" layoutY="86.0" prefWidth="59.0" promptText="" text="" visible="true">
+                  <tooltip>
+                    <Tooltip text="Länge des Objekts" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="14.0" layoutY="117.0" text="Position:" />
                 <Label font="$x4" layoutX="14.0" layoutY="142.0" text="x:" />
-                <TextField id="" fx:id="lineX" editable="false" layoutX="32.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <TextField id="" fx:id="lineX" editable="false" layoutX="32.0" layoutY="138.0" prefWidth="59.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="x-Position des Mittelpunkt des Objekts" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x4" layoutX="107.0" layoutY="142.0" text="y:" />
-                <TextField id="" fx:id="lineY" editable="false" layoutX="125.0" layoutY="138.0" prefWidth="59.0" promptText="" text="" />
+                <TextField id="" fx:id="lineY" editable="false" layoutX="125.0" layoutY="138.0" prefWidth="59.0" promptText="" text="">
+                  <tooltip>
+                    <Tooltip text="y-Position des Mittelpunkt des Objekts" />
+                  </tooltip>
+                </TextField>
                 <Label font="$x3" layoutX="14.0" layoutY="172.0" text="Rotation:" />
-                <Slider id="" fx:id="lineRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="190.0" majorTickUnit="45.0" max="360.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                <Slider id="" fx:id="lineRotationSlider" blockIncrement="10.0" disable="false" layoutX="14.0" layoutY="190.0" majorTickUnit="45.0" max="360.0" minorTickCount="4" prefWidth="169.99997792968497" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+                  <tooltip>
+                    <Tooltip text="Objekt Rotiert nach links bzw. nach recht" />
+                  </tooltip>
+                </Slider>
                 <Label font="$x3" layoutX="14.0" layoutY="253.0" prefWidth="58.9998779296875" text="Spiegeln:" />
                 <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="79.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungHorizontal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Hori" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
                   <stylesheets>
                     <URL value="@../styles/Styles.css" />
                   </stylesheets>
+                  <tooltip>
+                    <Tooltip text="Horizontale Spieglung" />
+                  </tooltip>
                 </Button>
-                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="134.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungVertikal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Verti" text="horizontal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
+                <Button id="" alignment="CENTER" cache="true" cacheHint="DEFAULT" cancelButton="false" contentDisplay="GRAPHIC_ONLY" defaultButton="false" depthTest="INHERIT" disable="false" focusTraversable="true" font="$x4" layoutX="134.0" layoutY="235.0" mnemonicParsing="false" mouseTransparent="false" onAction="#handleButtonSpiegelungVertikal" prefHeight="50.0" prefWidth="50.0" scaleX="1.0" scaleY="1.0" style="&#10;&#10;" styleClass="Spiegelung_Verti" text="Vertikal" textAlignment="CENTER" underline="false" visible="true" wrapText="false">
                   <stylesheets>
                     <URL value="@../styles/Styles.css" />
                   </stylesheets>
+                  <tooltip>
+                    <Tooltip text="Vertikale Spieglung" />
+                  </tooltip>
                 </Button>
                 <Label font="$x3" layoutX="14.0" layoutY="308.0" text="Farbe:" />
-                <ColorPicker id="" fx:id="lineColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0" />
+                <ColorPicker id="" fx:id="lineColorFill" layoutX="64.0" layoutY="300.0" minHeight="16.0" prefHeight="30.0" prefWidth="120.0">
+                  <tooltip>
+                    <Tooltip text="Farbe des Objekts Auswählen" />
+                  </tooltip>
+                </ColorPicker>
               </children>
             </Pane>
           </children>
