@@ -7,10 +7,13 @@
 package ListView;
 
 import GraphicObjects.GraphicObject;
+import GraphicObjects.Line;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -19,7 +22,9 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
+import javax.swing.event.ChangeListener;
 
 /**
  * ListController handles all interaction with the ListView in the application.
@@ -52,26 +57,6 @@ public class ListController {
             }
         );
         objectListView.setItems(items);
-        
-        objectListView.setOnDragDetected(new EventHandler<MouseEvent>(){
-            
-            @Override
-            public void handle(MouseEvent event){
-                /* drag was detected, start drag-and-drop gesture*/
-                System.out.println("onDragDetected");
-                
-                /* allow any transfer mode */
-                Dragboard db = objectListView.startDragAndDrop(TransferMode.MOVE);
-                
-                /* put a string on dragboard */
-                ClipboardContent content = new ClipboardContent();
-                //content.putString(objectListView.getSelectionModel().getSelectedItem().getName());
-                content.putString("Please Display me");
-                db.setContent(content);
-                
-                event.consume();
-            }
-        });
         System.out.println("Constructor call was successful");
     }
     
@@ -138,7 +123,6 @@ public class ListController {
      * @return 
      */
     public GraphicObject getSelectedItem(){
-        System.out.println("getSelectedItem");
         GraphicObject selected = objectListView.getSelectionModel().getSelectedItem();
         sort(selected);
         return selected;
@@ -150,7 +134,6 @@ public class ListController {
      * @param g refernce of selected graphic object
      */
     public void setFocus(GraphicObject g){
-        System.out.println("set Focus");
         sort(g);
         objectListView.getSelectionModel().select(g);
     }

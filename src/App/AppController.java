@@ -412,8 +412,8 @@ public class AppController implements Initializable {
         else if (s instanceof Triangle) {
             s.setName(triangleName.getText());
         }
-        // Liste muss direkt geupdatet werden
-        
+        //TODO Liste muss direkt geupdatet werden
+        //list.update();
     }
     
     // ---------- Button Handler-Methoden ---------
@@ -479,7 +479,8 @@ public class AppController implements Initializable {
             
             // Dort Objekte abspeichern
             GraphicObjectWriter gow = new GraphicObjectWriter(file.getPath());
-            gow.write(ObjectListView.getItems());
+            //gow.write(ObjectListView.getItems());
+            gow.write(list.getItems());
             
         } catch (IOException ex) {
             
