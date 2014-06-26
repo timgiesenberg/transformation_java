@@ -15,7 +15,7 @@
 <AnchorPane fx:id="AppUi" prefHeight="800.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="App.AppController">
   <children>
     <!-- Canvas -->
-    <Pane fx:id="canvas" layoutX="20.0" layoutY="70.0" prefHeight="580.0" prefWidth="960.0" />
+    <Pane fx:id="canvas" layoutX="20.0" layoutY="70.0" onMouseClicked="#handleCanvasClick" prefHeight="580.0" prefWidth="960.0" />
     <!-- Lineale -->
     <Pane id="lineal_horizonzal" fx:id="linealHorizontal" layoutX="0.0" layoutY="50.0" prefHeight="20.0" prefWidth="980.0" styleClass="Lineal_horizontal">
       <stylesheets>
@@ -162,7 +162,7 @@
     <TitledPane animated="false" layoutX="980.0" layoutY="50.0" prefHeight="370.0" prefWidth="220.0" text="Objekt-Liste">
       <content>
         <!-- ListView -->
-        <ListView fx:id="ObjectListView" editable="true" onMouseClicked="#handleListViewClick" prefHeight="331.0" prefWidth="216.0">
+        <ListView id="ObjectListView" fx:id="objectListView" editable="true" onMouseClicked="#handleListViewClick" prefHeight="331.0" prefWidth="216.0">
           <tooltip>
             <Tooltip styleClass="Tooltip" text="Liste der erstellten Objekte" />
           </tooltip>

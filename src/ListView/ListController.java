@@ -82,7 +82,7 @@ public class ListController {
      */
     public ObservableList<GraphicObject> getItems(){
         System.out.print("ListGetItems");
-        return null;//this;
+        return items;
     }
     
     /**
@@ -124,7 +124,7 @@ public class ListController {
      */
     public GraphicObject getSelectedItem(){
         GraphicObject selected = objectListView.getSelectionModel().getSelectedItem();
-        sort(selected);
+        //sort(selected);
         return selected;
     }
     
@@ -134,8 +134,13 @@ public class ListController {
      * @param g refernce of selected graphic object
      */
     public void setFocus(GraphicObject g){
-        sort(g);
+        //sort(g);
         objectListView.getSelectionModel().select(g);
+    }
+    
+    public void update(){
+        objectListView.setItems(null);
+        objectListView.setItems(items);
     }
     
     /**
@@ -151,6 +156,7 @@ public class ListController {
             //insert first element in list
             items.add(0, g);
         }
+        objectListView.setItems(items);
     }
     
     private void generateCellFactory(){

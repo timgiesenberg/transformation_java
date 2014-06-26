@@ -57,7 +57,7 @@ public class AppController implements Initializable {
     private AnchorPane AppUi;
     
     @FXML
-    private ListView<GraphicObject> ObjectListView;
+    private ListView<GraphicObject> objectListView;
     
     @FXML
     private Pane canvas;
@@ -83,7 +83,7 @@ public class AppController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
             
         //create new ListController
-        list = ListController.getInstance(ObjectListView);
+        list = ListController.getInstance(objectListView);
     }
     
     private StrokeTransition aktuelleST;
@@ -94,6 +94,18 @@ public class AppController implements Initializable {
     
     public StrokeTransition getStrokeTransition() {
         return this.aktuelleST;
+    }
+    
+    /**
+     * TODO click on white space should deselect focused model
+     * TODO deselect current Object in Canvas, remove transition
+     * TODO deselect object in Listview
+     * TODO Properties pane switches back to No Selection
+     * @param event 
+     */
+    @FXML
+    public void handleCanvasClick(Event event){
+        
     }
     
     /**
@@ -413,7 +425,7 @@ public class AppController implements Initializable {
             s.setName(triangleName.getText());
         }
         //TODO Liste muss direkt geupdatet werden
-        //list.update();
+        list.update();
     }
     
     @FXML
