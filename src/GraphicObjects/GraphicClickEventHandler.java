@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 
-package App;
+package GraphicObjects;
 
-import GraphicObjects.GraphicObject;
-import GraphicObjects.Line;
+import App.AppController;
 import ListView.ListController;
 import javafx.animation.StrokeTransition;
 import javafx.scene.input.MouseEvent;

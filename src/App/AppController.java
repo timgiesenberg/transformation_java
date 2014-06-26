@@ -1,5 +1,6 @@
 package App;
 
+import GraphicObjects.GraphicClickEventHandler;
 import GraphicObjects.Circle;
 import GraphicObjects.GraphicObject;
 import GraphicObjects.Line;
@@ -105,7 +106,7 @@ public class AppController implements Initializable {
      */
     @FXML
     public void handleCanvasClick(Event event){
-        
+        list.clearSelection();
     }
     
     /**
