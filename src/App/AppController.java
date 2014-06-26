@@ -416,6 +416,143 @@ public class AppController implements Initializable {
         //list.update();
     }
     
+    @FXML
+    private void changeX(Event event) {
+        
+        GraphicObject s = list.getSelectedItem();
+        
+        TextField x = null;
+        if (rectanglePane.isVisible()) x = rectangleX;
+        else if (circlePane.isVisible()) x = circleX;
+        else if (trianglePane.isVisible()) x = triangleX;
+        else if (linePane.isVisible()) x = lineX;
+        else if (polygonPane.isVisible()) x = polygonX;
+        
+        if (x != null) {
+        
+            if (x.getText().matches("^-?\\d+([.]{1}\\d+)?")) {
+
+                s.moveToX(Double.parseDouble(x.getText()));
+                x.setStyle("-fx-background-color: white");
+
+            }
+            else x.setStyle("-fx-background-color: red");
+        
+        }
+        
+    }
+    
+    @FXML
+    private void changeY(Event event) {
+        
+        GraphicObject s = list.getSelectedItem();
+        
+        TextField y = null;
+        if (rectanglePane.isVisible()) y = rectangleY;
+        else if (circlePane.isVisible()) y = circleY;
+        else if (trianglePane.isVisible()) y = triangleY;
+        else if (linePane.isVisible()) y = lineY;
+        else if (polygonPane.isVisible()) y = polygonY;
+        
+        if (y != null) {
+        
+            if (y.getText().matches("^-?\\d+([.]{1}\\d+)?")) {
+
+                s.moveToY(Double.parseDouble(y.getText()));
+                y.setStyle("-fx-background-color: white");
+
+            }
+            else y.setStyle("-fx-background-color: red");
+        
+        }
+        
+    }
+    
+    @FXML
+    private void changeWidth(Event event) {
+        
+        GraphicObject s = list.getSelectedItem();
+        if (rectangleWidth.getText().matches("^-?\\d+([.]{1}\\d+)?")) {
+            
+            if (s instanceof Rectangle) {
+                Rectangle g = (Rectangle) s;
+                g.setWidth(Double.parseDouble(rectangleWidth.getText()));
+                rectangleWidth.setStyle("-fx-background-color: white");
+            }
+            
+        }
+        else rectangleWidth.setStyle("-fx-background-color: red");
+        
+    }
+    
+    @FXML
+    private void changeHeight(Event event) {
+        
+        GraphicObject s = list.getSelectedItem();
+        if (rectangleHeight.getText().matches("^-?\\d+([.]{1}\\d+)?")) {
+            
+            if (s instanceof Rectangle) {
+                Rectangle g = (Rectangle) s;
+                g.setHeight(Double.parseDouble(rectangleHeight.getText()));
+                rectangleHeight.setStyle("-fx-background-color: white");
+            }
+            
+        }
+        else rectangleHeight.setStyle("-fx-background-color: red");
+        
+    }
+    
+    @FXML
+    private void changeRadius(Event event) {
+        
+        GraphicObject s = list.getSelectedItem();
+        if (circleRadius.getText().matches("^-?\\d+([.]{1}\\d+)?")) {
+            
+            if (s instanceof Circle) {
+                Circle c = (Circle) s;
+                c.setRadius(Double.parseDouble(circleRadius.getText()));
+                circleRadius.setStyle("-fx-background-color: white");
+            }
+            
+        }
+        else circleRadius.setStyle("-fx-background-color: red");
+        
+    }
+    
+    @FXML
+    private void changeSideLength(Event event) {
+        
+        GraphicObject s = list.getSelectedItem();
+        if (triangleSideLength.getText().matches("^-?\\d+([.]{1}\\d+)?")) {
+            
+            if (s instanceof Triangle) {
+                Triangle t = (Triangle) s;
+                t.setSideLength(Double.parseDouble(triangleSideLength.getText()));
+                triangleSideLength.setStyle("-fx-background-color: white");
+            }
+            
+        }
+        else triangleSideLength.setStyle("-fx-background-color: red");
+        
+    }
+    
+    @FXML
+    private void changeLength(Event event) {
+        
+        GraphicObject s = list.getSelectedItem();
+        if (lineLength.getText().matches("^-?\\d+([.]{1}\\d+)?")) {
+            
+            if (s instanceof Line) {
+                Line l = (Line) s;
+                l.setLength(Double.parseDouble(lineLength.getText()));
+                lineLength.setStyle("-fx-background-color: white");
+            }
+            
+        }
+        else lineLength.setStyle("-fx-background-color: red");
+        
+    }
+    
     // ---------- Button Handler-Methoden ---------
     @FXML
     private void handleButtonClear(Event event) {
@@ -756,56 +893,64 @@ public class AppController implements Initializable {
     @FXML
     private void transformationOfAll(Event event){
     
+        if (translationToX.getText().length() == 0) translationToX.setText(""+0);
+        if (translationToY.getText().length() == 0) translationToY.setText(""+0);
+        if (rotateAt.getText().length() == 0) rotateAt.setText(""+0);
+        if (scalePercent.getText().length() == 0) scalePercent.setText(""+100);
+        
         // falls ein Buchstabe oder nichts eingegeben wird wird der eingegebene Wert als 0 interpretiert
-        if (!translationToX.getText().matches("^-?\\d+([.]{1}\\d+)?")||translationToX.getText().length() == 0)
-            translationToX.setText(""+0); 
-        if(!translationToY.getText().matches("^-?\\d+([.]{1}\\d+)?")||translationToY.getText().length() == 0)
-            translationToY.setText(""+0);
-        if(!rotateAt.getText().matches("^-?\\d+([.]{1}\\d+)?")||rotateAt.getText().length() == 0)
-            rotateAt.setText(""+0);
-        if(!scalePercent.getText().matches("^-?\\d+([.]{1}\\d+)?")||scalePercent.getText().length() == 0)
-            scalePercent.setText(""+100);
+        if (!translationToX.getText().matches("^-?\\d+([.]{1}\\d+)?")) translationToX.setStyle("-fx-background-color: red");
+        else if (!translationToY.getText().matches("^-?\\d+([.]{1}\\d+)?")) translationToY.setStyle("-fx-background-color: red");
+        else if (!rotateAt.getText().matches("^-?\\d+([.]{1}\\d+)?")) rotateAt.setStyle("-fx-background-color: red");
+        else if (!scalePercent.getText().matches("^-?\\d+([.]{1}\\d+)?")) scalePercent.setStyle("-fx-background-color: red");
+        else {
         
-        //Transformieren-Darstellung
-        translation0_2.setText(translationToX.getText()); // das was ins label geschrieben wurde kommt in die angezeigte Matrix
-        translation1_2.setText(translationToY.getText());
-        
-        
-        //Rotation-Darstellung
-        
-        rotation0_0.setText("cos ("+rotateAt.getText()+")");
-        rotation0_1.setText("-sin ("+rotateAt.getText()+")");
-        rotation1_0.setText("sin ("+rotateAt.getText()+")");
-        rotation1_1.setText("cos ("+rotateAt.getText()+")");
-        
-        // Skalieren-Darstellung
-        scale0_0.setText(""+Double.parseDouble(scalePercent.getText())/100);
-        scale1_1.setText(""+Double.parseDouble(scalePercent.getText())/100);
-        
-        // eingegebene Punkte in eine Matrix setzen
-        Matrix transformationMatrix = Transformate.getTranslationMatrix(Double.parseDouble(translation0_2.getText()),Double.parseDouble(translation1_2.getText()));
-        Matrix rotationMatrix = Transformate.getRotateMatrix(Double.parseDouble(rotateAt.getText()));
-        Matrix scaleMatrix = Transformate.getScaleMatrix(Double.parseDouble(scalePercent.getText()));
-        
-        // eine Gesamtmatrix erstellen
-        Matrix totalMatrix;
-        totalMatrix= Transformate.multiplyMatrices(transformationMatrix, rotationMatrix);
-        totalMatrix= Transformate.multiplyMatrices(totalMatrix, scaleMatrix);
-        
-        // Gesamtmatrix in der TransformationBar anzeigen
-        total0_0.setText(""+totalMatrix.mat[0][0]);
-        total0_1.setText(""+totalMatrix.mat[0][1]);
-        total0_2.setText(""+totalMatrix.mat[0][2]);
-        total1_0.setText(""+totalMatrix.mat[1][0]);
-        total1_1.setText(""+totalMatrix.mat[1][1]);
-        total1_2.setText(""+totalMatrix.mat[1][2]);
-        
-        // Objekt transformieren
-        GraphicObject s = list.getSelectedItem();
-        if (s != null) s.transform(totalMatrix);
-        
-        // Eigenschaften-Pane aktualisieren
-        this.setInputFieldValues(s);
+            //Transformieren-Darstellung
+            translation0_2.setText(translationToX.getText()); // das was ins label geschrieben wurde kommt in die angezeigte Matrix
+            translation1_2.setText(translationToY.getText());
+
+            //Rotation-Darstellung
+            rotation0_0.setText("cos ("+rotateAt.getText()+")");
+            rotation0_1.setText("-sin ("+rotateAt.getText()+")");
+            rotation1_0.setText("sin ("+rotateAt.getText()+")");
+            rotation1_1.setText("cos ("+rotateAt.getText()+")");
+
+            // Skalieren-Darstellung
+            scale0_0.setText(""+Double.parseDouble(scalePercent.getText())/100);
+            scale1_1.setText(""+Double.parseDouble(scalePercent.getText())/100);
+
+            // eingegebene Punkte in eine Matrix setzen
+            Matrix transformationMatrix = Transformate.getTranslationMatrix(Double.parseDouble(translation0_2.getText()),Double.parseDouble(translation1_2.getText()));
+            Matrix rotationMatrix = Transformate.getRotateMatrix(Double.parseDouble(rotateAt.getText()));
+            Matrix scaleMatrix = Transformate.getScaleMatrix(Double.parseDouble(scalePercent.getText()));
+
+            // eine Gesamtmatrix erstellen
+            Matrix totalMatrix;
+            totalMatrix = Transformate.multiplyMatrices(transformationMatrix, rotationMatrix);
+            totalMatrix = Transformate.multiplyMatrices(totalMatrix, scaleMatrix);
+
+            // Gesamtmatrix in der TransformationBar anzeigen
+            total0_0.setText(""+totalMatrix.mat[0][0]);
+            total0_1.setText(""+totalMatrix.mat[0][1]);
+            total0_2.setText(""+totalMatrix.mat[0][2]);
+            total1_0.setText(""+totalMatrix.mat[1][0]);
+            total1_1.setText(""+totalMatrix.mat[1][1]);
+            total1_2.setText(""+totalMatrix.mat[1][2]);
+
+            // Objekt transformieren
+            GraphicObject s = list.getSelectedItem();
+            if (s != null) s.transform(totalMatrix);
+
+            // Eigenschaften-Pane aktualisieren
+            this.setInputFieldValues(s);
+            
+            // Ggf. rot markierte Felder wieder entfärben
+            translationToX.setStyle("-fx-background-color: white");
+            translationToY.setStyle("-fx-background-color: white");
+            rotateAt.setStyle("-fx-background-color: white");
+            scalePercent.setStyle("-fx-background-color: white");
+            
+        }
 
     }
     	

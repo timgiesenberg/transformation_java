@@ -23,14 +23,6 @@ and open the template in the editor.
     -fx-background-image: url("../img/oeffnen.png");
 }
 
-.Button_zurueck {
-    -fx-background-image: url("../img/zurueck.png");
-}
-
-.Button_vor {
-    -fx-background-image: url("../img/vor.png");
-}
-
 .Button_Rechteck {
     -fx-background-image: url("../img/Rechteck.png");
 }
@@ -87,4 +79,9 @@ and open the template in the editor.
 .Spiegelung_Verti{
     -fx-background-image: url("../img/icon_verti.gif");
     -fx-background-repeat: no-repeat;
+}
+
+.Tooltip{
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-text-fill: white;
 }
