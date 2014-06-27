@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.animation.StrokeTransition;
 import javafx.beans.value.ChangeListener;
@@ -275,6 +276,8 @@ public class AppController implements Initializable {
             this.buttonCopyItem.setDisable(false);
             this.buttonDeleteItem.setDisable(false);
             
+            // TODO linie durchziehen
+            
         }
         
         // Alle Panes unsichtbar machen
@@ -284,6 +287,8 @@ public class AppController implements Initializable {
                 p.setVisible(false);
             }
         }
+        // Formatierung, nur zwei Nachkommastellen
+        DecimalFormat f = new DecimalFormat("#0.00");
         
         // Richtiges Pane anzeigen und mit Eigenschaften füllen
         if (s == null) {
@@ -298,9 +303,9 @@ public class AppController implements Initializable {
             
             // Kreiseigenschaften befüllen
             circleName.setText(c.getName()); 
-            circleRadius.setText(""+c.getRadius());
-            circleX.setText(""+c.getCenter().getX());
-            circleY.setText(""+c.getCenter().getY());
+            circleRadius.setText(f.format(c.getRadius()));
+            circleX.setText(f.format(c.getCenter().getX()));
+            circleY.setText(f.format(c.getCenter().getY()));
             circleRotationSlider.valueProperty().removeListener(this.changeListener);
             circleRotationSlider.setValue(0);
             circleRotationSlider.valueProperty().addListener(this.changeListener);
@@ -320,10 +325,10 @@ public class AppController implements Initializable {
             
             // Rechteckeigenschaften befüllen
             rectangleName.setText(r.getName());
-            rectangleHeight.setText(""+r.getHeight());
-            rectangleWidth.setText(""+r.getWidth());
-            rectangleX.setText(""+r.getCenter().getX());
-            rectangleY.setText(""+r.getCenter().getY());
+            rectangleHeight.setText(f.format(r.getHeight()));
+            rectangleWidth.setText(f.format(r.getWidth()));
+            rectangleX.setText(f.format(r.getCenter().getX()));
+            rectangleY.setText(f.format(r.getCenter().getY()));
             rectangleRotationSlider.valueProperty().removeListener(this.changeListener);
             rectangleRotationSlider.setValue(0);
             rectangleRotationSlider.valueProperty().addListener(this.changeListener);
@@ -343,9 +348,9 @@ public class AppController implements Initializable {
             
             // Dreieckeigenschaften befüllen
             triangleName.setText(t.getName());
-            triangleSideLength.setText(""+t.getSideLength());
-            triangleX.setText(""+t.getCenter().getX());
-            triangleY.setText(""+t.getCenter().getY());
+            triangleSideLength.setText(f.format(t.getSideLength()));
+            triangleX.setText(f.format(t.getCenter().getX()));
+            triangleY.setText(f.format(t.getCenter().getY()));
             triangleRotationSlider.valueProperty().removeListener(this.changeListener);
             triangleRotationSlider.setValue(0);
             triangleRotationSlider.valueProperty().addListener(this.changeListener);
@@ -365,9 +370,9 @@ public class AppController implements Initializable {
             
             // Linieneigenschaften befüllen
             lineName.setText(l.getName());
-            lineLength.setText(""+l.getLength());
-            lineX.setText(""+l.getCenter().getX());
-            lineY.setText(""+l.getCenter().getY());
+            lineLength.setText(f.format(l.getLength()));
+            lineX.setText(f.format(l.getCenter().getX()));
+            lineY.setText(f.format(l.getCenter().getY()));
             lineRotationSlider.valueProperty().removeListener(this.changeListener);
             lineRotationSlider.setValue(0);
             lineRotationSlider.valueProperty().addListener(this.changeListener);
@@ -388,8 +393,8 @@ public class AppController implements Initializable {
             
             // Polygoneigenschaften befüllen
             polygonName.setText(p.getName());
-            polygonX.setText(""+p.getCenter().getX());
-            polygonY.setText(""+p.getCenter().getY());
+            polygonX.setText(f.format(p.getCenter().getX()));
+            polygonY.setText(f.format(p.getCenter().getY()));
             polygonRotationSlider.valueProperty().removeListener(this.changeListener);
             polygonRotationSlider.setValue(0);
             polygonRotationSlider.valueProperty().addListener(this.changeListener);
@@ -908,14 +913,21 @@ public class AppController implements Initializable {
         if (translationToX.getText().length() == 0) translationToX.setText(""+0);
         if (translationToY.getText().length() == 0) translationToY.setText(""+0);
         if (rotateAt.getText().length() == 0) rotateAt.setText(""+0);
-        if (scalePercent.getText().length() == 0) scalePercent.setText(""+100);
+        if (scalePercent.getText().length() == 0) scalePercent.setText(""+1);
         
         // falls ein Buchstabe oder nichts eingegeben wird wird der eingegebene Wert als 0 interpretiert
         if (!translationToX.getText().matches("^-?\\d+([.]{1}\\d+)?")) translationToX.setStyle("-fx-background-color: red");
-        else if (!translationToY.getText().matches("^-?\\d+([.]{1}\\d+)?")) translationToY.setStyle("-fx-background-color: red");
-        else if (!rotateAt.getText().matches("^-?\\d+([.]{1}\\d+)?")) rotateAt.setStyle("-fx-background-color: red");
-        else if (!scalePercent.getText().matches("^-?\\d+([.]{1}\\d+)?")) scalePercent.setStyle("-fx-background-color: red");
-        else {
+        else translationToX.setStyle("-fx-background-color: white");
+        if (!translationToY.getText().matches("^-?\\d+([.]{1}\\d+)?")) translationToY.setStyle("-fx-background-color: red");
+        else translationToY.setStyle("-fx-background-color: white");
+        if (!rotateAt.getText().matches("^-?\\d+([.]{1}\\d+)?")) rotateAt.setStyle("-fx-background-color: red");
+        else rotateAt.setStyle("-fx-background-color: white");
+        if (!scalePercent.getText().matches("^-?\\d+([.]{1}\\d+)?")) scalePercent.setStyle("-fx-background-color: red");
+        else scalePercent.setStyle("-fx-background-color: white");
+        
+        if (translationToX.getText().matches("^-?\\d+([.]{1}\\d+)?") && translationToY.getText().matches("^-?\\d+([.]{1}\\d+)?")
+            && rotateAt.getText().matches("^-?\\d+([.]{1}\\d+)?") && scalePercent.getText().matches("^-?\\d+([.]{1}\\d+)?")) 
+        {
         
             //Transformieren-Darstellung
             translation0_2.setText(translationToX.getText()); // das was ins label geschrieben wurde kommt in die angezeigte Matrix
@@ -928,8 +940,8 @@ public class AppController implements Initializable {
             rotation1_1.setText("cos ("+rotateAt.getText()+")");
 
             // Skalieren-Darstellung
-            scale0_0.setText(""+Double.parseDouble(scalePercent.getText())/100);
-            scale1_1.setText(""+Double.parseDouble(scalePercent.getText())/100);
+            scale0_0.setText(""+Double.parseDouble(scalePercent.getText()));
+            scale1_1.setText(""+Double.parseDouble(scalePercent.getText()));
 
             // eingegebene Punkte in eine Matrix setzen
             Matrix transformationMatrix = Transformate.getTranslationMatrix(Double.parseDouble(translation0_2.getText()),Double.parseDouble(translation1_2.getText()));
@@ -942,12 +954,13 @@ public class AppController implements Initializable {
             totalMatrix = Transformate.multiplyMatrices(totalMatrix, scaleMatrix);
 
             // Gesamtmatrix in der TransformationBar anzeigen
-            total0_0.setText(""+totalMatrix.mat[0][0]);
-            total0_1.setText(""+totalMatrix.mat[0][1]);
-            total0_2.setText(""+totalMatrix.mat[0][2]);
-            total1_0.setText(""+totalMatrix.mat[1][0]);
-            total1_1.setText(""+totalMatrix.mat[1][1]);
-            total1_2.setText(""+totalMatrix.mat[1][2]);
+            DecimalFormat f = new DecimalFormat("#0.00");      ///lässt nur zwei NaNachkommerstellen anzeigenchkommerstellen anzeigen
+            total0_0.setText(f.format(totalMatrix.mat[0][0]));
+            total0_1.setText(f.format(totalMatrix.mat[0][1]));
+            total0_2.setText(f.format(totalMatrix.mat[0][2]));
+            total1_0.setText(f.format(totalMatrix.mat[1][0]));
+            total1_1.setText(f.format(totalMatrix.mat[1][1]));
+            total1_2.setText(f.format(totalMatrix.mat[1][2]));
 
             // Objekt transformieren
             GraphicObject s = list.getSelectedItem();
@@ -955,12 +968,6 @@ public class AppController implements Initializable {
 
             // Eigenschaften-Pane aktualisieren
             this.setInputFieldValues(s);
-            
-            // Ggf. rot markierte Felder wieder entfärben
-            translationToX.setStyle("-fx-background-color: white");
-            translationToY.setStyle("-fx-background-color: white");
-            rotateAt.setStyle("-fx-background-color: white");
-            scalePercent.setStyle("-fx-background-color: white");
             
         }
 

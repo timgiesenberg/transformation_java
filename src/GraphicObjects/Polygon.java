@@ -79,8 +79,16 @@ public class Polygon extends GraphicObject {
             this.getNumberOfPoints(), 
             this.getCenter().getX(), this.getCenter().getY()
         );
-        p.setPoints2D(this.getPoints2D());
-        p.setCenter(this.getCenter());
+        
+        Point2D[] points2D = this.getPoints2D();
+        Point2D[] points2Dcopy = new Point2D[points2D.length];
+        for (int i = 0; i < points2D.length; i++) {
+            
+            points2Dcopy[i] = new Point2D(points2D[i].getX(), points2D[i].getY());
+            
+        }
+        p.setPoints2D(points2Dcopy);
+        
         // ggf. verschieben, zur Deutlichkeit
         p.transform(Transformate.getTranslationMatrix(50, 50));
         // Kopie zurückgeben

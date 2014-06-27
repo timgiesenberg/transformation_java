@@ -95,8 +95,15 @@ public class Triangle extends GraphicObject {
         
         // Objekt kopieren
         Triangle t = new Triangle(this.getName() + "_copy", this.getFill(), this.getCenter().getX(), this.getCenter().getY(), this.getSideLength());
-        t.setPoints2D(this.getPoints2D());
-        t.setCenter(this.getCenter());
+        Point2D[] points2D = this.getPoints2D();
+        Point2D[] points2Dcopy = new Point2D[points2D.length];
+        for (int i = 0; i < points2D.length; i++) {
+            
+            points2Dcopy[i] = new Point2D(points2D[i].getX(), points2D[i].getY());
+            
+        }
+        t.setPoints2D(points2Dcopy);
+        
         // ggf. verschieben, zur Deutlichkeit
         t.transform(Transformate.getTranslationMatrix(50, 50));
         // Kopie zurückgeben

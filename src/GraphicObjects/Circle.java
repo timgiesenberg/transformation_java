@@ -95,8 +95,6 @@ public class Circle extends GraphicObject {
         
         // Objekt kopieren
         Circle c = new Circle(this.getName() + "_copy", this.getFill(), this.getCenter().getX(), this.getCenter().getY(), this.getRadius());
-        c.setPoints2D(this.getPoints2D());
-        c.setCenter(this.getCenter());
         // ggf. verschieben, zur Deutlichkeit
         c.transform(Transformate.getTranslationMatrix(50, 50));
         // Kopie zurückgeben
@@ -141,10 +139,10 @@ public class Circle extends GraphicObject {
      */
     public void setRadius(double r) {
         
-        double scalePercent = (r / this.getRadius()) * 100;
+        double scaleFactor = r / this.getRadius();
         
         Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
-        Matrix scaleMatrix = Transformate.getScaleMatrix(scalePercent);
+        Matrix scaleMatrix = Transformate.getScaleMatrix(scaleFactor);
         Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
         
         Matrix total = Transformate.multiplyMatrices(scaleMatrix, translationToOriginMatrix);

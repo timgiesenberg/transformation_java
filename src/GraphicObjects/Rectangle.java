@@ -119,8 +119,16 @@ public class Rectangle extends GraphicObject {
             points2D[0].getX(), points2D[0].getY(), 
             this.getWidth(), this.getHeight()
         );
-        r.setPoints2D(points2D);
-        r.setCenter(this.getCenter());
+        
+        Point2D[] points2Dcopy = new Point2D[points2D.length];
+        for (int i = 0; i < points2D.length; i++) {
+            
+            points2Dcopy[i] = new Point2D(points2D[i].getX(), points2D[i].getY());
+            
+        }
+        r.setPoints2D(points2Dcopy);
+        r.setCenter(new Point2D(this.getCenter().getX(), this.getCenter().getY()));
+        
         // ggf. verschieben, zur Deutlichkeit
         r.transform(Transformate.getTranslationMatrix(50, 50));
         // Kopie zurückgeben
@@ -169,18 +177,20 @@ public class Rectangle extends GraphicObject {
         Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
         this.transform(translationToOriginMatrix);
         
-        double scalePercent = (h / this.getHeight()) * 100;
-        double rotated = Math.toDegrees(Math.acos(
+        double scaleFactor = h / this.getHeight();
+        Double rotated = Math.toDegrees(Math.acos(
             (this.getPoints2D()[1].getX() 
             + this.getPoints2D()[2].getX()) / this.getWidth()
         ));
+        if (rotated.isNaN()) rotated = 180.0;
+        if (this.getPoints2D()[1].getX() > this.getPoints2D()[2].getX()) rotated = -1 * rotated;
         
-        Matrix rotateMatrix = Transformate.getRotateMatrix(rotated);
-        Matrix scaleMatrix = Transformate.getScaleYMatrix(scalePercent);
         Matrix rotateBackwardsMatrix = Transformate.getRotateMatrix(-rotated);
+        Matrix scaleMatrix = Transformate.getScaleYMatrix(scaleFactor);
+        Matrix rotateMatrix = Transformate.getRotateMatrix(rotated);
         
-        Matrix total = Transformate.multiplyMatrices(scaleMatrix, rotateMatrix);
-        total = Transformate.multiplyMatrices(rotateBackwardsMatrix, total);
+        Matrix total = Transformate.multiplyMatrices(scaleMatrix, rotateBackwardsMatrix);
+        total = Transformate.multiplyMatrices(rotateMatrix, total);
         total = Transformate.multiplyMatrices(translationMatrix, total);
         
         this.transform(total);
@@ -198,18 +208,20 @@ public class Rectangle extends GraphicObject {
         Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
         this.transform(translationToOriginMatrix);
         
-        double scalePercent = (w / this.getWidth()) * 100;
-        double rotated = Math.toDegrees(Math.acos(
+        double scaleFactor = w / this.getWidth();
+        Double rotated = Math.toDegrees(Math.acos(
             (this.getPoints2D()[1].getX() 
             + this.getPoints2D()[2].getX()) / this.getWidth()
         ));
+        if (rotated.isNaN()) rotated = 180.0;
+        if (this.getPoints2D()[1].getX() > this.getPoints2D()[2].getX()) rotated = -1 * rotated;
         
-        Matrix rotateMatrix = Transformate.getRotateMatrix(rotated);
-        Matrix scaleMatrix = Transformate.getScaleXMatrix(scalePercent);
         Matrix rotateBackwardsMatrix = Transformate.getRotateMatrix(-rotated);
+        Matrix scaleMatrix = Transformate.getScaleXMatrix(scaleFactor);
+        Matrix rotateMatrix = Transformate.getRotateMatrix(rotated);
         
-        Matrix total = Transformate.multiplyMatrices(scaleMatrix, rotateMatrix);
-        total = Transformate.multiplyMatrices(rotateBackwardsMatrix, total);
+        Matrix total = Transformate.multiplyMatrices(scaleMatrix, rotateBackwardsMatrix);
+        total = Transformate.multiplyMatrices(rotateMatrix, total);
         total = Transformate.multiplyMatrices(translationMatrix, total);
         
         this.transform(total);

@@ -152,10 +152,10 @@ public class Line extends GraphicObject {
      */
     public void setLength(double l) {
         
-        double scalePercent = (l / this.getLength()) * 100;
+        double scaleFactor = l / this.getLength();
         
         Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
-        Matrix scaleMatrix = Transformate.getScaleMatrix(scalePercent);
+        Matrix scaleMatrix = Transformate.getScaleMatrix(scaleFactor);
         Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
         
         Matrix total = Transformate.multiplyMatrices(scaleMatrix, translationToOriginMatrix);

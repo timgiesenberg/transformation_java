@@ -112,13 +112,13 @@ public final class Transformate {
      * (sx 0 0)
      * (0 sy 0)
      * (0  0 1) 
-     * @param percent
+     * @param factor
      * @return 
      */
-    public static Matrix getScaleMatrix(double percent){
+    public static Matrix getScaleMatrix(double factor){
         Matrix m = new Matrix();
-        m.mat[0][0] = percent/100;
-        m.mat[1][1] = percent/100;
+        m.mat[0][0] = factor;
+        m.mat[1][1] = factor;
         m.mat[2][2] = 1;
        
         //m.printMatrix("scale factor inserted");
@@ -129,12 +129,12 @@ public final class Transformate {
      * (sx 0 0)
      * (0  1 0)
      * (0  0 1) 
-     * @param percent
+     * @param factor
      * @return 
      */
-    public static Matrix getScaleXMatrix(double percent){
+    public static Matrix getScaleXMatrix(double factor){
         Matrix m = new Matrix();
-        m.mat[0][0] = percent/100;
+        m.mat[0][0] = factor;
         m.mat[1][1] = 1;
         m.mat[2][2] = 1;
        
@@ -146,13 +146,13 @@ public final class Transformate {
      * (1  0 0)
      * (0 sy 0)
      * (0  0 1) 
-     * @param percent
+     * @param factor
      * @return 
      */
-    public static Matrix getScaleYMatrix(double percent){
+    public static Matrix getScaleYMatrix(double factor){
         Matrix m = new Matrix();
         m.mat[0][0] = 1;
-        m.mat[1][1] = percent/100;
+        m.mat[1][1] = factor;
         m.mat[2][2] = 1;
        
         //m.printMatrix("scale factor inserted");
