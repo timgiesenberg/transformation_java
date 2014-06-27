@@ -7,24 +7,11 @@
 package ListView;
 
 import GraphicObjects.GraphicObject;
-import GraphicObjects.Line;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
-import javafx.scene.paint.Color;
 import javafx.util.Callback;
-import javax.swing.event.ChangeListener;
 
 /**
  * ListController handles all interaction with the ListView in the application.
@@ -91,7 +78,6 @@ public class ListController {
      * @return 
      */
     public GraphicObject getItem(int id){
-        
         return items.get(id);
     }
     
@@ -124,8 +110,14 @@ public class ListController {
      */
     public GraphicObject getSelectedItem(){
         GraphicObject selected = objectListView.getSelectionModel().getSelectedItem();
-        //sort(selected);
         return selected;
+    }
+    
+    /**
+     * clears selection from ListView
+     */
+    public void clearSelection(){
+        //objectListView.getSelectionModel().clearSelection();
     }
     
     /**
@@ -134,7 +126,6 @@ public class ListController {
      * @param g refernce of selected graphic object
      */
     public void setFocus(GraphicObject g){
-        //sort(g);
         objectListView.getSelectionModel().select(g);
     }
     
