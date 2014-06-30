@@ -67,6 +67,7 @@ public class GraphicClickEventHandler implements javafx.event.EventHandler<Mouse
         graphicObject.toFront();
         
         appController.setInputFieldValues(graphicObject);
+        appController.setObjectIsClicked(true);
         
     }
     

@@ -117,7 +117,7 @@ public class ListController {
      * clears selection from ListView
      */
     public void clearSelection(){
-        //objectListView.getSelectionModel().clearSelection();
+        objectListView.getSelectionModel().clearSelection();
     }
     
     /**

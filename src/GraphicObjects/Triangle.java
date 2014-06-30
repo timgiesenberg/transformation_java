@@ -148,10 +148,10 @@ public class Triangle extends GraphicObject {
      */
     public void setSideLength(double s) {
         
-        double scalePercent = (s / this.getSideLength()) * 100;
+        double scaleFactor = s / this.getSideLength();
         
         Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
-        Matrix scaleMatrix = Transformate.getScaleMatrix(scalePercent);
+        Matrix scaleMatrix = Transformate.getScaleMatrix(scaleFactor);
         Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
         
         Matrix total = Transformate.multiplyMatrices(scaleMatrix, translationToOriginMatrix);

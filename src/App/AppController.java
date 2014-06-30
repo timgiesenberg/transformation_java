@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ResourceBundle;
 import javafx.animation.StrokeTransition;
 import javafx.beans.value.ChangeListener;
@@ -98,6 +99,12 @@ public class AppController implements Initializable {
         return this.aktuelleST;
     }
     
+    private boolean objectIsClicked = false;
+    
+    public void setObjectIsClicked(boolean b) {
+        this.objectIsClicked = b;
+    }
+    
     /**
      * TODO click on white space should deselect focused model
      * TODO deselect current Object in Canvas, remove transition
@@ -107,7 +114,26 @@ public class AppController implements Initializable {
      */
     @FXML
     public void handleCanvasClick(Event event){
-        list.clearSelection();
+        
+        if (!objectIsClicked) {
+            list.clearSelection();
+            // Konturrand bei allen anderen Objekten entfernen
+            if (this.aktuelleST != null) this.aktuelleST.stop();
+            for (Node n : canvas.getChildren()) {
+                if (n instanceof GraphicObject) {
+                    GraphicObject g = (GraphicObject) n;
+                    if (g instanceof Line) g.setStroke(g.getFill());
+                    else g.setStroke(Color.TRANSPARENT);
+                }
+            }
+            // Eigenschaften-Pane zurücksetzen
+            this.setInputFieldValues(null);
+            // Disable buttons
+            this.buttonCopyItem.setDisable(true);
+            this.buttonDeleteItem.setDisable(true);
+        }
+        else this.objectIsClicked = false;
+        
     }
     
     /**
@@ -249,6 +275,11 @@ public class AppController implements Initializable {
         }
     };
     
+    private javafx.scene.shape.Line lotHorizontal1 = null;
+    private javafx.scene.shape.Line lotHorizontal2 = null;
+    private javafx.scene.shape.Line lotVertikal1 = null;
+    private javafx.scene.shape.Line lotVertikal2 = null;
+    
     /**
      * sets Values of Input Fields
      * @param s 
@@ -258,14 +289,26 @@ public class AppController implements Initializable {
         // Vorherige Linealmarkierungen entfernen
         this.linealHorizontal.getChildren().clear();
         this.linealVertikal.getChildren().clear();
+        if (lotVertikal1 != null) this.canvas.getChildren().remove(lotVertikal1);
+        if (lotVertikal2 != null) this.canvas.getChildren().remove(lotVertikal2);
+        if (lotHorizontal1 != null) this.canvas.getChildren().remove(lotHorizontal1);
+        if (lotHorizontal2 != null) this.canvas.getChildren().remove(lotHorizontal2);
+        lotVertikal1 = null;
+        lotVertikal2 = null;
+        lotHorizontal1 = null;
+        lotHorizontal2 = null;
         
-        // Linealmarkierungen erstellen
         if (s != null) {
             
-            double x = 20 + s.getCenter().getX();
+            // enable buttons
+            this.buttonCopyItem.setDisable(false);
+            this.buttonDeleteItem.setDisable(false);
+            
+            // Linealmarkierungen erstellen
+            double x = s.getCenter().getX();
             double y = s.getCenter().getY();
             
-            Line l1 = new Line("linie", Color.RED, x, 0, x, 20);
+            Line l1 = new Line("linie", Color.RED, x + 20, 0, x + 20, 20);
             l1.setStrokeWidth(2);
             Line l2 = new Line("linie", Color.RED, 0, y, 20, y);
             l2.setStrokeWidth(2);
@@ -273,23 +316,61 @@ public class AppController implements Initializable {
             linealHorizontal.getChildren().add(l1);
             linealVertikal.getChildren().add(l2);
             
-            // enable buttons
-            this.buttonCopyItem.setDisable(false);
-            this.buttonDeleteItem.setDisable(false);
-            
-            // TODO linie durchziehen
+            // linie durchziehen
+            lotVertikal1 = new javafx.scene.shape.Line();
+            lotVertikal1.setStartX(x);
+            lotVertikal1.setStartY(0);
+            lotVertikal1.setEndX(x);
+            lotVertikal1.setEndY(y);
+            lotVertikal1.setStroke(Color.BLACK);
+            lotVertikal1.setStrokeWidth(0.3);
+            lotVertikal1.getStrokeDashArray().addAll(10.0, 10.0);
+            lotVertikal2 = new javafx.scene.shape.Line();
+            lotVertikal2.setStartX(x);
+            lotVertikal2.setStartY(0);
+            lotVertikal2.setEndX(x);
+            lotVertikal2.setEndY(y);
+            lotVertikal2.setStroke(Color.WHITE);
+            lotVertikal2.setStrokeWidth(0.3);
+            lotVertikal2.getStrokeDashArray().addAll(10.0, 10.0);
+            lotVertikal2.setStrokeDashOffset(10.0);
+            lotHorizontal1 = new javafx.scene.shape.Line();
+            lotHorizontal1.setStartX(0);
+            lotHorizontal1.setStartY(y);
+            lotHorizontal1.setEndX(x);
+            lotHorizontal1.setEndY(y);
+            lotHorizontal1.setStroke(Color.BLACK);
+            lotHorizontal1.setStrokeWidth(0.3);
+            lotHorizontal1.getStrokeDashArray().addAll(10.0, 10.0);
+            lotHorizontal2 = new javafx.scene.shape.Line();
+            lotHorizontal2.setStartX(0);
+            lotHorizontal2.setStartY(y);
+            lotHorizontal2.setEndX(x);
+            lotHorizontal2.setEndY(y);
+            lotHorizontal2.setStroke(Color.WHITE);
+            lotHorizontal2.setStrokeWidth(0.3);
+            lotHorizontal2.getStrokeDashArray().addAll(10.0, 10.0);
+            lotHorizontal2.setStrokeDashOffset(10.0);
+            this.canvas.getChildren().addAll(lotVertikal1, lotVertikal2, lotHorizontal1, lotHorizontal2);
             
         }
         
         // Alle Panes unsichtbar machen
         for (Node n : this.propertyPane.getChildren()) {
+            
             if (n instanceof Pane) {
+                
                 Pane p = (Pane) n;
                 p.setVisible(false);
+                
             }
+            
         }
+        
         // Formatierung, nur zwei Nachkommastellen
-        DecimalFormat f = new DecimalFormat("#0.00");
+        DecimalFormatSymbols fs = new DecimalFormatSymbols();
+        fs.setDecimalSeparator('.');
+        DecimalFormat f = new DecimalFormat("#0.00", fs);
         
         // Richtiges Pane anzeigen und mit Eigenschaften füllen
         if (s == null) {
@@ -430,7 +511,7 @@ public class AppController implements Initializable {
         else if (s instanceof Triangle) {
             s.setName(triangleName.getText());
         }
-        //TODO Liste muss direkt geupdatet werden
+        //Liste muss direkt geupdatet werden
         list.update();
     }
     
@@ -892,7 +973,7 @@ public class AppController implements Initializable {
     private Label scale1_1;
     
     @FXML
-    private TextField scalePercent;
+    private TextField scaleFactor;
     
     // GesamtMatrix-Anzeige
     @FXML
@@ -910,24 +991,25 @@ public class AppController implements Initializable {
     
     @FXML
     private void transformationOfAll(Event event){
-    
+        
+        // falls nichts eingegeben wurde, wird der eingegebene Wert als 0 interpretiert
         if (translationToX.getText().length() == 0) translationToX.setText(""+0);
         if (translationToY.getText().length() == 0) translationToY.setText(""+0);
         if (rotateAt.getText().length() == 0) rotateAt.setText(""+0);
-        if (scalePercent.getText().length() == 0) scalePercent.setText(""+1);
+        if (scaleFactor.getText().length() == 0) scaleFactor.setText(""+1);
         
-        // falls ein Buchstabe oder nichts eingegeben wird wird der eingegebene Wert als 0 interpretiert
+        // falls etwas falsches eingegeben wurde, Fehler
         if (!translationToX.getText().matches("^-?\\d+([.]{1}\\d+)?")) translationToX.setStyle("-fx-background-color: red");
         else translationToX.setStyle("-fx-background-color: white");
         if (!translationToY.getText().matches("^-?\\d+([.]{1}\\d+)?")) translationToY.setStyle("-fx-background-color: red");
         else translationToY.setStyle("-fx-background-color: white");
         if (!rotateAt.getText().matches("^-?\\d+([.]{1}\\d+)?")) rotateAt.setStyle("-fx-background-color: red");
         else rotateAt.setStyle("-fx-background-color: white");
-        if (!scalePercent.getText().matches("^-?\\d+([.]{1}\\d+)?")) scalePercent.setStyle("-fx-background-color: red");
-        else scalePercent.setStyle("-fx-background-color: white");
+        if (!scaleFactor.getText().matches("^-?\\d+([.]{1}\\d+)?")) scaleFactor.setStyle("-fx-background-color: red");
+        else scaleFactor.setStyle("-fx-background-color: white");
         
         if (translationToX.getText().matches("^-?\\d+([.]{1}\\d+)?") && translationToY.getText().matches("^-?\\d+([.]{1}\\d+)?")
-            && rotateAt.getText().matches("^-?\\d+([.]{1}\\d+)?") && scalePercent.getText().matches("^-?\\d+([.]{1}\\d+)?")) 
+            && rotateAt.getText().matches("^-?\\d+([.]{1}\\d+)?") && scaleFactor.getText().matches("^-?\\d+([.]{1}\\d+)?")) 
         {
         
             //Transformieren-Darstellung
@@ -941,13 +1023,13 @@ public class AppController implements Initializable {
             rotation1_1.setText("cos ("+rotateAt.getText()+")");
 
             // Skalieren-Darstellung
-            scale0_0.setText(""+Double.parseDouble(scalePercent.getText()));
-            scale1_1.setText(""+Double.parseDouble(scalePercent.getText()));
+            scale0_0.setText(""+Double.parseDouble(scaleFactor.getText()));
+            scale1_1.setText(""+Double.parseDouble(scaleFactor.getText()));
 
             // eingegebene Punkte in eine Matrix setzen
             Matrix transformationMatrix = Transformate.getTranslationMatrix(Double.parseDouble(translation0_2.getText()),Double.parseDouble(translation1_2.getText()));
             Matrix rotationMatrix = Transformate.getRotateMatrix(Double.parseDouble(rotateAt.getText()));
-            Matrix scaleMatrix = Transformate.getScaleMatrix(Double.parseDouble(scalePercent.getText()));
+            Matrix scaleMatrix = Transformate.getScaleMatrix(Double.parseDouble(scaleFactor.getText()));
 
             // eine Gesamtmatrix erstellen
             Matrix totalMatrix;
@@ -955,7 +1037,9 @@ public class AppController implements Initializable {
             totalMatrix = Transformate.multiplyMatrices(totalMatrix, scaleMatrix);
 
             // Gesamtmatrix in der TransformationBar anzeigen
-            DecimalFormat f = new DecimalFormat("#0.00");      ///lässt nur zwei NaNachkommerstellen anzeigenchkommerstellen anzeigen
+            DecimalFormatSymbols fs = new DecimalFormatSymbols();
+            fs.setDecimalSeparator('.');
+            DecimalFormat f = new DecimalFormat("#0.00", fs); // lässt nur zwei Nachkommastellen anzeigen
             total0_0.setText(f.format(totalMatrix.mat[0][0]));
             total0_1.setText(f.format(totalMatrix.mat[0][1]));
             total0_2.setText(f.format(totalMatrix.mat[0][2]));
@@ -980,7 +1064,7 @@ public class AppController implements Initializable {
         translationToX.setText("");
         translationToY.setText("");
         rotateAt.setText("");
-        scalePercent.setText("");
+        scaleFactor.setText("");
         
         // Matrix-Ansicht zurücksetzen
         translation0_2.setText("xT"); // das was ins label geschrieben wurde kommt in die angezeigte Matrix
