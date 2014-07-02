@@ -8,8 +8,11 @@ import javafx.scene.control.ListView;
 import javafx.util.Callback;
 
 /**
- * ListController handles all interaction with the ListView in the application.
+ * Der ListController führt alle Objekte in einer Liste, stellt sie im ListView dar
+ * und stellt funktionen zum einfügen, löschen, ausgabe und Update der Liste
+ * @see 
  * @author Das TransPlosion-Team
+ * @version 1.0
  */
 public class ListController {
     
@@ -17,11 +20,13 @@ public class ListController {
     
     private ListView<GraphicObject> objectListView = null;
     
-    // keeps instance of own class for use of singleton pattern
+    /**
+     * Umsetzung Singleton pattern, statische Eigenschafft
+     */
     private static ListController instance = null;
     
     /**
-     * private Constructor to avoid instantiation
+     * privater Konstruktor, wird nur aufgerufen wenn die instance = null
      */
     private ListController(ListView lv){
         
@@ -47,10 +52,10 @@ public class ListController {
     }
     
     /**
-     * returns an instance of this class, deciding wether an instance has to be
-     * created or not.
-     * @param lv - ListView to generate a Listcontroller
-     * @return 
+     * Gibt eine Instanz dieser Klasse wieder, erzeugt eine Instanz sofern keine
+     * erzeugt wurde.
+     * @param lv ListView der Oberfläche
+     * @return Instanz der Klasse ListController
      */
     public static ListController getInstance(ListView lv) {
         
@@ -69,8 +74,8 @@ public class ListController {
     }
     
     /**
-     * return all Elements in List in a String array
-     * @return 
+     * Gibt die aktuelle Liste zurück
+     * @return Liste als ObservableList
      */
     public ObservableList<GraphicObject> getItems(){
         
@@ -80,9 +85,9 @@ public class ListController {
     }
     
     /**
-     * returns a Graphicobject by its Id
-     * @param id ID of desired graphic object
-     * @return 
+     * Gibt ein Grafikobjekt bestimmtes Grafikobjekt zurück
+     * @param id ID des gewünschten Objekts
+     * @return Das gewählte Grafikobjekt
      */
     public GraphicObject getItem(int id){
         
@@ -91,8 +96,8 @@ public class ListController {
     }
     
     /**
-     * insert a Graphic Object into the List
-     * @param g reference of the graphic object that will be inserted into list
+     * Fügt ein Grafikobjekt in die Liste ein.
+     * @param g Das neue hinzuzufügende Grafikobjekt
      */
     public void addItem(GraphicObject g){
         
@@ -103,8 +108,8 @@ public class ListController {
     }
     
     /**
-     * delete a graphic object from List
-     * @param g graphic object that will be deleted
+     * Löscht das gewählte Grafikobjekt aus der Liste.
+     * @param g Grafikobjekt das gelöscht werden soll.
      */
     public void deleteItem(GraphicObject g){
         
@@ -112,9 +117,9 @@ public class ListController {
         
     }
     
-    /**
-     * 
-     */
+    /*
+    * Löscht die gesamte Liste
+    */
     public void deleteAllItems() {
         
         items.clear();
@@ -122,8 +127,8 @@ public class ListController {
     }
     
     /**
-     * returns the reference of the graphic object that is selected in ListView
-     * @return 
+     * Gibt die Referenz des im ListView gewählten Objekts zurück.
+     * @return ausgewähltes Grafikobjekt 
      */
     public GraphicObject getSelectedItem(){
         
@@ -133,7 +138,7 @@ public class ListController {
     }
     
     /**
-     * clears selection from ListView
+     * Hebt die Auswahl im ListView wieder auf.
      */
     public void clearSelection(){
         
@@ -142,9 +147,8 @@ public class ListController {
     }
     
     /**
-     * sets the selecteted Object in the ListView
-     * object is then highlighted
-     * @param g refernce of selected graphic object
+     * setzt den Fokus des ListViews auf das übergebene Objekt
+     * @param g referenz des ausgewählten Grafikobjekts
      */
     public void setFocus(GraphicObject g){
         
@@ -153,7 +157,7 @@ public class ListController {
     }
     
     /**
-     * 
+     * Lädt den ListView sofort wieder neu.
      */
     public void update(){
         
@@ -163,8 +167,10 @@ public class ListController {
     }
     
     /**
-     * 
-     * reorder the list and place selected item in first place
+     * sortiert die Grafikobjekte in der Liste neu. Ausgewähltes Objekt wird an
+     * erster Stelle gesetzt, alle anderen werden um eine Position nach hinten
+     * geschoben.
+     * @deprecated 
      * @param g 
      */
     public void sort(GraphicObject g){
@@ -185,7 +191,7 @@ public class ListController {
     }
     
     /**
-     * 
+     * Setzt eine selbst erzeugte Zelle.
      */
     private void generateCellFactory(){
         
