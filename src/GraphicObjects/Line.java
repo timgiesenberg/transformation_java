@@ -1,7 +1,5 @@
-// Package spezifizieren
 package GraphicObjects;
 
-// Benötigte Libraries importieren
 import Utils.Matrix;
 import Utils.Point2D;
 import Utils.Transformate;
@@ -11,7 +9,7 @@ import javafx.scene.paint.Paint;
 /**
  * Die Klasse Line repräsentiert eine Linie, also quasi ein Polygon mit zwei
  * Ecken.
- * @author Phil Köster // Dominique Berners
+ * @author Das TransPlosion-Team
  */
 public class Line extends GraphicObject {
     
@@ -59,7 +57,7 @@ public class Line extends GraphicObject {
     }
     
     /**
-     * Die Class-Methode generatedName() ermittelt den Namen der Linie.
+     * Ermittelt den Namen der Linie.
      * @param s Namens-String, der zu überprüfen ist
      * @return Den Parameter-String oder einen generierten Namen, wenn dieser
      * null ist
@@ -73,7 +71,7 @@ public class Line extends GraphicObject {
     }
     
     /**
-     * Die Methode getLength() liefert die Länge der Linie zurück.
+     * Liefert die Länge der Linie zurück.
      * @return Länge der Linie
      */
     public double getLength() {
@@ -93,13 +91,36 @@ public class Line extends GraphicObject {
     }
     
     /**
-     * Die Methode getCopyInstance() erstellt eine Kopie des angesprochenen
-     * Objekts und liefert es zurück.
+     * Transformiert eine Linie so, dass sie so lang wie der Wert des Parameters 
+     * ist.
+     * @param l Neuer Radius-Wert des Kreises
+     */
+    public void setLength(double l) {
+        
+        // Faktor errechnen
+        double scaleFactor = l / this.getLength();
+        
+        // Matrizen erstellen und miteinander multiplizieren
+        Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
+        Matrix scaleMatrix = Transformate.getScaleMatrix(scaleFactor);
+        Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
+        
+        Matrix total = Transformate.multiplyMatrices(scaleMatrix, translationToOriginMatrix);
+        total = Transformate.multiplyMatrices(translationMatrix, total);
+        
+        // Objekt transformieren
+        this.transform(total);
+        
+    }
+    
+    /**
+     * Erstellt eine Kopie des angesprochenen Objekts und liefert es zurück.
      * @return Kopie des angesprochenen Objekts
      */
     @Override
     public Line getCopyInstance() {
         
+        // Punkte holen
         Point2D[] points2D = this.getPoints2D();
         
         // Objekt kopieren
@@ -108,20 +129,23 @@ public class Line extends GraphicObject {
             points2D[0].getX(), points2D[0].getY(), 
             points2D[1].getX(), points2D[1].getY()
         );
-        // ggf. verschieben, zur Deutlichkeit
+        
+        // verschieben, zur Deutlichkeit
         l.transform(Transformate.getTranslationMatrix(50, 50));
+        
         // Kopie zurückgeben
         return l;
         
     }
     
     /**
-     * Die Methode toString() liefert eine Zusammenfassung des Objekts als String.
+     * Liefert eine Zusammenfassung des Objekts als String.
      * @return Zusammenfassung des Objekts als String
      */
     @Override
     public String toString() {
         
+        // Zusammenfassung zusammenbauen und zurückgeben
         final StringBuilder sb = new StringBuilder("Line[");
 
         sb.append("points=").append(this.getPoints());
@@ -136,32 +160,11 @@ public class Line extends GraphicObject {
     }
     
     /**
-     * Die Methode resetCounter() setzt den Objektzähler zur Benennung von
-     * Objekten zurück.
+     * Setzt den Objektzähler zur Benennung von Objekten zurück.
      */
     public static void resetCounter() {
         
         numberOfLines = 1;
-        
-    }
-    
-    /**
-     * Die Methode setLength() transformiert eine Linie so, dass sie so lang
-     * wie der Wert des Parameters ist.
-     * @param l Neuer Radius-Wert des Kreises
-     */
-    public void setLength(double l) {
-        
-        double scaleFactor = l / this.getLength();
-        
-        Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
-        Matrix scaleMatrix = Transformate.getScaleMatrix(scaleFactor);
-        Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
-        
-        Matrix total = Transformate.multiplyMatrices(scaleMatrix, translationToOriginMatrix);
-        total = Transformate.multiplyMatrices(translationMatrix, total);
-        
-        this.transform(total);
         
     }
     

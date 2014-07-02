@@ -1,5 +1,5 @@
 package IO;
-// Benötigte Libraries importieren
+
 import GraphicObjects.GraphicObject;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 /**
  * Ein Objekt der Klasse GraphicObjectWriter speichert die GraphicObjects in
  * einer Datei.
- * @author Phil Köster
+ * @author Das TransPlosion-Team
  */
 public class GraphicObjectWriter {
     
@@ -30,7 +30,7 @@ public class GraphicObjectWriter {
     }
     
     /**
-     * Die Methode write() schreibt eine Liste von GraphicObjects in die Datei.
+     * Schreibt eine Liste von GraphicObjects in die Datei.
      * @param items Liste der GraphicObjects, die gespeichert werden sollen
      */
     public void write(ObservableList<GraphicObject> items) {

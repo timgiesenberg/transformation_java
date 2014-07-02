@@ -1,7 +1,5 @@
-// Package spezifizieren
 package GraphicObjects;
 
-// Benötigte Libraries importieren
 import Utils.Matrix;
 import Utils.Point2D;
 import Utils.Transformate;
@@ -11,7 +9,7 @@ import javafx.scene.paint.Paint;
 /**
  * Die Klasse Triangle repräsentiert ein Rechteck, also ein Polygon mit drei
  * Ecken.
- * @author Phil Köster // Dominique Berners
+ * @author Das TransPlosion-Team
  */
 public class Triangle extends GraphicObject {
     
@@ -53,7 +51,7 @@ public class Triangle extends GraphicObject {
     }
     
     /**
-     * Die Class-Methode generatedName() ermittelt den Namen des Dreiecks.
+     * Ermittelt den Namen des Dreiecks.
      * @param s Namens-String, der zu überprüfen ist
      * @return Den Parameter-String oder einen generierten Namen, wenn dieser
      * null ist
@@ -67,18 +65,19 @@ public class Triangle extends GraphicObject {
     }
     
     /**
-     * Die Methode getSideLength() liefert die Seitenlänge des
-     * rechtwinkligen Dreiecks zurück.
+     * Liefert die Seitenlänge des gleichseitigen Dreiecks zurück.
      * @return Seitenlänge des Dreiecks
      */
     public double getSideLength() {
         
         // Punkte holen
         Point2D[] points = this.getPoints2D();
+        
         // Vektor dazwischen berechnen
         double[] vector = new double[2];
         vector[0] = points[1].getX() - points[0].getX();
         vector[1] = points[1].getY() - points[0].getY();
+        
         // Länge des Vektors ist der Radius
         double sideLength = Math.sqrt((vector[0]*vector[0])+(vector[1]*vector[1]));
         return sideLength;
@@ -86,8 +85,30 @@ public class Triangle extends GraphicObject {
     }
     
     /**
-     * Die Methode getCopyInstance() erstellt eine Kopie des angesprochenen
-     * Objekts und liefert es zurück.
+     * Transformiert ein gleichseitiges Dreieck so, dass die Seitenlänge des 
+     * Dreiecks dem Wert des Parameters entspricht.
+     * @param s Neuer Radius-Wert des Kreises
+     */
+    public void setSideLength(double s) {
+        
+        // Faktor errechnen
+        double scaleFactor = s / this.getSideLength();
+        
+        // Matrizen erstellen und miteinander multiplizieren
+        Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
+        Matrix scaleMatrix = Transformate.getScaleMatrix(scaleFactor);
+        Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
+        
+        Matrix total = Transformate.multiplyMatrices(scaleMatrix, translationToOriginMatrix);
+        total = Transformate.multiplyMatrices(translationMatrix, total);
+        
+        // Objekt transformieren
+        this.transform(total);
+        
+    }
+    
+    /**
+     * Erstellt eine Kopie des angesprochenen Objekts und liefert es zurück.
      * @return Kopie des angesprochenen Objekts
      */
     @Override
@@ -95,6 +116,8 @@ public class Triangle extends GraphicObject {
         
         // Objekt kopieren
         Triangle t = new Triangle(this.getName() + "_copy", this.getFill(), this.getCenter().getX(), this.getCenter().getY(), this.getSideLength());
+        
+        // Punkte holen, kopieren und setzen
         Point2D[] points2D = this.getPoints2D();
         Point2D[] points2Dcopy = new Point2D[points2D.length];
         for (int i = 0; i < points2D.length; i++) {
@@ -104,20 +127,22 @@ public class Triangle extends GraphicObject {
         }
         t.setPoints2D(points2Dcopy);
         
-        // ggf. verschieben, zur Deutlichkeit
+        // verschieben, zur Deutlichkeit
         t.transform(Transformate.getTranslationMatrix(50, 50));
+        
         // Kopie zurückgeben
         return t;
         
     }
     
     /**
-     * Die Methode toString() liefert eine Zusammenfassung des Objekts als String.
+     * Liefert eine Zusammenfassung des Objekts als String.
      * @return Zusammenfassung des Objekts als String
      */
     @Override
     public String toString() {
         
+        // Zusammenfassung zusammenbauen und zurückgeben
         final StringBuilder sb = new StringBuilder("Triangle[");
 
         sb.append("points=").append(this.getPoints());
@@ -132,32 +157,11 @@ public class Triangle extends GraphicObject {
     }
     
     /**
-     * Die Methode resetCounter() setzt den Objektzähler zur Benennung von
-     * Objekten zurück.
+     * Setzt den Objektzähler zur Benennung von Objekten zurück.
      */
     public static void resetCounter() {
         
         numberOfTriangles = 1;
-        
-    }
-    
-    /**
-     * Die Methode setSideLength() transformiert ein Dreieck so, dass die
-     * Seitenlänge des Dreiecks dem Wert des Parameters entspricht.
-     * @param s Neuer Radius-Wert des Kreises
-     */
-    public void setSideLength(double s) {
-        
-        double scaleFactor = s / this.getSideLength();
-        
-        Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
-        Matrix scaleMatrix = Transformate.getScaleMatrix(scaleFactor);
-        Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
-        
-        Matrix total = Transformate.multiplyMatrices(scaleMatrix, translationToOriginMatrix);
-        total = Transformate.multiplyMatrices(translationMatrix, total);
-        
-        this.transform(total);
         
     }
     

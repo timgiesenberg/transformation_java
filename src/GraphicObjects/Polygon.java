@@ -1,7 +1,5 @@
-// Package spezifizieren
 package GraphicObjects;
 
-// Benötigte Libraries importieren
 import Utils.Point2D;
 import Utils.Transformate;
 import javafx.scene.paint.Color;
@@ -10,7 +8,7 @@ import javafx.scene.paint.Paint;
 /**
  * Die Klasse Polygon repräsentiert ein Polygon, also einen Körper mit beliebig
  * vielen Ecken.
- * @author Phil Köster // Dominique Berners
+ * @author Das TransPlosion-Team
  */
 public class Polygon extends GraphicObject {
     
@@ -52,7 +50,7 @@ public class Polygon extends GraphicObject {
     }
     
     /**
-     * Die Class-Methode generatedName() ermittelt den Namen des Polygons.
+     * Ermittelt den Namen des Polygons.
      * @param s Namens-String, der zu überprüfen ist
      * @return Den Parameter-String oder einen generierten Namen, wenn dieser
      * null ist
@@ -66,8 +64,7 @@ public class Polygon extends GraphicObject {
     }
     
     /**
-     * Die Methode getCopyInstance() erstellt eine Kopie des angesprochenen
-     * Objekts und liefert es zurück.
+     * Erstellt eine Kopie des angesprochenen Objekts und liefert es zurück.
      * @return Kopie des angesprochenen Objekts
      */
     @Override
@@ -80,6 +77,7 @@ public class Polygon extends GraphicObject {
             this.getCenter().getX(), this.getCenter().getY()
         );
         
+        // Punkte holen, kopieren und setzen
         Point2D[] points2D = this.getPoints2D();
         Point2D[] points2Dcopy = new Point2D[points2D.length];
         for (int i = 0; i < points2D.length; i++) {
@@ -89,20 +87,22 @@ public class Polygon extends GraphicObject {
         }
         p.setPoints2D(points2Dcopy);
         
-        // ggf. verschieben, zur Deutlichkeit
+        // verschieben, zur Deutlichkeit
         p.transform(Transformate.getTranslationMatrix(50, 50));
+        
         // Kopie zurückgeben
         return p;
         
     }
     
     /**
-     * Die Methode toString() liefert eine Zusammenfassung des Objekts als String.
+     * Liefert eine Zusammenfassung des Objekts als String.
      * @return Zusammenfassung des Objekts als String
      */
     @Override
     public String toString() {
         
+        // Zusammenfassung zusammenbauen und zurückgeben
         final StringBuilder sb = new StringBuilder("Polygon[");
 
         sb.append("points=").append(this.getPoints());
@@ -117,8 +117,7 @@ public class Polygon extends GraphicObject {
     }
     
     /**
-     * Die Methode resetCounter() setzt den Objektzähler zur Benennung von
-     * Objekten zurück.
+     * Setzt den Objektzähler zur Benennung von Objekten zurück.
      */
     public static void resetCounter() {
         

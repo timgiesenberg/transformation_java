@@ -1,7 +1,5 @@
- // Package spezifizieren
 package GraphicObjects;
 
-// Benötigte Libraries importieren
 import Utils.Matrix;
 import Utils.Point2D;
 import Utils.Transformate;
@@ -11,7 +9,7 @@ import javafx.scene.paint.Paint;
 /**
  * Die Klasse Rectangle repräsentiert ein Rechteck, also ein Polygon mit vier
  * Ecken.
- * @author Phil Köster // Dominique Berners
+ * @author Das TransPlosion-Team
  */
 public class Rectangle extends GraphicObject {
     
@@ -53,7 +51,7 @@ public class Rectangle extends GraphicObject {
     }
     
     /**
-     * Die Class-Methode generatedName() ermittelt den Namen des Rechtecks.
+     * Ermittelt den Namen des Rechtecks.
      * @param s Namens-String, der zu überprüfen ist
      * @return Den Parameter-String oder einen generierten Namen, wenn dieser
      * null ist
@@ -67,7 +65,7 @@ public class Rectangle extends GraphicObject {
     }
     
     /**
-     * Die Methode getWidth() liefert die Breite des Rechtecks zurück.
+     * Liefert die Breite des Rechtecks zurück.
      * @return Breite des Rechtecks
      */
     public double getWidth() {
@@ -85,7 +83,45 @@ public class Rectangle extends GraphicObject {
     }
     
     /**
-     * Die Methode getHeight() liefert die Höhe des Rechtecks zurück.
+     * Transformiert ein Rechteck so, dass die Breite des Rechtecks dem Wert des
+     * Parameters entspricht.
+     * @param w Neue Breite des Rechtecks
+     */
+    public void setWidth(double w) {
+        
+        // Objekt zum Mittelpunkt verschieben (und am Ende wieder zurück verschieben)
+        Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
+        Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
+        this.transform(translationToOriginMatrix);
+        
+        // Faktor errechnen
+        double scaleFactor = w / this.getWidth();
+        
+        // Gradanzahl berechnen, um die das Objekt gedreht wurde (um zurückzudrehen)
+        Double rotated = Math.toDegrees(Math.acos(
+            (this.getPoints2D()[1].getX() 
+            + this.getPoints2D()[2].getX()) / this.getWidth()
+        ));
+        if (rotated.isNaN()) rotated = 180.0;
+        if (this.getPoints2D()[1].getX() > this.getPoints2D()[2].getX()) rotated = -1 * rotated;
+        
+        // Matrizen erstellen: Zurückdrehen, in X-Richtung strecken, wieder drehen
+        Matrix rotateBackwardsMatrix = Transformate.getRotateMatrix(-rotated);
+        Matrix scaleMatrix = Transformate.getScaleXMatrix(scaleFactor);
+        Matrix rotateMatrix = Transformate.getRotateMatrix(rotated);
+        
+        // Matrizen miteinander multiplizieren
+        Matrix total = Transformate.multiplyMatrices(scaleMatrix, rotateBackwardsMatrix);
+        total = Transformate.multiplyMatrices(rotateMatrix, total);
+        total = Transformate.multiplyMatrices(translationMatrix, total);
+        
+        // Objekt transformieren
+        this.transform(total);
+        
+    }
+    
+    /**
+     * Liefert die Höhe des Rechtecks zurück.
      * @return Höhe des Rechtecks
      */
     public double getHeight() {
@@ -104,13 +140,51 @@ public class Rectangle extends GraphicObject {
     }
 
     /**
-     * Die Methode getCopyInstance() erstellt eine Kopie des angesprochenen
-     * Objekts und liefert es zurück.
+     * Transformiert ein Rechteck so, dass die Höhe des Rechtecks dem Wert des
+     * Parameters entspricht.
+     * @param h Neue Höhe des Rechtecks
+     */
+    public void setHeight(double h) {
+        
+        // Objekt zum Mittelpunkt verschieben (und am Ende wieder zurück verschieben)
+        Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
+        Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
+        this.transform(translationToOriginMatrix);
+        
+        // Faktor errechnen
+        double scaleFactor = h / this.getHeight();
+        
+        // Gradanzahl berechnen, um die das Objekt gedreht wurde (um zurückzudrehen)
+        Double rotated = Math.toDegrees(Math.acos(
+            (this.getPoints2D()[1].getX() 
+            + this.getPoints2D()[2].getX()) / this.getWidth()
+        ));
+        if (rotated.isNaN()) rotated = 180.0;
+        if (this.getPoints2D()[1].getX() > this.getPoints2D()[2].getX()) rotated = -1 * rotated;
+        
+        // Matrizen erstellen: Zurückdrehen, in Y-Richtung strecken, wieder drehen
+        Matrix rotateBackwardsMatrix = Transformate.getRotateMatrix(-rotated);
+        Matrix scaleMatrix = Transformate.getScaleYMatrix(scaleFactor);
+        Matrix rotateMatrix = Transformate.getRotateMatrix(rotated);
+        
+        // Matrizen miteinander multiplizieren
+        Matrix total = Transformate.multiplyMatrices(scaleMatrix, rotateBackwardsMatrix);
+        total = Transformate.multiplyMatrices(rotateMatrix, total);
+        total = Transformate.multiplyMatrices(translationMatrix, total);
+        
+        // Objekt transformieren
+        this.transform(total);
+        
+    }
+    
+    /**
+     * Erstellt eine Kopie des angesprochenen Objekts und liefert es zurück.
      * @return Kopie des angesprochenen Objekts
      */
     @Override
     public Rectangle getCopyInstance() {
         
+        // Punkte holen
         Point2D[] points2D = this.getPoints2D();
         
         // Objekt kopieren
@@ -120,6 +194,7 @@ public class Rectangle extends GraphicObject {
             this.getWidth(), this.getHeight()
         );
         
+        // Punkte kopieren und setzen
         Point2D[] points2Dcopy = new Point2D[points2D.length];
         for (int i = 0; i < points2D.length; i++) {
             
@@ -129,20 +204,22 @@ public class Rectangle extends GraphicObject {
         r.setPoints2D(points2Dcopy);
         r.setCenter(new Point2D(this.getCenter().getX(), this.getCenter().getY()));
         
-        // ggf. verschieben, zur Deutlichkeit
+        // verschieben, zur Deutlichkeit
         r.transform(Transformate.getTranslationMatrix(50, 50));
+        
         // Kopie zurückgeben
         return r;
         
     }
     
     /**
-     * Die Methode toString() liefert eine Zusammenfassung des Objekts als String.
+     * Liefert eine Zusammenfassung des Objekts als String.
      * @return Zusammenfassung des Objekts als String
      */
     @Override
     public String toString() {
         
+        // Zusammenfassung zusammenbauen und zurückgeben
         final StringBuilder sb = new StringBuilder("Rectangle[");
 
         sb.append("points=").append(this.getPoints());
@@ -157,74 +234,11 @@ public class Rectangle extends GraphicObject {
     }
     
     /**
-     * Die Methode resetCounter() setzt den Objektzähler zur Benennung von
-     * Objekten zurück.
+     * Setzt den Objektzähler zur Benennung von Objekten zurück.
      */
     public static void resetCounter() {
         
         numberOfRectangles = 1;
-        
-    }
-    
-    /**
-     * Die Methode setHeight() transformiert ein Rechteck so, dass die Höhe des
-     * Rechtecks dem Wert des Parameters entspricht.
-     * @param h Neue Höhe des Rechtecks
-     */
-    public void setHeight(double h) {
-        
-        Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
-        Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
-        this.transform(translationToOriginMatrix);
-        
-        double scaleFactor = h / this.getHeight();
-        Double rotated = Math.toDegrees(Math.acos(
-            (this.getPoints2D()[1].getX() 
-            + this.getPoints2D()[2].getX()) / this.getWidth()
-        ));
-        if (rotated.isNaN()) rotated = 180.0;
-        if (this.getPoints2D()[1].getX() > this.getPoints2D()[2].getX()) rotated = -1 * rotated;
-        
-        Matrix rotateBackwardsMatrix = Transformate.getRotateMatrix(-rotated);
-        Matrix scaleMatrix = Transformate.getScaleYMatrix(scaleFactor);
-        Matrix rotateMatrix = Transformate.getRotateMatrix(rotated);
-        
-        Matrix total = Transformate.multiplyMatrices(scaleMatrix, rotateBackwardsMatrix);
-        total = Transformate.multiplyMatrices(rotateMatrix, total);
-        total = Transformate.multiplyMatrices(translationMatrix, total);
-        
-        this.transform(total);
-        
-    }
-    
-    /**
-     * Die Methode setWidth() transformiert ein Rechteck so, dass die Breite des
-     * Rechtecks dem Wert des Parameters entspricht.
-     * @param w Neue Breite des Rechtecks
-     */
-    public void setWidth(double w) {
-        
-        Matrix translationToOriginMatrix = Transformate.getTranslationToOriginMatrix(this.getCenter());
-        Matrix translationMatrix = Transformate.getTranslationMatrix(this.getCenter().getX(), this.getCenter().getY());
-        this.transform(translationToOriginMatrix);
-        
-        double scaleFactor = w / this.getWidth();
-        Double rotated = Math.toDegrees(Math.acos(
-            (this.getPoints2D()[1].getX() 
-            + this.getPoints2D()[2].getX()) / this.getWidth()
-        ));
-        if (rotated.isNaN()) rotated = 180.0;
-        if (this.getPoints2D()[1].getX() > this.getPoints2D()[2].getX()) rotated = -1 * rotated;
-        
-        Matrix rotateBackwardsMatrix = Transformate.getRotateMatrix(-rotated);
-        Matrix scaleMatrix = Transformate.getScaleXMatrix(scaleFactor);
-        Matrix rotateMatrix = Transformate.getRotateMatrix(rotated);
-        
-        Matrix total = Transformate.multiplyMatrices(scaleMatrix, rotateBackwardsMatrix);
-        total = Transformate.multiplyMatrices(rotateMatrix, total);
-        total = Transformate.multiplyMatrices(translationMatrix, total);
-        
-        this.transform(total);
         
     }
     

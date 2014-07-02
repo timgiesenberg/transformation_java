@@ -1,5 +1,5 @@
 package IO;
-// Benötigte Libraries importieren
+
 import GraphicObjects.Circle;
 import GraphicObjects.GraphicObject;
 import GraphicObjects.Line;
@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 /**
  * Ein Objekt der Klasse GraphicObjectReader liest aus einer passenden Textdatei
  * GraphicObjects aus.
- * @author Phil Köster
+ * @author Das TransPlosion-Team
  */
 public class GraphicObjectReader {
     
@@ -37,7 +37,7 @@ public class GraphicObjectReader {
     }
     
     /**
-     * Die Methode read() liest ein GraphicObject aus dem Input-Stream aus und
+     * Liest ein GraphicObject aus dem Input-Stream aus und
      * gibt es zurück.
      * @return Das nächste GraphicObject
      * @throws IOException Fehler beim Lesen, meistens: txt-File nicht im

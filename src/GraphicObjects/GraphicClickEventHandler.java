@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package GraphicObjects;
 
 import App.AppController;
@@ -14,8 +8,9 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 /**
- *
- * @author tim.giesenberg@me.com
+ * Die Klasse GraphicClickEventHandler repräsentiert einen EventHandler, der auf
+ * einen Klick auf ein GraphicObject reagiert.
+ * @author Das TransPlosion-Team
  */
 public class GraphicClickEventHandler implements javafx.event.EventHandler<MouseEvent>{
 
@@ -23,6 +18,12 @@ public class GraphicClickEventHandler implements javafx.event.EventHandler<Mouse
     final private ListController listController;
     final private AppController appController;
     
+    /**
+     * Constructor, der einen neuen EventHandler erstellt.
+     * @param o Reagierendes GraphicObject
+     * @param lc ListController, in dem das Objekt steht
+     * @param ac AppController, der die Programmlogik koordiniert
+     */
     public GraphicClickEventHandler(GraphicObject o, ListController lc, AppController ac){
         
         graphicObject = o;
@@ -32,8 +33,9 @@ public class GraphicClickEventHandler implements javafx.event.EventHandler<Mouse
     }
     
     /**
-     *
-     * @param t
+     * Reagiert auf einen Klick auf das GraphicObject, dieses wird ausgewählt.
+     * Das Programmfenster wird dementsprechend aktualisiert.
+     * @param t MouseEvent des Klicks
      */
     @Override
     public void handle(MouseEvent t) {
@@ -43,8 +45,10 @@ public class GraphicClickEventHandler implements javafx.event.EventHandler<Mouse
         // Konturrand beim letzten ausgewählten Objekt entfernen
         GraphicObject selectedItem = this.listController.getSelectedItem();
         if (selectedItem != null) {
+            
             if (selectedItem instanceof Line) selectedItem.setStroke(selectedItem.getFill());
             else selectedItem.setStroke(Color.TRANSPARENT);
+            
         }
         StrokeTransition oldST = appController.getStrokeTransition();
         if (oldST != null) oldST.stop();
@@ -61,12 +65,14 @@ public class GraphicClickEventHandler implements javafx.event.EventHandler<Mouse
         aktuelleST.play();
         appController.setStrokeTransition(aktuelleST);
         
-        //set the focus at the listController
+        // Das angeklickte GraphicObject in der Liste auswählen
         listController.setFocus(graphicObject);
-        //bring the object to the front on canvas
+        // Das angeklickte GrahpicObject in den Vordergrund bringen
         graphicObject.toFront();
-        
+        // Die Eigenschaftenleiste aktualisieren
         appController.setInputFieldValues(graphicObject);
+        // Angeben, dass ein Objekt angeklickt wurde, damit nicht durch den
+        // Canvas-Click die Auswahl wieder aufgehoben wird
         appController.setObjectIsClicked(true);
         
     }

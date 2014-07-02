@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ListView;
 
 import GraphicObjects.GraphicObject;
@@ -15,7 +9,7 @@ import javafx.util.Callback;
 
 /**
  * ListController handles all interaction with the ListView in the application.
- * @author tim.giesenberg@me.com
+ * @author Das TransPlosion-Team
  */
 public class ListController {
     
@@ -23,28 +17,33 @@ public class ListController {
     
     private ListView<GraphicObject> objectListView = null;
     
-    /**
-     * keeps instance of own class for use of singleton pattern
-     */
+    // keeps instance of own class for use of singleton pattern
     private static ListController instance = null;
     
     /**
      * private Constructor to avoid instantiation
      */
     private ListController(ListView lv){
+        
         objectListView = lv;
+        
         objectListView.setCellFactory(new Callback<ListView<GraphicObject>, 
             ListCell<GraphicObject>>() {
                 
                 @Override
                 public ListCell call(ListView<GraphicObject> o) {
+                    
                     System.out.println("Return new Graphiccell");
                     return new GraphicCell();
+                    
                 }
+                
             }
         );
+        
         objectListView.setItems(items);
         System.out.println("Constructor call was successful");
+        
     }
     
     /**
@@ -54,22 +53,30 @@ public class ListController {
      * @return 
      */
     public static ListController getInstance(ListView lv) {
-      if(instance == null) {
-         instance = new ListController(lv);
-         System.out.println("ListController Object created");
-      } else {
-          System.out.println("ListController already instantiated");
-      }
-      return instance;
-   }
+        
+        if(instance == null) {
+            
+            instance = new ListController(lv);
+            System.out.println("ListController Object created");
+            
+        } else {
+            
+            System.out.println("ListController already instantiated");
+            
+        }
+        return instance;
+        
+    }
     
     /**
      * return all Elements in List in a String array
      * @return 
      */
     public ObservableList<GraphicObject> getItems(){
+        
         System.out.print("ListGetItems");
         return items;
+        
     }
     
     /**
@@ -78,7 +85,9 @@ public class ListController {
      * @return 
      */
     public GraphicObject getItem(int id){
+        
         return items.get(id);
+        
     }
     
     /**
@@ -86,22 +95,30 @@ public class ListController {
      * @param g reference of the graphic object that will be inserted into list
      */
     public void addItem(GraphicObject g){
+        
         items.add(g);
         System.out.println(objectListView.getItems());
         System.out.println("addItem.");
+        
     }
     
     /**
      * delete a graphic object from List
      * @param g graphic object that will be deleted
-     * @return 
      */
     public void deleteItem(GraphicObject g){
+        
         items.remove(g);
+        
     }
     
+    /**
+     * 
+     */
     public void deleteAllItems() {
+        
         items.clear();
+        
     }
     
     /**
@@ -109,15 +126,19 @@ public class ListController {
      * @return 
      */
     public GraphicObject getSelectedItem(){
+        
         GraphicObject selected = objectListView.getSelectionModel().getSelectedItem();
         return selected;
+        
     }
     
     /**
      * clears selection from ListView
      */
     public void clearSelection(){
+        
         objectListView.getSelectionModel().clearSelection();
+        
     }
     
     /**
@@ -126,12 +147,19 @@ public class ListController {
      * @param g refernce of selected graphic object
      */
     public void setFocus(GraphicObject g){
+        
         objectListView.getSelectionModel().select(g);
+        
     }
     
+    /**
+     * 
+     */
     public void update(){
+        
         objectListView.setItems(null);
         objectListView.setItems(items);
+        
     }
     
     /**
@@ -140,25 +168,40 @@ public class ListController {
      * @param g 
      */
     public void sort(GraphicObject g){
+        
         if(items.indexOf(g) != 0){
+            
             if(items.contains(g)){
+                
                 items.remove(g);
+                
             }
             //insert first element in list
             items.add(0, g);
+            
         }
         objectListView.setItems(items);
+        
     }
     
+    /**
+     * 
+     */
     private void generateCellFactory(){
+        
         objectListView.setCellFactory(new Callback<ListView<GraphicObject>, 
             ListCell<GraphicObject>>() {
                 
                 @Override
                 public ListCell call(ListView<GraphicObject> p) {
+                    
                     return new GraphicCell();
+                    
                 }
+                
             }
         );
+        
     }
+    
 }

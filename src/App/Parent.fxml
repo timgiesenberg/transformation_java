@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="AppUi" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" styleClass="gesamt-layout" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="App.AppController">
+<AnchorPane id="AppUi" fx:id="appUI" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" styleClass="gesamt-layout" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="App.AppController">
   <children>
     <!-- Canvas -->
     <Pane fx:id="canvas" layoutX="20.0" layoutY="70.0" onMouseClicked="#handleCanvasClick" prefHeight="580.0" prefWidth="960.0" />
@@ -340,7 +340,7 @@
       <Label layoutX="317.0" layoutY="112.0" prefWidth="10.495849609375" text="°" />
     </Pane>
     <!-- Objekteigenschaften -->
-    <TitledPane animated="false" focusTraversable="false" contentDisplay="LEFT" font="$x2" layoutX="980.0" layoutY="420.0" minWidth="220.0" prefHeight="380.0" prefWidth="220.0" text="Objekt-Eigenschaften" textAlignment="LEFT" visible="true">
+    <TitledPane animated="false" contentDisplay="LEFT" focusTraversable="false" font="$x2" layoutX="980.0" layoutY="420.0" minWidth="220.0" prefHeight="380.0" prefWidth="220.0" text="Objekt-Eigenschaften" textAlignment="LEFT" visible="true">
       <content>
         <StackPane fx:id="propertyPane" prefHeight="380.0" prefWidth="220.0" styleClass="Leiste" visible="true">
           <children>

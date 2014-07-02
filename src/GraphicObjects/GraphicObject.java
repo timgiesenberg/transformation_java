@@ -1,18 +1,18 @@
-// Package angeben
 package GraphicObjects;
 
 import Utils.Matrix;
 import Utils.Point2D;
 import Utils.Transformate;
 import javafx.scene.Cursor;
-/*
- * import infoprojektjavApprt infoprojektjavafx.TransformaApplasse GraphicObject fasst alle zur Verfügung stehenden Grafiken zusammen.
- * Alle werden als Polygone implementiert.
- * @author Phil Köster // Dominique Berners
+
+/**
+ * Die Klasse GraphicObject ist die Superklasse aller im Programm verfügbaren
+ * Grafikobjekte. Alle werden als Polygone implementiert.
+ * @author Das TransPlosion-Team
  */
 public abstract class GraphicObject extends javafx.scene.shape.Polygon {
     
-    // Instanzvariablen: Name und Farbe und Punkte des Objekts
+    // Instanzvariablen: Name, Farbe und Punkte des Objekts
     private String name;
     private final int numberOfAngles;
     private Point2D[] points;
@@ -37,6 +37,9 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
      * @param _center Mittelpunkt des neuen Objekts
      */
     protected GraphicObject(String _name, Point2D[] _points, Point2D _center) {
+        
+        // Super-Constructor erstellt ein Polygon (noch ohne Punkte)
+        super();
         
         // Wenn Name übergeben wurde, diesen setzen, sonst default
         if (_name != null) this.name = _name;
@@ -69,8 +72,12 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
             
         }
         
+        // Punkte in der Klasse javafx.scene.shape.Polygon aktualisieren
         this.updatePoints();
+        
+        // Cursor über den Objekten anpassen
         this.setCursor(Cursor.HAND);
+        
     }
     
     /**
@@ -113,8 +120,9 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
         // Wenn ein Mittelpunkt übergeben wurde, diesen setzen
         if (_center != null) this.center = _center;
         // sonst default
-        else this.center = new Point2D(100,100);
+        else this.center = new Point2D(100, 100);
         
+        // Ggf. unsinnigen Radius ersetzen
         if (_radius < 0) _radius = 50;
         
         // Neue Koordinatenarrays erstellen
@@ -152,13 +160,16 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
             
         }
         
-        // Punkte aktualisieren
+        // Punkte in der Superklasse javafx.scene.shape.Polygon aktualisieren
         this.updatePoints();
+        
+        // Cursor über den Objekten zur Hand ändern
         this.setCursor(Cursor.HAND);
+        
     }
         
     /**
-     * Die Methode getName liefert den Namen des Objekts zurück.
+     * Liefert den Namen des Objekts zurück.
      * @return Name des Objekts
      */
     public String getName() {
@@ -169,7 +180,7 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
     }
     
     /**
-     * Die Methode setName setzt den Namen des Objekts neu.
+     * Setzt den Namen des Objekts neu.
      * @param n Zu setzender Name
      */
     public void setName(String n) {
@@ -180,20 +191,19 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
     }
     
     /**
-     * Die Methode getPoints2D() liefert die Koordinaten des Objekts
-     * zurück.
-     * @return Koordinaten des Objekts
+     * Liefert die Punkte des Objekts zurück.
+     * @return Punkte des Objekts
      */
     public Point2D[] getPoints2D() {
                 
-        // Array mit den Koordinaten zurückgeben
+        // Array mit den Punkten zurückgeben
         return points;
         
     }
     
     /**
-     * Die Methode setPoints2D() setzt die Koordinaten des Objekts neu.
-     * @param newPoints Die neuen Koordinaten
+     * Setzt die Punkte des Objekts neu.
+     * @param newPoints Die neuen Punkte
      */
     public void setPoints2D(Point2D[] newPoints) {
         
@@ -210,7 +220,7 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
     }
     
     /**
-     * Die Methode getCenter liefert den Mittelpunkt des Objekts zurück.
+     * Liefert den Mittelpunkt des Objekts zurück.
      * @return Mittelpunkt des Objekts
      */
     public Point2D getCenter() {
@@ -221,7 +231,7 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
     }
     
     /**
-     * Die Methode setCenter setzt den Mittelpunkt des Objekts neu.
+     * Setzt den Mittelpunkt des Objekts neu.
      * @param _center zu setzender Mittelpunkt
      */
     public void setCenter(Point2D _center) {
@@ -232,8 +242,7 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
     }
     
     /**
-     * Die Methode getNumberOfPoints gibt zurück, aus wie vielen Punkten das
-     * Objekt besteht.
+     * Gibt zurück, aus wie vielen Punkten das Objekt besteht.
      * @return Anzahl der Punkte des Objekts
      */
     public int getNumberOfPoints() {
@@ -244,9 +253,10 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
     }
     
     /**
-     * Die Methode updatePoints() aktualisiert die Punkte des Polygons.
+     * Aktualisiert die Punkte des Polygons in der Superklasse.
+     * Diese ist javafx.scene.shape.Polygon.
      */
-    public void updatePoints() {
+    public final void updatePoints() {
         
         // Temporäres Array zur Übergabe an die Superklasse
         Double[] temp = new Double[this.numberOfAngles * 2];
@@ -266,8 +276,7 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
     }
     
     /**
-     * Die Methode transform() transformiert das Objekt anhand der übergebenen
-     * Matrix.
+     * Transformiert das Objekt anhand der übergebenen Matrix.
      * @param m Transformationsmatrix
      */
     public void transform(Matrix m) {
@@ -289,53 +298,54 @@ public abstract class GraphicObject extends javafx.scene.shape.Polygon {
     }
     
     /**
-     * Die Methode getCopyInstance() erstellt eine Kopie des angesprochenen
-     * Objekts und liefert es zurück.
-     * @return Kopie des angesprochenen Objekts
-     */
-    public abstract GraphicObject getCopyInstance();
-    
-    /**
-     * Subklassenobjekte müssen zur Speicherung die toString-Methode 
-     * redefinieren.
-     * @return Zusammenfassung des GraphicObjects, optimiert zur Speicherung
-     */
-    @Override
-    public abstract String toString();
-    
-    /**
-     * Die Methode resetCounter() setzt den Objektzähler zur Benennung von
-     * Objekten zurück.
-     */
-    public static void resetCounter() {
-        
-        numberOfObjects = 1;
-        
-    }
-    
-    /**
-     * Die Methode moveToX() verschiebt das Objekt so, dass die x-Koordinate des
-     * Mittelpunkts dem Wert des Parameters entspricht.
+     * Verschiebt das Objekt so, dass die x-Koordinate des Mittelpunkts dem Wert
+     * des Parameters entspricht.
      * @param x Neue x-Koordinate des Mittelpunktes
      */
     public void moveToX(double x) {
         
+        // Translation in x-Richtung errechnen
         double translation = x - this.center.getX();
+        // Matrix erstellen und transformieren
         Matrix matrix = Transformate.getTranslationMatrix(translation, 0);
         this.transform(matrix);
         
     }
     
     /**
-     * Die Methode moveToY() verschiebt das Objekt so, dass die y-Koordinate des
-     * Mittelpunkts dem Wert des Parameters entspricht.
+     * Verschiebt das Objekt so, dass die y-Koordinate des Mittelpunkts dem Wert
+     * des Parameters entspricht.
      * @param y Neue y-Koordinate des Mittelpunktes
      */
     public void moveToY(double y) {
         
+        // Translation in y-Richtung errechnen
         double translation = y - this.center.getY();
+        // Matrix erstellen und transformieren
         Matrix matrix = Transformate.getTranslationMatrix(0, translation);
         this.transform(matrix);
+        
+    }
+    
+    /**
+     * Erstellt eine Kopie des angesprochenen Objekts und liefert es zurück.
+     * @return Kopie des angesprochenen Objekts
+     */
+    public abstract GraphicObject getCopyInstance();
+    
+    /**
+     * Liefert eine Zusammenfassung des Objekts als String.
+     * @return Zusammenfassung des Objekts als String
+     */
+    @Override
+    public abstract String toString();
+    
+    /**
+     * Setzt den Objektzähler zur Benennung von Objekten zurück.
+     */
+    public static void resetCounter() {
+        
+        numberOfObjects = 1;
         
     }
     
