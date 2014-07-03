@@ -212,7 +212,7 @@
       </TextField>
       <TextField fx:id="scaleFactor" layoutX="490.0" layoutY="109.0" onAction="#transformationOfAll" prefWidth="42.0">
         <tooltip>
-          <Tooltip styleClass="Tooltip" text="Bitte geben Sie hier die Vergrößerung des Objekts in Prozent ein." />
+          <Tooltip styleClass="Tooltip" text="Bitte geben Sie hier die Vergrößerungsfaktor des Objekts ein." />
         </tooltip>
       </TextField>
       <Button fx:id="transformationOfAll" layoutX="826.0" layoutY="29.0" mnemonicParsing="false" onAction="#transformationOfAll" prefHeight="26.0" prefWidth="129.0" text="Transformieren!">

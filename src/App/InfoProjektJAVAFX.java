@@ -42,8 +42,7 @@ public class InfoProjektJAVAFX extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("TRANSPLOSION");
-        //TODO set AppIcon
-        stage.getIcons().add(new Image("/img/Neu.png"));
+        stage.getIcons().add(new Image("/img/transplosion_logo.png"));
         stage.setResizable(false);
         stage.sizeToScene();
         stage.show();
